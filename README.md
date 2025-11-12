@@ -32,8 +32,8 @@ pip install -r requirements.txt
 
 ## Team Members
 
-Raamiz
-Musab
-Kiyan
-Haris
+- Raamiz
+- Musab
+- Kiyan
+- Haris
 
