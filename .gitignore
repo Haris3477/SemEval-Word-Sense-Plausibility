@@ -225,7 +225,7 @@ PROJECT_SUMMARY.md
 QUICKSTART.md
 
 #models
-best_roberta_model.pt
+*.pt
 
 #pdfs
 Fall25 - CS 445 - Project Description File.pdf
