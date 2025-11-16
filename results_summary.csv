@@ -1,0 +1,3 @@
+Model,Spearman Correlation,Accuracy Within SD,MAE,MSE
+Baseline,0.0,0.0,0.0,0.0
+Transformer,-0.026055389083010517,0.5625,1.008170247077942,1.382228970527649
