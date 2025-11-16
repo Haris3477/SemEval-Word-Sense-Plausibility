@@ -18,8 +18,9 @@ warnings.filterwarnings('ignore')
 
 import torch
 import torch.nn as nn
+# from torch.optim import AdamW
 from torch.utils.data import Dataset, DataLoader
-from transformers import AutoTokenizer, AutoModel, AdamW, get_linear_schedule_with_warmup
+from transformers import AutoTokenizer, AutoModel, get_linear_schedule_with_warmup, AdamW
 
 # Set random seeds for reproducibility
 SEED = 42
@@ -230,8 +231,8 @@ def main():
     
     # Load datasets
     print("\n1. Loading datasets...")
-    train_df = load_data('train.json')
-    dev_df = load_data('dev.json')
+    train_df = load_data('data/train.json')
+    dev_df = load_data('data/dev.json')
     
     print(f"   Training set size: {len(train_df)}")
     print(f"   Development set size: {len(dev_df)}")
@@ -350,7 +351,7 @@ def main():
         # Save best model
         if dev_metrics['spearman_correlation'] > best_dev_spearman:
             best_dev_spearman = dev_metrics['spearman_correlation']
-            torch.save(roberta_model.state_dict(), 'best_roberta_model.pt')
+            torch.save(roberta_model.state_dict(), 'trained_models/best_roberta_model.pt')
             print(f"\n   ✓ Best model saved (Spearman: {best_dev_spearman:.4f})")
     
     # Load best model and final evaluation
@@ -359,7 +360,7 @@ def main():
     print("="*80)
     
     print("\n   Loading best model...")
-    roberta_model.load_state_dict(torch.load('best_roberta_model.pt'))
+    roberta_model.load_state_dict(torch.load('trained_models/best_roberta_model.pt'))
     
     train_preds_roberta, train_actuals = evaluate_model(roberta_model, train_loader, device)
     dev_preds_roberta, dev_actuals = evaluate_model(roberta_model, dev_loader, device)
