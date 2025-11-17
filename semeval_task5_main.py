@@ -361,29 +361,16 @@ class PlausibilityDataset(Dataset):
 
 
 class PlausibilityModel(nn.Module):
-    def __init__(self, model_name: str, dropout: float, pooling: str, freeze_layers: int = 0):
+    """Simple RoBERTa + Linear regression head - MINIMAL VERSION"""
+    def __init__(self, model_name: str, dropout: float, pooling: str = 'cls', freeze_layers: int = 0):
         super().__init__()
         self.encoder = AutoModel.from_pretrained(model_name)
         hidden = self.encoder.config.hidden_size
-        self.pooling = pooling
-        if pooling == 'weighted':
-            self.attention = nn.Sequential(
-                nn.Linear(hidden, hidden),
-                nn.Tanh(),
-                nn.Linear(hidden, 1)
-            )
-        else:
-            self.attention = None
-        self.regressor = nn.Sequential(
-            nn.Linear(hidden, 512),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-            nn.Linear(512, 256),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-            nn.Linear(256, 1)
-        )
+        
+        # SIMPLE: Just one linear layer for regression
+        self.regressor = nn.Linear(hidden, 1)
         self.dropout = nn.Dropout(dropout)
+        
         if freeze_layers > 0:
             self._freeze_layers(freeze_layers)
 
@@ -399,24 +386,21 @@ class PlausibilityModel(nn.Module):
                 param.requires_grad = False
 
     def forward(self, input_ids, attention_mask):
+        # Get encoder outputs
         outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
-        hidden_states = outputs.last_hidden_state
-        if self.pooling == 'cls':
-            pooled = hidden_states[:, 0, :]
-        elif self.pooling == 'mean':
-            mask = attention_mask.unsqueeze(-1)
-            summed = (hidden_states * mask).sum(dim=1)
-            counts = torch.clamp(mask.sum(dim=1), min=1.0)
-            pooled = summed / counts
-        else:
-            attn_scores = self.attention(hidden_states).squeeze(-1)
-            attn_scores = attn_scores.masked_fill(attention_mask == 0, -1e9)
-            weights = torch.softmax(attn_scores, dim=-1)
-            pooled = torch.bmm(weights.unsqueeze(1), hidden_states).squeeze(1)
+        
+        # Use [CLS] token (simplest, most standard approach)
+        pooled = outputs.last_hidden_state[:, 0, :]
         pooled = self.dropout(pooled)
+        
+        # Direct linear projection to score
         logits = self.regressor(pooled)
-        preds = torch.sigmoid(logits) * (PRED_MAX - PRED_MIN) + PRED_MIN
-        return preds.squeeze(-1)
+        
+        # Clamp only at inference
+        if not self.training:
+            logits = torch.clamp(logits, min=PRED_MIN, max=PRED_MAX)
+        
+        return logits.squeeze(-1)
 
 
 def calculate_metrics(predictions, targets, stdevs):
@@ -441,56 +425,61 @@ def print_metrics(metrics, label):
     print(f"Mean Absolute Error: {metrics['mae']:.4f}")
 
 
+def check_data_distribution(df, label):
+    """Diagnostic function to check if data has sufficient variance"""
+    print(f"\n=== {label} Data Distribution ===")
+    print(f"  Mean: {df['average'].mean():.3f}")
+    print(f"  Std: {df['average'].std():.3f}")
+    print(f"  Min: {df['average'].min():.3f}")
+    print(f"  Max: {df['average'].max():.3f}")
+    print(f"  Median: {df['average'].median():.3f}")
+    
+    if df['average'].std() < 0.5:
+        print("  ⚠️  WARNING: Low variance in target values - model may predict mean!")
+
+
 def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum, use_amp):
+    """Simple training loop - no sample weighting"""
     model.train()
     total_loss = 0.0
-    use_scaler = use_amp and device.type == 'cuda'
-    scaler = torch.cuda.amp.GradScaler(enabled=use_scaler)
-    mse = nn.MSELoss(reduction='none')
-    optimizer.zero_grad()
-    amp_device_type = 'cuda' if device.type == 'cuda' else 'mps'
-    autocast_enabled = use_amp and device.type in ('cuda', 'mps')
-
+    criterion = nn.MSELoss()  # Simple MSE, no weighting
+    
     for step, batch in enumerate(tqdm(dataloader, desc="Training")):
         input_ids = batch['input_ids'].to(device)
         attention_mask = batch['attention_mask'].to(device)
         scores = batch['score'].to(device)
-        weights = batch['weight'].to(device)
-        autocast_ctx = (
-            torch.autocast(device_type=amp_device_type, dtype=torch.float16, enabled=autocast_enabled)
-            if autocast_enabled else nullcontext()
-        )
-        with autocast_ctx:
-            preds = model(input_ids, attention_mask)
-            loss = mse(preds, scores)
-            loss = (loss * weights).mean()
+        
+        # Forward pass
+        preds = model(input_ids, attention_mask)
+        
+        # Debug every 100 batches
+        if step % 100 == 0:
+            pred_std = preds.std().item()
+            print(f"\nBatch {step}: Pred range [{preds.min().item():.3f}, {preds.max().item():.3f}], "
+                  f"Mean: {preds.mean().item():.3f}, Std: {pred_std:.3f} | "
+                  f"Actual range [{scores.min().item():.3f}, {scores.max().item():.3f}], "
+                  f"Mean: {scores.mean().item():.3f}")
+        
+        # Simple MSE loss
+        loss = criterion(preds, scores)
         total_loss += loss.item()
+        
+        # Backward pass
         loss = loss / grad_accum
-        if use_scaler:
-            scaler.scale(loss).backward()
-        else:
-            loss.backward()
-
+        loss.backward()
+        
         if (step + 1) % grad_accum == 0:
-            if use_scaler:
-                scaler.step(optimizer)
-                scaler.update()
-            else:
-                optimizer.step()
+            optimizer.step()
             scheduler.step()
             optimizer.zero_grad()
-
-    remainder = len(dataloader) % grad_accum
-    if remainder != 0:
-        if use_scaler:
-            scaler.step(optimizer)
-            scaler.update()
-        else:
-            optimizer.step()
+    
+    # Handle remainder
+    if len(dataloader) % grad_accum != 0:
+        optimizer.step()
         scheduler.step()
         optimizer.zero_grad()
-
-    return total_loss / max(1, len(dataloader))
+    
+    return total_loss / len(dataloader)
 
 
 def evaluate_model(model, dataloader, device):
@@ -601,16 +590,22 @@ def main():
         df['text'] = df.apply(lambda row: create_text_input(row, args.mark_homonym), axis=1)
 
         def resolve_weight(row):
-            confidence = row.get('confidence_weight', np.nan)
-            if not pd.isna(confidence):
-                return float(confidence)
-            return compute_sample_weight(row['stdev'])
+            # TEMPORARILY DISABLE WEIGHTING - testing if it's causing collapse
+            return 1.0
+            # confidence = row.get('confidence_weight', np.nan)
+            # if not pd.isna(confidence):
+            #     return float(confidence)
+            # return compute_sample_weight(row['stdev'])
 
         df['weight'] = df.apply(resolve_weight, axis=1)
 
     if args.fews_dir:
         mask = train_df['source'].astype(str).str.startswith('fews')
         train_df.loc[mask, 'weight'] *= args.fews_weight
+
+    # Check data distribution for potential issues
+    check_data_distribution(train_df, "Training Set")
+    check_data_distribution(dev_df, "Development Set")
 
     baseline_metrics = {
         'spearman_correlation': 0.0,
@@ -663,12 +658,15 @@ def main():
     model = PlausibilityModel(
         model_name=args.model_name,
         dropout=args.dropout,
-        pooling=args.pooling,
+        pooling='cls',  # Force CLS pooling for simplicity
         freeze_layers=args.freeze_layers
     ).to(device)
 
+    # SIMPLE: Single learning rate for everything
     optimizer = AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
     total_steps = math.ceil(len(train_loader) / args.grad_accumulation) * args.epochs
+    
+    # Standard warmup schedule
     scheduler = get_linear_schedule_with_warmup(
         optimizer,
         num_warmup_steps=int(total_steps * args.warmup_ratio),
