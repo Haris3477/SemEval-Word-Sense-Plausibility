@@ -18,6 +18,7 @@ import pandas as pd
 import seaborn as sns
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from scipy.stats import spearmanr
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import Ridge
@@ -361,12 +362,20 @@ class PlausibilityDataset(Dataset):
 
 
 class PlausibilityModel(nn.Module):
-    """RoBERTa + LayerNorm + Small regression head"""
+    """RoBERTa + LayerNorm + Small regression head with configurable pooling
+
+    pooling: 'cls' | 'mean' | 'weighted'
+    """
     def __init__(self, model_name: str, dropout: float, pooling: str = 'cls', freeze_layers: int = 0):
         super().__init__()
         self.encoder = AutoModel.from_pretrained(model_name)
         hidden = self.encoder.config.hidden_size
+        self.pooling = pooling
         
+        # Optional attention scorer for weighted pooling
+        if pooling == 'weighted':
+            self.attn = nn.Linear(hidden, 1)
+
         # Regression head with LayerNorm: 768 → LayerNorm → 128 → 1
         self.regressor = nn.Sequential(
             nn.LayerNorm(hidden),  # Stabilizes training
@@ -394,18 +403,33 @@ class PlausibilityModel(nn.Module):
     def forward(self, input_ids, attention_mask):
         # Get encoder outputs
         outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
-        
-        # Use [CLS] token (simplest, most standard approach)
-        pooled = outputs.last_hidden_state[:, 0, :]
+        hidden_states = outputs.last_hidden_state  # (batch, seq_len, hidden)
+
+        if self.pooling == 'cls':
+            pooled = hidden_states[:, 0, :]
+        elif self.pooling == 'mean':
+            mask = attention_mask.unsqueeze(-1).float()
+            denom = mask.sum(dim=1).clamp(min=1e-9)
+            pooled = (hidden_states * mask).sum(dim=1) / denom
+        elif self.pooling == 'weighted':
+            # attention scorer -> masked softmax -> weighted sum
+            scores = self.attn(hidden_states).squeeze(-1)  # (batch, seq_len)
+            # mask padding tokens
+            scores = scores.masked_fill(attention_mask == 0, -1e9)
+            weights = F.softmax(scores, dim=1)
+            pooled = (hidden_states * weights.unsqueeze(-1)).sum(dim=1)
+        else:
+            # fallback to cls
+            pooled = hidden_states[:, 0, :]
+
         pooled = self.dropout(pooled)
-        
         # Direct linear projection to score
         logits = self.regressor(pooled)
-        
+
         # Clamp only at inference
         if not self.training:
             logits = torch.clamp(logits, min=PRED_MIN, max=PRED_MAX)
-        
+
         return logits.squeeze(-1)
 
 
@@ -445,10 +469,12 @@ def check_data_distribution(df, label):
 
 
 def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum, use_amp):
-    """Simple training loop - no sample weighting"""
+    """Training loop with Huber loss to prevent collapse to mean"""
     model.train()
     total_loss = 0.0
-    criterion = nn.MSELoss()  # Simple MSE, no weighting
+    # Huber loss: MSE for small errors, MAE for large errors
+    # More robust than MSE, penalizes constant predictions more
+    criterion = nn.HuberLoss(delta=1.0)
     
     for step, batch in enumerate(tqdm(dataloader, desc="Training")):
         input_ids = batch['input_ids'].to(device)
@@ -466,8 +492,16 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
                   f"Actual range [{scores.min().item():.3f}, {scores.max().item():.3f}], "
                   f"Mean: {scores.mean().item():.3f}")
         
-        # Simple MSE loss
+        # Huber loss for main prediction error
         loss = criterion(preds, scores)
+        
+        # Add variance penalty: encourage diverse predictions
+        # If all predictions are similar (low std), add penalty
+        pred_std = preds.std()
+        target_std = scores.std()
+        variance_penalty = torch.relu(target_std - pred_std) * 0.1  # 10% weight
+        loss = loss + variance_penalty
+        
         total_loss += loss.item()
         
         # Backward pass
@@ -664,7 +698,7 @@ def main():
     model = PlausibilityModel(
         model_name=args.model_name,
         dropout=args.dropout,
-        pooling='cls',  # Force CLS pooling for simplicity
+        pooling=args.pooling,  # Use the pooling argument from command line
         freeze_layers=args.freeze_layers
     ).to(device)
 
