@@ -42,17 +42,17 @@ PRED_MIN, PRED_MAX = 1.0, 5.0
 
 def parse_args():
     parser = argparse.ArgumentParser(description="SemEval Task 5 training pipeline")
-    parser.add_argument('--train_path', default='train.json')
-    parser.add_argument('--dev_path', default='dev.json')
+    parser.add_argument('--train_path', default='data/train.json')
+    parser.add_argument('--dev_path', default='data/dev.json')
     parser.add_argument('--model_name', default='roberta-base')
-    parser.add_argument('--epochs', type=int, default=3)
+    parser.add_argument('--epochs', type=int, default=5)  # Increased from 3
     parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--grad_accumulation', type=int, default=1)
     parser.add_argument('--learning_rate', type=float, default=2e-5)
-    parser.add_argument('--weight_decay', type=float, default=0.01)
+    parser.add_argument('--weight_decay', type=float, default=0.1)  # Increased from 0.01
     parser.add_argument('--warmup_ratio', type=float, default=0.1)
     parser.add_argument('--max_length', type=int, default=512)
-    parser.add_argument('--dropout', type=float, default=0.2)
+    parser.add_argument('--dropout', type=float, default=0.3)  # Increased from 0.2
     parser.add_argument('--pooling', choices=['cls', 'mean', 'weighted'], default='weighted')
     parser.add_argument('--use_amp', action='store_true')
     parser.add_argument('--early_stop_patience', type=int, default=2)
@@ -361,14 +361,20 @@ class PlausibilityDataset(Dataset):
 
 
 class PlausibilityModel(nn.Module):
-    """Simple RoBERTa + Linear regression head - MINIMAL VERSION"""
+    """RoBERTa + LayerNorm + Small regression head"""
     def __init__(self, model_name: str, dropout: float, pooling: str = 'cls', freeze_layers: int = 0):
         super().__init__()
         self.encoder = AutoModel.from_pretrained(model_name)
         hidden = self.encoder.config.hidden_size
         
-        # SIMPLE: Just one linear layer for regression
-        self.regressor = nn.Linear(hidden, 1)
+        # Regression head with LayerNorm: 768 → LayerNorm → 128 → 1
+        self.regressor = nn.Sequential(
+            nn.LayerNorm(hidden),  # Stabilizes training
+            nn.Linear(hidden, 128),
+            nn.Tanh(),
+            nn.Dropout(dropout),
+            nn.Linear(128, 1)
+        )
         self.dropout = nn.Dropout(dropout)
         
         if freeze_layers > 0:
