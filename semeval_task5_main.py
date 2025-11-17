@@ -302,14 +302,20 @@ def _build_fews_row(
     rng: random.Random,
     weight_multiplier: float,
 ) -> Dict:
-    base = rng.uniform(4.4, 4.9) if positive else rng.uniform(1.0, 1.6)
+    # Make FEWS scores more realistic: wider distribution, less bimodal
+    # Positive: 3.5-4.8 (instead of 4.4-4.9), Negative: 1.2-2.8 (instead of 1.0-1.6)
+    if positive:
+        base = rng.uniform(3.5, 4.8)
+    else:
+        base = rng.uniform(1.2, 2.8)
+    
     votes = []
-    for offset in [-0.3, -0.15, 0.0, 0.15, 0.3]:
-        jitter = rng.uniform(-0.2, 0.2)
+    for offset in [-0.4, -0.2, 0.0, 0.2, 0.4]:  # Wider variance
+        jitter = rng.uniform(-0.3, 0.3)  # More noise
         score = max(PRED_MIN, min(PRED_MAX, base + offset + jitter))
         votes.append(int(round(score)))
     average = float(statistics.mean(votes))
-    stdev = float(statistics.pstdev(votes)) if len(votes) > 1 else 0.4
+    stdev = float(statistics.pstdev(votes)) if len(votes) > 1 else 0.6  # Higher variance
     synonyms = sense_meta.get('synonyms', '')
     tags = sense_meta.get('tags', '')
     gloss = sense_meta.get('gloss', '')
