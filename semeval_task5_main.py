@@ -129,10 +129,27 @@ def standardize_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def highlight_target(sentence: str, homonym: str) -> str:
+    """Highlight target word in sentence, handling case/inflection mismatches."""
     if not sentence or '[TGT]' in sentence or not homonym:
         return sentence
-    pattern = re.compile(rf"\\b{re.escape(homonym)}\\b", re.IGNORECASE)
-    return pattern.sub(lambda m: TARGET_TEMPLATE.format(token=m.group(0)), sentence, count=1)
+    
+    # Try exact word boundary match first (case-insensitive)
+    pattern = re.compile(rf"\b{re.escape(homonym)}\b", re.IGNORECASE)
+    
+    # Check if pattern matches before substituting
+    if pattern.search(sentence):
+        return pattern.sub(lambda m: TARGET_TEMPLATE.format(token=m.group(0)), sentence, count=1)
+    
+    # Fallback: try matching prefix (handles "running" when homonym is "run")
+    # Only match if homonym is substantial (>= 3 chars) to avoid false positives
+    if len(homonym) >= 3:
+        prefix_pattern = re.compile(rf"\b{re.escape(homonym)}\w*\b", re.IGNORECASE)
+        if prefix_pattern.search(sentence):
+            return prefix_pattern.sub(lambda m: TARGET_TEMPLATE.format(token=m.group(0)), sentence, count=1)
+    
+    # Last resort: if no match found, just return original sentence
+    # This prevents errors but means target won't be highlighted
+    return sentence
 
 
 def create_text_input(row: pd.Series, mark_homonym: bool) -> str:
@@ -198,38 +215,65 @@ def load_fews_dataframe(
         examples = rng.sample(examples, max_examples)
 
     rows = []
+    skipped_missing = 0
+    skipped_empty_gloss = 0
+    
     for idx, (raw_sentence, sense_id) in enumerate(tqdm(examples, desc="FEWS -> SemEval")):
         sense_meta = senses.get(sense_id)
         if not sense_meta:
+            skipped_missing += 1
             continue
-        sentence, target = _normalize_fews_sentence(raw_sentence)
-        homonym = sense_meta.get('word', '')
-        if not target:
-            sentence = highlight_target(sentence, homonym)
+        
+        # Extract bare lemma from sense_id (e.g., "potential.noun.0" -> "potential")
+        # This ensures homonym matches AmbiStory format (no suffix)
+        lemma = sense_id.split('.')[0] if '.' in sense_id else sense_id
+        
+        # Validate gloss exists and is non-empty
+        gloss = sense_meta.get('gloss', '').strip()
+        if not gloss:
+            skipped_empty_gloss += 1
+            continue
+        
+        sentence, target_token = _normalize_fews_sentence(raw_sentence)
+        
+        # If no explicit target found, use lemma for highlighting
+        # Handle case/inflection: try exact match first, then case-insensitive
+        if not target_token:
+            sentence = highlight_target(sentence, lemma)
+        
         rows.append(
             _build_fews_row(
                 base_id=f"fews-{idx}",
-                homonym=homonym,
+                lemma=lemma,  # Use bare lemma (no .pos.sense suffix)
                 sentence=sentence,
                 sense_meta=sense_meta,
-                sense_id=sense_id,
+                sense_id=sense_id,  # Keep full sense_id for internal use only
                 positive=True,
                 rng=rng,
                 weight_multiplier=weight_multiplier,
             )
         )
-        lemma_senses = [sid for sid in lemma_to_senses.get(homonym, []) if sid != sense_id]
+        
+        # Generate negative examples with OTHER senses of same lemma
+        lemma_senses = [sid for sid in lemma_to_senses.get(lemma, []) if sid != sense_id]
         if not lemma_senses:
             continue
+        
         for neg in range(negatives):
             neg_id = rng.choice(lemma_senses)
             neg_meta = senses.get(neg_id)
             if not neg_meta:
                 continue
+            
+            # Validate negative gloss exists
+            neg_gloss = neg_meta.get('gloss', '').strip()
+            if not neg_gloss:
+                continue
+            
             rows.append(
                 _build_fews_row(
                     base_id=f"fews-{idx}-neg{neg}",
-                    homonym=homonym,
+                    lemma=lemma,  # Same lemma, different sense
                     sentence=sentence,
                     sense_meta=neg_meta,
                     sense_id=neg_id,
@@ -238,6 +282,27 @@ def load_fews_dataframe(
                     weight_multiplier=weight_multiplier,
                 )
             )
+    
+    # Report statistics
+    print(f"\n   FEWS Processing Stats:")
+    print(f"     ✓ Successfully processed: {len(rows)} samples")
+    print(f"     ⚠ Skipped (missing sense_id): {skipped_missing}")
+    print(f"     ⚠ Skipped (empty gloss): {skipped_empty_gloss}")
+    
+    # Validation: print sample conversions for debugging
+    if len(rows) > 0:
+        print(f"\n   Sample FEWS -> AmbiStory conversions:")
+        for i in range(min(3, len(rows))):
+            sample = rows[i]
+            print(f"\n   Example {i+1}:")
+            print(f"     Homonym (bare lemma): '{sample['homonym']}'")
+            print(f"     Sense ID (internal): '{sample['sense_id']}'")
+            print(f"     Gloss: '{sample['judged_meaning'][:80]}...'")
+            print(f"     Sentence: '{sample['sentence'][:100]}...'")
+            # Verify no sense_id suffix in homonym
+            if '.' in sample['homonym']:
+                print(f"     ❌ WARNING: Homonym contains suffix!")
+    
     return pd.DataFrame(rows)
 
 
@@ -294,10 +359,10 @@ def _normalize_fews_sentence(raw_sentence: str) -> Tuple[str, Optional[str]]:
 
 def _build_fews_row(
     base_id: str,
-    homonym: str,
+    lemma: str,  # Changed from 'homonym' to 'lemma' for clarity
     sentence: str,
     sense_meta: Dict[str, str],
-    sense_id: str,
+    sense_id: str,  # Full sense_id ONLY for internal tracking - NOT exposed to model
     positive: bool,
     rng: random.Random,
     weight_multiplier: float,
@@ -316,26 +381,36 @@ def _build_fews_row(
         votes.append(int(round(score)))
     average = float(statistics.mean(votes))
     stdev = float(statistics.pstdev(votes)) if len(votes) > 1 else 0.6  # Higher variance
-    synonyms = sense_meta.get('synonyms', '')
-    tags = sense_meta.get('tags', '')
-    gloss = sense_meta.get('gloss', '')
+    
+    # Extract metadata - ensure gloss exists
+    synonyms = sense_meta.get('synonyms', '').strip()
+    tags = sense_meta.get('tags', '').strip()
+    gloss = sense_meta.get('gloss', '').strip()
+    
+    # CRITICAL: Ensure gloss is never empty (would harm model)
+    if not gloss:
+        gloss = f"A sense of {lemma}"  # Fallback
+    
+    # Build AmbiStory-compatible row
+    # IMPORTANT: Use ONLY the bare lemma (no .pos.sense suffix) for homonym field
+    # sense_id is stored but NEVER exposed in the text fields seen by the model
     return {
         'id': base_id,
         'sample_id': base_id,
-        'homonym': homonym,
-        'judged_meaning': gloss,
-        'precontext': '',
-        'sentence': sentence,
-        'ending': '',
+        'homonym': lemma,  # ✓ BARE LEMMA ONLY (e.g., "potential" not "potential.noun.0")
+        'judged_meaning': gloss,  # ✓ Validated non-empty gloss
+        'precontext': '',  # FEWS has no story context
+        'sentence': sentence,  # Already has [TGT] markers
+        'ending': '',  # FEWS has no ending
         'choices': votes,
         'average': average,
         'stdev': stdev,
         'nonsensical': [False] * len(votes),
-        'example_sentence': synonyms,
-        'sense_tags': tags,
-        'sense_synonyms': synonyms,
+        'example_sentence': synonyms if synonyms else '',  # Use synonyms as example
+        'sense_tags': tags if tags else '',  # POS/usage tags
+        'sense_synonyms': synonyms if synonyms else '',
         'source': 'fews-positive' if positive else 'fews-negative',
-        'sense_id': sense_id,
+        'sense_id': sense_id,  # ⚠️ INTERNAL ONLY - not used in create_text_input()
         'confidence_weight': compute_sample_weight(stdev, weight_multiplier),
     }
 
@@ -475,12 +550,13 @@ def check_data_distribution(df, label):
 
 
 def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum, use_amp):
-    """Training loop with Huber loss to prevent collapse to mean"""
+    """Training loop with Huber loss + variance penalty + label smoothing"""
     model.train()
     total_loss = 0.0
     # Huber loss: MSE for small errors, MAE for large errors
     # More robust than MSE, penalizes constant predictions more
     criterion = nn.HuberLoss(delta=1.0)
+    label_smoothing = 0.05  # Smooth targets by ±0.05 for regularization
     
     for step, batch in enumerate(tqdm(dataloader, desc="Training")):
         input_ids = batch['input_ids'].to(device)
@@ -489,6 +565,13 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
         
         # Forward pass
         preds = model(input_ids, attention_mask)
+        
+        # Apply label smoothing: add small noise to targets for regularization
+        if model.training and label_smoothing > 0:
+            noise = torch.randn_like(scores) * label_smoothing
+            scores_smoothed = torch.clamp(scores + noise, min=PRED_MIN, max=PRED_MAX)
+        else:
+            scores_smoothed = scores
         
         # Debug every 100 batches
         if step % 100 == 0:
@@ -499,13 +582,13 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
                   f"Mean: {scores.mean().item():.3f}")
         
         # Huber loss for main prediction error
-        loss = criterion(preds, scores)
+        loss = criterion(preds, scores_smoothed)
         
         # Add variance penalty: encourage diverse predictions
         # If all predictions are similar (low std), add penalty
         pred_std = preds.std()
         target_std = scores.std()
-        variance_penalty = torch.relu(target_std - pred_std) * 0.1  # 10% weight
+        variance_penalty = torch.relu(target_std - pred_std) * 0.2  # Increased from 0.1 to 0.2
         loss = loss + variance_penalty
         
         total_loss += loss.item()
