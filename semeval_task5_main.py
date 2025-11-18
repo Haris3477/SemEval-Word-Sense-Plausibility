@@ -47,7 +47,7 @@ def parse_args():
     parser.add_argument('--dev_path', default='data/dev.json')
     parser.add_argument('--model_name', default='roberta-base')
     parser.add_argument('--epochs', type=int, default=15)  # More epochs for better learning
-    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--batch_size', type=int, default=16)  # Optimized for RTX 4060 8GB
     parser.add_argument('--grad_accumulation', type=int, default=1)
     parser.add_argument('--learning_rate', type=float, default=5e-5)  # Higher LR for faster learning
     parser.add_argument('--weight_decay', type=float, default=0.01)  # Lower weight decay
