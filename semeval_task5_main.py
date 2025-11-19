@@ -12,10 +12,8 @@ from contextlib import nullcontext
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -23,6 +21,14 @@ from scipy.stats import spearmanr
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error
+
+# Optional plotting imports
+try:
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    HAS_MATPLOTLIB = True
+except ImportError:
+    HAS_MATPLOTLIB = False
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 from transformers import AdamW, AutoModel, AutoTokenizer, get_linear_schedule_with_warmup
@@ -122,10 +128,22 @@ def standardize_columns(df: pd.DataFrame) -> pd.DataFrame:
         if col not in df.columns:
             df[col] = ''
         df[col] = df[col].fillna('')
-    for numeric in ['average', 'stdev']:
-        if numeric not in df.columns:
-            df[numeric] = np.nan
-        df[numeric] = df[numeric].astype(float)
+    
+    # Handle both 'average' (AmbiStory) and 'plausibility_rating' (FEWS)
+    # Normalize to 'average' for consistency
+    if 'plausibility_rating' in df.columns and 'average' not in df.columns:
+        df['average'] = df['plausibility_rating']
+    elif 'average' not in df.columns:
+        df['average'] = np.nan
+    
+    df['average'] = df['average'].astype(float)
+    
+    # Handle stdev (may not exist in FEWS datasets)
+    # Default to 1.0 (neutral/medium uncertainty) for missing values
+    if 'stdev' not in df.columns:
+        df['stdev'] = 1.0
+    df['stdev'] = df['stdev'].fillna(1.0).astype(float)
+    
     if 'choices' not in df.columns:
         df['choices'] = [[] for _ in range(len(df))]
     if 'nonsensical' not in df.columns:
@@ -525,6 +543,10 @@ class PlausibilityModel(nn.Module):
             nn.init.xavier_uniform_(self.regressor[-1].weight, gain=0.5)
         self.dropout = nn.Dropout(dropout)
         
+        # Scale sigmoid output to [1, 5]
+        self.output_scale = 4.0  # Range width (5 - 1)
+        self.output_bias = 1.0   # Minimum value
+        
         if freeze_layers > 0:
             self._freeze_layers(freeze_layers)
 
@@ -562,10 +584,11 @@ class PlausibilityModel(nn.Module):
             pooled = hidden_states[:, 0, :]
 
         pooled = self.dropout(pooled)
-        # Direct linear projection to score
+        # Regression head outputs sigmoid [0, 1], then scale to [1, 5]
         logits = self.regressor(pooled)
+        logits = logits * self.output_scale + self.output_bias
 
-        # Clamp only at inference
+        # Clamp to valid range
         if not self.training:
             logits = torch.clamp(logits, min=PRED_MIN, max=PRED_MAX)
 
@@ -667,7 +690,10 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
     criterion = nn.MSELoss()
     label_smoothing = 0.02  # Reduced smoothing for better signal
     
-    for step, batch in enumerate(tqdm(dataloader, desc="Training")):
+    # Create progress bar that updates live
+    pbar = tqdm(dataloader, desc="Training", position=0, leave=True)
+    
+    for step, batch in enumerate(pbar):
         input_ids = batch['input_ids'].to(device)
         attention_mask = batch['attention_mask'].to(device)
         scores = batch['score'].to(device)
@@ -754,19 +780,28 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
 def evaluate_model(model, dataloader, device):
     model.eval()
     preds, labels = [], []
+    
+    # Create progress bar that updates live
+    pbar = tqdm(dataloader, desc="Evaluating", position=0, leave=True)
+    
     with torch.no_grad():
-        for batch in tqdm(dataloader, desc="Evaluating"):
+        for batch in pbar:
             input_ids = batch['input_ids'].to(device)
             attention_mask = batch['attention_mask'].to(device)
             scores = batch['score'].to(device)
             outputs = model(input_ids, attention_mask)
             preds.append(outputs.cpu().numpy())
             labels.append(scores.cpu().numpy())
+    
     return np.concatenate(preds), np.concatenate(labels)
 
 
 def create_visualizations(train_df, dev_df, dev_targets, baseline_preds, roberta_preds,
                            roberta_targets, baseline_metrics, roberta_metrics):
+    if not HAS_MATPLOTLIB:
+        print("⚠️  Matplotlib not available, skipping visualizations")
+        return
+    
     sns.set_style("whitegrid")
     plt.rcParams['figure.dpi'] = 300
 

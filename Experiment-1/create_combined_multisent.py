@@ -255,6 +255,18 @@ def extract_multisent_from_file(
             sample = create_ambistory_sample(
                 before, target, after, sense_id, sense_def, is_positive=True
             )
+            
+            # FINAL VALIDATION: Verify the constructed sample still has multiple sentences
+            final_text = (sample['precontext'] + ' ' + sample['sentence'] + ' ' + sample['ending']).strip()
+            if not has_multiple_sentences(final_text):
+                single_count += 1  # This got collapsed to single sentence in split_context
+                multi_count -= 1
+                continue
+            
+            # Also check that sentence doesn't start with punctuation
+            if sample['sentence'] and sample['sentence'][0] in '.,;:!?':
+                continue
+            
             samples.append(sample)
             
             if max_samples and len(samples) >= max_samples:
