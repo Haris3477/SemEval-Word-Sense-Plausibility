@@ -452,3 +452,366 @@ python semeval_task5_main.py \
 
 **Last Updated:** November 18, 2025  
 **Next Evaluation:** After training with combined datasets
+
+---
+
+## Update: Context Analysis & Multi-Sentence Filtering (Nov 18, Evening)
+
+### Problem Discovery: Template Approach Failed
+
+**Initial Training Results:**
+- Combined dataset (AmbiStory + FEWS templates): **Dev Spearman 0.045** (catastrophic failure!)
+- Root cause: 90% of training data (FEWS templates) lacked precontext/ending
+- Model learned to **ignore context** instead of using it
+
+**Vocabulary Analysis:**
+```
+Train vocabulary: 220 words
+Dev vocabulary:   55 words
+Overlap:          0 words  ← 100% zero-shot vocabulary task!
+```
+
+This explains why the task requires learning generalizable sense reasoning, not word memorization.
+
+### Context Format Investigation
+
+Analyzed all FEWS .txt files for **true multi-sentence context** (multiple sentences with actual boundaries: `. ! ?` followed by space + capital letter).
+
+**Analysis Method:**
+```python
+# Not just long text, but actual sentence boundaries
+sentence_boundary_pattern = r'[.!?;]\s+[A-Z]'
+```
+
+**Results: Multi-Sentence Context Percentage**
+
+| File               | Multi-Sent | Total | Percentage | Notes                    |
+|--------------------|------------|-------|------------|--------------------------|
+| quotations.txt     | 58/200     | 29.0% | ← Best source            |
+| test.few-shot.txt  | 55/200     | 27.5% |                          |
+| train.ext.txt      | 47/200     | 23.5% | ← Use this, not train.txt|
+| test.zero-shot.txt | 47/200     | 23.5% |                          |
+| monosemous.txt     | 42/200     | 21.0% |                          |
+| dev.zero-shot.txt  | 39/200     | 19.5% |                          |
+| dev.few-shot.txt   | 37/200     | 18.5% |                          |
+| examples.txt       | 9/200      | 4.5%  | ← Skip this              |
+
+**Total multi-sentence samples extracted:** ~102,000 (before filtering)
+
+**Key Findings:**
+- ❌ **No FEWS file has majority multi-sentence format** (70-80% are single long sentences)
+- ✅ **But ~20-30% do have actual multiple sentences** - these match AmbiStory narrative structure better
+- ✅ **train.ext.txt = train.txt but larger** (use ext version only)
+- ⚠️ **FEWS contains multi-word terms** with underscores (e.g., `driving_force`, `light_up`)
+
+### Multi-Word Term Analysis
+
+**AmbiStory:** 0% multi-word terms (no underscores)
+
+**FEWS Multi-Word Issues:**
+```
+Lemma: driving_force  →  In text: "driving forces"  (plural)
+Lemma: light_up       →  In text: "lit up"         (conjugation)
+Lemma: moon_shot      →  In text: "Moon shot"      (capitalization)
+Lemma: donkey_kong    →  In text: "donkey kongs"   (plural)
+```
+
+**Decision:** Filter out multi-word terms to match AmbiStory format exactly.
+
+### New Dataset: Combined Multi-Sentence Clean
+
+**Script:** `Experiment-1/create_combined_multisent.py`
+
+**Strategy:**
+1. Extract ONLY samples with multiple sentences from all FEWS files
+2. Filter OUT multi-word terms (with `_`) to match AmbiStory format
+3. Split context intelligently into precontext/sentence/ending
+4. Combine with original AmbiStory (2,280 samples)
+
+**Generated Datasets:**
+
+```bash
+# Version 1: With multi-word terms (NOT RECOMMENDED)
+python3 Experiment-1/create_combined_multisent.py \
+    --output Experiment-1/combined_multisent.json
+# Output: 104,481 samples (16.9% have multi-word mismatches)
+
+# Version 2: Clean, single-word only (RECOMMENDED) ✅
+python3 Experiment-1/create_combined_multisent.py \
+    --output Experiment-1/combined_multisent_clean.json
+# Output: 86,853 samples (0% multi-word, matches AmbiStory format)
+```
+
+**Final Dataset Breakdown:**
+```
+combined_multisent_clean.json:
+- AmbiStory:       2,280 samples (2.6%)
+- FEWS multi-sent: 84,573 samples (97.4%)
+- Total:           86,853 samples
+
+Files processed:
+  quotations.txt:     41,971 samples (8,763 multi-word filtered)
+  train.ext.txt:      18,319 samples (2,548 multi-word filtered)
+  monosemous.txt:     20,312 samples (5,779 multi-word filtered)
+  test.few-shot.txt:   1,034 samples (164 multi-word filtered)
+  test.zero-shot.txt:    980 samples (98 multi-word filtered)
+  dev.few-shot.txt:      983 samples (163 multi-word filtered)
+  dev.zero-shot.txt:     974 samples (113 multi-word filtered)
+```
+
+**Context Splitting Algorithm:**
+```python
+# If multiple sentences in "before" text:
+#   - Most of before → precontext
+#   - Last sentence fragment + target + first part of after → target_sentence
+#   - Rest of after → ending
+
+# If multiple sentences in "after" text:
+#   - Before + target + first sentence of after → target_sentence  
+#   - Rest → ending
+#   - Empty precontext
+
+# Single long sentence:
+#   - Entire thing → target_sentence
+#   - Empty precontext and ending
+```
+
+### Dataset Comparison
+
+| Dataset                        | Samples | Multi-word | Dev Spearman | Notes                        |
+|--------------------------------|---------|------------|--------------|------------------------------|
+| AmbiStory (original)           | 2,280   | 0%         | **0.497**    | Baseline                     |
+| FEWS templates (10K)           | 20,000  | ?          | **0.045**    | Failed - no context          |
+| Combined multi-sent (with _)   | 104,481 | 16.9%      | ?            | Has format mismatches        |
+| **Combined multi-sent (clean)**| **86,853** | **0%**  | **?**        | **✅ RECOMMENDED**           |
+
+### Why This Matters
+
+**Context is Critical for Zero-Shot Generalization:**
+- Task requires learning to use narrative context (not memorizing words)
+- If 90% of training data lacks context, model learns "context = noise"
+- Multi-sentence samples teach model to integrate precontext → sentence → ending
+
+**Expected Improvement:**
+- Previous combined (templates): Spearman **0.045** ❌
+- Multi-sentence combined (clean): Expected **0.50-0.55+** ✅
+- Provides 38x more data than AmbiStory alone
+- All samples have genuine multi-sentence narrative structure
+- Matches AmbiStory format exactly (single-word terms only)
+
+### Training Command
+
+```bash
+# Train with clean multi-sentence dataset
+python semeval_task5_main.py \
+    --train_path Experiment-1/combined_multisent_clean.json \
+    --dev_path data/dev.json \
+    --model_name roberta-base \
+    --pooling weighted \
+    --dropout 0.35 \
+    --learning_rate 8e-6 \
+    --epochs 5 \
+    --batch_size 16 \
+    --skip_baseline
+
+# Expected result: Dev Spearman > 0.50
+```
+
+### Files in Experiment-1
+
+```
+generate_fews_ambistory.py          # Original template approach (deprecated)
+add_context_to_fews.py              # Synthetic context (creates nonsense)
+create_combined_multisent.py        # ✅ Multi-sentence extraction script
+combined_multisent.json             # With multi-word terms (104K samples)
+combined_multisent_clean.json       # ✅ RECOMMENDED (87K samples, clean)
+combined_train_10k.json             # Old: Templates without context
+fews_train_10k_balanced.json        # Old: Templates without context
+```
+
+---
+
+**Last Updated:** November 18, 2025 (Evening - Multi-Sentence Analysis & Filtering)  
+**Next Steps:** 
+1. ✅ Train with `combined_multisent_clean.json` 
+2. Compare against:
+   - AmbiStory baseline: 0.497
+   - Template failure: 0.045
+   - Target: >0.50 dev Spearman
+3. If successful, consider two-stage training (pretrain on FEWS, fine-tune on AmbiStory)
+
+---
+
+## Critical Bug Fixes (Nov 19, Morning)
+
+### Issue 1: Format Mismatch
+**Problem:** Generated dataset used list format instead of dict format with numbered keys.
+
+**AmbiStory format:**
+```json
+{
+  "0": { "homonym": "potential", ... },
+  "1": { "homonym": "drive", ... }
+}
+```
+
+**Our initial format (WRONG):**
+```json
+[
+  { "homonym": "potential", ... },
+  { "homonym": "drive", ... }
+]
+```
+
+**Fix:** Updated script to output dict with numbered string keys matching AmbiStory exactly.
+
+---
+
+### Issue 2: Missing Sense Definitions
+**Problem:** FEWS sense definitions not loading - showing "Definition for X" instead of actual definitions.
+
+**Root cause:** Only loaded 6 definitions instead of 663,730 from `senses.txt`
+
+**Investigation:**
+```python
+# Old (wrong): Only matched exact sense_id in limited set
+sense_def = senses.get(sense_id, f"Definition for {target}")
+
+# Checking reveals:
+# Loaded 6 sense definitions  ❌
+# Should load: 663,730 definitions ✅
+```
+
+**Fix:** Updated `load_senses()` to properly parse the full `senses.txt` file.
+
+**Result:** Now loads 663,730 sense definitions correctly.
+
+---
+
+### Issue 3: Multiple WSD Tags in Same Line
+**Problem:** Some quotations have multiple `<WSD>` tags, causing incorrect parsing.
+
+**Example:**
+```
+...attempting to enter the world of <WSD>audiation</WSD>. At this point, 
+however, they are unable to begin to cope with <WSD>audiation</WSD>.
+```
+
+**Old parsing result:**
+```json
+{
+  "sentence": ". audiation",  // ❌ WRONG - incomplete sentence
+  "ending": "...unable to cope with <WSD>audiation</WSD>."  // ❌ Still has tags
+}
+```
+
+**Fix Applied:**
+1. Find the **FIRST** `<WSD>` tag as the target word
+2. Remove **ALL** `<WSD>` and `</WSD>` tags from before/after text
+3. Ensure clean text without any tag remnants
+
+**Updated `parse_fews_line()` function:**
+```python
+# Find FIRST <WSD> tag
+first_match = re.search(r'<WSD>(.*?)</WSD>', full_text_with_tags)
+target = first_match.group(1).strip()
+
+# Get text before/after FIRST tag
+before_with_tags = full_text_with_tags[:first_match.start()]
+after_with_tags = full_text_with_tags[first_match.end():]
+
+# Remove ALL <WSD> tags from before/after
+before = re.sub(r'</?WSD>', '', before_with_tags).strip()
+after = re.sub(r'</?WSD>', '', after_with_tags).strip()
+```
+
+**New result:**
+```json
+{
+  "sentence": "Private ' audiations ' are systematically insulated...",  // ✅ Clean
+  "ending": "...unable to begin to cope with audiation."  // ✅ Tags removed
+}
+```
+
+---
+
+### Issue 4: Sentences Starting with Punctuation
+**Problem:** Generated sentences starting with periods: `". audiation"`, `". just as"`
+
+**Root cause:** Context splitting algorithm placing punctuation boundaries incorrectly.
+
+**Fix Applied:**
+1. Strip leading punctuation from target_sentence: `.lstrip('.!?;: ')`
+2. Capitalize first letter if lowercase
+3. Ensure grammatical sentence structure
+
+**Updated `split_context()` logic:**
+```python
+# Clean up: ensure target_sentence doesn't start with punctuation
+target_sentence = target_sentence.lstrip('.!?;: ')
+
+# If target_sentence starts with lowercase, capitalize it
+if target_sentence and target_sentence[0].islower():
+    target_sentence = target_sentence[0].upper() + target_sentence[1:]
+```
+
+**Before:**
+```
+". audiation"  ❌
+". just as core to their calling"  ❌
+```
+
+**After:**
+```
+"Private ' audiations ' are systematically insulated..."  ✅
+"Improving the workings of the businesses..."  ✅
+```
+
+---
+
+### Final Dataset Quality Check
+
+**Script run results:**
+```bash
+python3 Experiment-1/create_combined_multisent.py \
+    --output Experiment-1/combined_multisent_clean.json
+
+Loading FEWS senses: 663,730 definitions ✅
+Total samples: 88,104 ✅
+Format: Dict with numbered keys ✅
+Sentences starting with punctuation: 0 ✅
+Missing definitions: 0 ✅
+```
+
+**Random sample quality:**
+```
+Sample 83810 - weevil:
+  Sentence: "But you accuse other men of villainy with too easy a tongue, you weevil"
+  Judged meaning: A loathsome person.
+  ✅ Looks good
+
+Sample 14592 - reverbate:
+  Sentence: "The heavenly orbs heard the commanding voice reverbate from the mountains"
+  Judged meaning: (rare) (reverberate)
+  ✅ Looks good
+```
+
+---
+
+### Dataset Version History
+
+| Version                          | Samples | Format | Definitions | Sentence Quality | Status       |
+|----------------------------------|---------|--------|-------------|------------------|--------------|
+| combined_multisent.json          | 104,481 | List   | Missing     | Has issues       | ❌ Deprecated |
+| combined_multisent_clean v1      | 86,853  | List   | Missing     | Has issues       | ❌ Deprecated |
+| combined_multisent_clean_v2.json | 88,104  | Dict   | ✅ Loaded   | Has issues       | ❌ Deprecated |
+| **combined_multisent_clean.json** | **88,104** | **Dict** | **✅ 663K** | **✅ Clean** | **✅ FINAL** |
+
+**Recommended:** Use `Experiment-1/combined_multisent_clean.json` (final version)
+
+---
+
+**Last Updated:** November 19, 2025 (Morning - Critical Bug Fixes)  
+**Status:** ✅ Dataset ready for training  
+**Next Step:** Train model and compare performance against baselines
+
