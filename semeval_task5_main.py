@@ -69,6 +69,11 @@ def parse_args():
     parser.add_argument('--fews_negatives', type=int, default=1)
     parser.add_argument('--fews_include_ext', action='store_true')
     parser.add_argument('--fews_weight', type=float, default=1.0)
+    
+    parser.add_argument('--llm_ambistory_path', type=str, default=None,
+                       help='Path to LLM-generated AmbiStory-style examples JSON file')
+    parser.add_argument('--llm_ambistory_weight', type=float, default=1.0,
+                       help='Weight multiplier for LLM-generated AmbiStory examples')
 
     parser.add_argument('--disable_mark_homonym', dest='mark_homonym', action='store_false')
     parser.set_defaults(mark_homonym=True)
@@ -713,6 +718,12 @@ def main():
         )
         print(f"   FEWS synthetic samples: {len(fews_df)}")
         train_df = pd.concat([train_df, fews_df], ignore_index=True)
+    
+    if args.llm_ambistory_path:
+        llm_df = load_json_dataset(args.llm_ambistory_path, 'llm-generated-ambistory')
+        llm_df = standardize_columns(llm_df)
+        print(f"   LLM-generated AmbiStory samples: {len(llm_df)}")
+        train_df = pd.concat([train_df, llm_df], ignore_index=True)
 
     for df in [train_df, dev_df]:
         df['sentence'] = df['sentence'].fillna('')
@@ -731,6 +742,10 @@ def main():
     if args.fews_dir:
         mask = train_df['source'].astype(str).str.startswith('fews')
         train_df.loc[mask, 'weight'] *= args.fews_weight
+    
+    if args.llm_ambistory_path:
+        mask = train_df['source'].astype(str).str.startswith('llm-generated-ambistory')
+        train_df.loc[mask, 'weight'] *= args.llm_ambistory_weight
 
     # Check data distribution for potential issues
     check_data_distribution(train_df, "Training Set")
