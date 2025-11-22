@@ -46,14 +46,14 @@ def parse_args():
     parser.add_argument('--train_path', default='data/train.json')
     parser.add_argument('--dev_path', default='data/dev.json')
     parser.add_argument('--model_name', default='roberta-base')
-    parser.add_argument('--epochs', type=int, default=5)  # Increased from 3
+    parser.add_argument('--epochs', type=int, default=15)  # More epochs for better learning
     parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--grad_accumulation', type=int, default=1)
-    parser.add_argument('--learning_rate', type=float, default=2e-5)
-    parser.add_argument('--weight_decay', type=float, default=0.1)  # Increased from 0.01
-    parser.add_argument('--warmup_ratio', type=float, default=0.1)
+    parser.add_argument('--learning_rate', type=float, default=5e-5)  # Higher LR for faster learning
+    parser.add_argument('--weight_decay', type=float, default=0.01)  # Lower weight decay
+    parser.add_argument('--warmup_ratio', type=float, default=0.05)  # Less warmup
     parser.add_argument('--max_length', type=int, default=512)
-    parser.add_argument('--dropout', type=float, default=0.3)  # Increased from 0.2
+    parser.add_argument('--dropout', type=float, default=0.15)  # Lower dropout for more capacity
     parser.add_argument('--pooling', choices=['cls', 'mean', 'weighted'], default='weighted')
     parser.add_argument('--use_amp', action='store_true')
     parser.add_argument('--early_stop_patience', type=int, default=2)
@@ -157,28 +157,67 @@ def highlight_target(sentence: str, homonym: str) -> str:
     return sentence
 
 
+def normalize_text(text: str) -> str:
+    """Normalize text: clean whitespace, fix punctuation spacing"""
+    if not text:
+        return ""
+    # Normalize whitespace
+    text = ' '.join(text.split())
+    # Fix spacing around punctuation
+    text = re.sub(r'\s+([,.!?;:])', r'\1', text)
+    text = re.sub(r'([,.!?;:])\s*([,.!?;:])', r'\1 \2', text)
+    return text.strip()
+
+
 def create_text_input(row: pd.Series, mark_homonym: bool) -> str:
+    """Create text input optimized for plausibility rating.
+    
+    Format: Context first (story), then the ambiguous word and sense being evaluated.
+    This helps the model understand the context before judging plausibility.
+    """
     sentence = row['sentence']
     if mark_homonym:
         sentence = highlight_target(sentence, row.get('homonym', ''))
-    parts = [
-        f"Ambiguous word: {row.get('homonym', '').strip()}.",
-        f"Candidate sense: {row.get('judged_meaning', '').strip()}."
-    ]
+    
+    parts = []
+    
+    # 1. STORY CONTEXT FIRST - helps model understand the narrative
+    precontext = normalize_text(row.get('precontext', ''))
+    if precontext:
+        parts.append(precontext)
+    
+    # 2. TARGET SENTENCE with highlighted word
+    sentence = normalize_text(sentence)
+    parts.append(sentence)
+    
+    # 3. ENDING - provides resolution/clues
+    ending = normalize_text(row.get('ending', ''))
+    if ending:
+        parts.append(ending)
+    
+    # 4. NOW evaluate the specific sense in this context
+    # Make the question clearer and more explicit
+    homonym = row.get('homonym', '').strip()
+    sense = row.get('judged_meaning', '').strip()
+    if sense:
+        # Truncate very long sense definitions
+        if len(sense) > 150:
+            sense = sense[:147] + "..."
+        parts.append(f"Task: Rate how plausible the meaning '{sense}' is for the word '{homonym}' in the story above.")
+    
+    # 5. Additional sense information (helpful but secondary)
+    example = normalize_text(row.get('example_sentence', ''))
+    if example:
+        parts.append(f"Example: {example}")
+    
     tags = row.get('sense_tags', '').strip()
     if tags:
-        parts.append(f"Sense tags: {tags}.")
-    example = row.get('example_sentence', '').strip()
-    if example:
-        parts.append(f"Dictionary example: {example}")
-    precontext = row.get('precontext', '').strip()
-    if precontext:
-        parts.append(f"Story context: {precontext}")
-    parts.append(f"Target sentence: {sentence}")
-    ending = row.get('ending', '').strip()
-    if ending:
-        parts.append(f"Ending: {ending}")
-    return " ".join([p for p in parts if p])
+        parts.append(f"Tags: {tags}")
+    
+    # Join with proper spacing
+    result = " ".join([p for p in parts if p])
+    # Final normalization
+    return normalize_text(result)
 
 
 def compute_sample_weight(stdev: float, multiplier: float = 1.0) -> float:
@@ -421,10 +460,12 @@ def _build_fews_row(
 
 
 class PlausibilityDataset(Dataset):
-    def __init__(self, texts: List[str], scores: List[float], weights: List[float], tokenizer, max_length: int):
+    def __init__(self, texts: List[str], scores: List[float], weights: List[float], 
+                 stdevs: List[float], tokenizer, max_length: int):
         self.texts = texts
         self.scores = scores
         self.weights = weights
+        self.stdevs = stdevs
         self.tokenizer = tokenizer
         self.max_length = max_length
 
@@ -443,7 +484,8 @@ class PlausibilityDataset(Dataset):
             'input_ids': encoding['input_ids'].squeeze(0),
             'attention_mask': encoding['attention_mask'].squeeze(0),
             'score': torch.tensor(self.scores[idx], dtype=torch.float),
-            'weight': torch.tensor(self.weights[idx], dtype=torch.float)
+            'weight': torch.tensor(self.weights[idx], dtype=torch.float),
+            'stdev': torch.tensor(self.stdevs[idx], dtype=torch.float)
         }
 
 
@@ -462,14 +504,25 @@ class PlausibilityModel(nn.Module):
         if pooling == 'weighted':
             self.attn = nn.Linear(hidden, 1)
 
-        # Regression head with LayerNorm: 768 → LayerNorm → 128 → 1
+        # Larger regression head: 768 → LayerNorm → 256 → 128 → 1
+        # Deeper network for better capacity
         self.regressor = nn.Sequential(
             nn.LayerNorm(hidden),  # Stabilizes training
-            nn.Linear(hidden, 128),
-            nn.Tanh(),
-            nn.Dropout(dropout),
+            nn.Linear(hidden, 256),
+            nn.GELU(),  # GELU is smoother than Tanh
+            nn.Dropout(dropout * 0.5),  # Less dropout in middle layers
+            nn.Linear(256, 128),
+            nn.GELU(),
+            nn.Dropout(dropout * 0.5),
             nn.Linear(128, 1)
         )
+        
+        # Initialize final layer to output values near target mean (3.0)
+        # This helps the model start in the right range instead of near zero
+        with torch.no_grad():
+            self.regressor[-1].bias.fill_(3.0)  # Initialize bias to target mean
+            # Larger initial weights to encourage variance
+            nn.init.xavier_uniform_(self.regressor[-1].weight, gain=0.5)
         self.dropout = nn.Dropout(dropout)
         
         if freeze_layers > 0:
@@ -554,19 +607,71 @@ def check_data_distribution(df, label):
         print("  ⚠️  WARNING: Low variance in target values - model may predict mean!")
 
 
+def spearman_loss(preds, targets):
+    """Differentiable approximation of Spearman correlation loss (1 - correlation)"""
+    # Rank predictions and targets
+    pred_ranks = torch.argsort(torch.argsort(preds, dim=0, descending=True), dim=0).float()
+    target_ranks = torch.argsort(torch.argsort(targets, dim=0, descending=True), dim=0).float()
+    
+    # Center the ranks
+    pred_ranks = pred_ranks - pred_ranks.mean()
+    target_ranks = target_ranks - target_ranks.mean()
+    
+    # Compute correlation
+    numerator = (pred_ranks * target_ranks).sum()
+    pred_std = torch.sqrt((pred_ranks ** 2).sum())
+    target_std = torch.sqrt((target_ranks ** 2).sum())
+    denominator = pred_std * target_std + 1e-6
+    
+    correlation = numerator / denominator
+    # Return 1 - correlation as loss (we want to maximize correlation)
+    return 1.0 - correlation
+
+
+def accuracy_within_sd_loss(preds, targets, stdevs):
+    """Loss that directly optimizes Accuracy Within SD metric
+    
+    Accuracy Within SD = mean(|pred - target| <= max(stdev, 1.0))
+    We want to maximize this, so we minimize the percentage of predictions outside the acceptable range.
+    """
+    # Calculate acceptable margin for each sample (at least 1.0)
+    margins = torch.clamp(stdevs, min=1.0)
+    
+    # Calculate absolute errors
+    abs_errors = torch.abs(preds - targets)
+    
+    # Binary: 1 if within margin, 0 if outside
+    within_margin = (abs_errors <= margins).float()
+    
+    # Loss = 1 - accuracy_within_sd (we want to minimize this)
+    accuracy_loss = 1.0 - within_margin.mean()
+    
+    # Also add a smooth penalty for being outside margin (helps gradients)
+    # Use a smooth approximation: penalty increases quadratically outside margin
+    # Increase penalty weight to strongly discourage predictions outside margin
+    excess_error = torch.clamp(abs_errors - margins, min=0.0)
+    smooth_penalty = (excess_error ** 2).mean()
+    
+    # Also add a reward for being well within margin (encourages tight predictions)
+    within_margin_ratio = (abs_errors / (margins + 1e-6)).clamp(max=1.0)
+    tightness_bonus = (1.0 - within_margin_ratio).mean()  # Higher when predictions are tight
+    
+    return accuracy_loss + 0.5 * smooth_penalty - 0.1 * tightness_bonus
+
+
 def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum, use_amp):
-    """Training loop with Huber loss + variance penalty + label smoothing"""
+    """Training loop optimized for Spearman correlation"""
     model.train()
     total_loss = 0.0
-    # Huber loss: MSE for small errors, MAE for large errors
-    # More robust than MSE, penalizes constant predictions more
-    criterion = nn.HuberLoss(delta=1.0)
-    label_smoothing = 0.05  # Smooth targets by ±0.05 for regularization
+    # Use MSE for better gradient signal
+    criterion = nn.MSELoss()
+    label_smoothing = 0.02  # Reduced smoothing for better signal
     
     for step, batch in enumerate(tqdm(dataloader, desc="Training")):
         input_ids = batch['input_ids'].to(device)
         attention_mask = batch['attention_mask'].to(device)
         scores = batch['score'].to(device)
+        weights = batch.get('weight', torch.ones_like(scores))
         
         # Forward pass
         preds = model(input_ids, attention_mask)
@@ -578,23 +683,53 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
         else:
             scores_smoothed = scores
         
-        # Debug every 100 batches
-        if step % 100 == 0:
+        # Get stdevs for accuracy within SD loss
+        batch_stdevs = batch.get('stdev', torch.ones_like(scores) * 1.0).to(device)
+        
+        # Debug every 10 batches (more frequent to catch issues early)
+        if step % 10 == 0:
             pred_std = preds.std().item()
+            abs_errors = torch.abs(preds - scores_smoothed)
+            within_sd_count = (abs_errors <= batch_stdevs).sum().item()
+            batch_accuracy = within_sd_count / len(preds)
             print(f"\nBatch {step}: Pred range [{preds.min().item():.3f}, {preds.max().item():.3f}], "
                   f"Mean: {preds.mean().item():.3f}, Std: {pred_std:.3f} | "
                   f"Actual range [{scores.min().item():.3f}, {scores.max().item():.3f}], "
-                  f"Mean: {scores.mean().item():.3f}")
+                  f"Mean: {scores.mean().item():.3f}, Std: {scores.std().item():.3f} | "
+                  f"Batch Accuracy Within SD: {batch_accuracy:.3f}")
         
-        # Huber loss for main prediction error
-        loss = criterion(preds, scores_smoothed)
+        # MSE loss for main prediction error
+        mse_loss = criterion(preds, scores_smoothed)
         
-        # Add variance penalty: encourage diverse predictions
-        # If all predictions are similar (low std), add penalty
+        # DIRECT Accuracy Within SD loss - this is what we're optimizing for!
+        accuracy_loss = accuracy_within_sd_loss(preds, scores_smoothed, batch_stdevs)
+        
+        # Spearman correlation loss (still useful for ranking)
+        spearman_corr_loss = spearman_loss(preds, scores_smoothed)
+        
+        # Variance penalty: encourage diverse predictions
         pred_std = preds.std()
         target_std = scores.std()
-        variance_penalty = torch.relu(target_std - pred_std) * 0.2  # Increased from 0.1 to 0.2
-        loss = loss + variance_penalty
+        variance_ratio = pred_std / (target_std + 1e-6)
+        variance_penalty = (1.0 - variance_ratio) ** 2 * 0.1  # Reduced penalty
+        
+        # Combined loss: STRONGLY PRIORITIZE Accuracy Within SD
+        # Increase accuracy loss weight significantly - this is our main metric
+        # MSE helps with calibration, Spearman helps ranking
+        loss = 5.0 * accuracy_loss + 0.2 * mse_loss + 0.3 * spearman_corr_loss + variance_penalty
+        
+        # Debug loss components occasionally
+        if step % 50 == 0:
+            with torch.no_grad():
+                # Compute actual metrics for monitoring
+                pred_np = preds.cpu().numpy()
+                target_np = scores_smoothed.cpu().numpy()
+                stdev_np = batch_stdevs.cpu().numpy()
+                actual_spearman = spearmanr(pred_np, target_np)[0]
+                actual_accuracy = np.mean(np.abs(pred_np - target_np) <= np.maximum(stdev_np, 1.0))
+            print(f"  Loss: AccLoss={accuracy_loss.item():.4f}, MSE={mse_loss.item():.4f}, "
+                  f"SpearmanLoss={spearman_corr_loss.item():.4f} | "
+                  f"Actual Acc={actual_accuracy:.3f}, Spearman={actual_spearman:.4f}")
         
         total_loss += loss.item()
         
@@ -726,8 +861,19 @@ def main():
         train_df = pd.concat([train_df, llm_df], ignore_index=True)
 
     for df in [train_df, dev_df]:
-        df['sentence'] = df['sentence'].fillna('')
+        # Preprocess: normalize text fields and ensure proper types
+        df['sentence'] = df['sentence'].fillna('').astype(str)
+        df['precontext'] = df['precontext'].fillna('').astype(str)
+        df['ending'] = df['ending'].fillna('').astype(str)
+        df['judged_meaning'] = df['judged_meaning'].fillna('').astype(str)
+        df['example_sentence'] = df['example_sentence'].fillna('').astype(str)
+        
+        # Create normalized text inputs with improved formatting
         df['text'] = df.apply(lambda row: create_text_input(row, args.mark_homonym), axis=1)
+        
+        # Ensure stdevs are reasonable (clamp very low values, but allow some variation)
+        df['stdev'] = df['stdev'].fillna(1.0)
+        df['stdev'] = df['stdev'].clip(lower=0.5)  # Allow slightly lower than 1.0 for very confident ratings
 
         def resolve_weight(row):
             # TEMPORARILY DISABLE WEIGHTING - testing if it's causing collapse
@@ -785,6 +931,7 @@ def main():
         texts=train_df['text'].tolist(),
         scores=train_df['average'].fillna(3.0).tolist(),
         weights=train_df['weight'].tolist(),
+        stdevs=train_df['stdev'].fillna(1.0).tolist(),
         tokenizer=tokenizer,
         max_length=args.max_length
     )
@@ -792,6 +939,7 @@ def main():
         texts=dev_df['text'].tolist(),
         scores=dev_df['average'].fillna(3.0).tolist(),
         weights=dev_df['weight'].tolist(),
+        stdevs=dev_df['stdev'].fillna(1.0).tolist(),
         tokenizer=tokenizer,
         max_length=args.max_length
     )
@@ -799,15 +947,31 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
     dev_loader = DataLoader(dev_dataset, batch_size=args.batch_size, shuffle=False)
 
+    print(f"Creating model on device: {device}")
     model = PlausibilityModel(
         model_name=args.model_name,
         dropout=args.dropout,
         pooling=args.pooling,  # Use the pooling argument from command line
         freeze_layers=args.freeze_layers
-    ).to(device)
+    )
+    print(f"Moving model to device: {device}")
+    model = model.to(device)
+    print(f"Model successfully moved to {device}")
 
-    # SIMPLE: Single learning rate for everything
-    optimizer = AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
+    # Different learning rates: higher for regression head, lower for encoder
+    # This helps the regression head learn faster while keeping encoder stable
+    encoder_params = []
+    regressor_params = []
+    for name, param in model.named_parameters():
+        if 'regressor' in name:
+            regressor_params.append(param)
+        else:
+            encoder_params.append(param)
+    
+    optimizer = AdamW([
+        {'params': encoder_params, 'lr': args.learning_rate},
+        {'params': regressor_params, 'lr': args.learning_rate * 10.0}  # 10x higher LR for regression head
+    ], weight_decay=args.weight_decay, betas=(0.9, 0.999))
     total_steps = math.ceil(len(train_loader) / args.grad_accumulation) * args.epochs
     
     # Standard warmup schedule
