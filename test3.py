@@ -12,8 +12,10 @@ from contextlib import nullcontext
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -21,14 +23,6 @@ from scipy.stats import spearmanr
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-
-# Optional plotting imports
-try:
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    HAS_MATPLOTLIB = True
-except ImportError:
-    HAS_MATPLOTLIB = False
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 from transformers import AdamW, AutoModel, AutoTokenizer, get_linear_schedule_with_warmup
@@ -53,7 +47,7 @@ def parse_args():
     parser.add_argument('--dev_path', default='data/dev.json')
     parser.add_argument('--model_name', default='roberta-base')
     parser.add_argument('--epochs', type=int, default=5)  # Increased from 3
-    parser.add_argument('--batch_size', type=int, default=16)  # Optimized for RTX 4060 8GB
+    parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--grad_accumulation', type=int, default=1)
     parser.add_argument('--learning_rate', type=float, default=2e-5)
     parser.add_argument('--weight_decay', type=float, default=0.1)  # Increased from 0.01
@@ -75,11 +69,6 @@ def parse_args():
     parser.add_argument('--fews_negatives', type=int, default=1)
     parser.add_argument('--fews_include_ext', action='store_true')
     parser.add_argument('--fews_weight', type=float, default=1.0)
-    
-    parser.add_argument('--llm_ambistory_path', type=str, default=None,
-                       help='Path to LLM-generated AmbiStory-style examples JSON file')
-    parser.add_argument('--llm_ambistory_weight', type=float, default=1.0,
-                       help='Weight multiplier for LLM-generated AmbiStory examples')
 
     parser.add_argument('--disable_mark_homonym', dest='mark_homonym', action='store_false')
     parser.set_defaults(mark_homonym=True)
@@ -128,22 +117,10 @@ def standardize_columns(df: pd.DataFrame) -> pd.DataFrame:
         if col not in df.columns:
             df[col] = ''
         df[col] = df[col].fillna('')
-    
-    # Handle both 'average' (AmbiStory) and 'plausibility_rating' (FEWS)
-    # Normalize to 'average' for consistency
-    if 'plausibility_rating' in df.columns and 'average' not in df.columns:
-        df['average'] = df['plausibility_rating']
-    elif 'average' not in df.columns:
-        df['average'] = np.nan
-    
-    df['average'] = df['average'].astype(float)
-    
-    # Handle stdev (may not exist in FEWS datasets)
-    # Default to 1.0 (neutral/medium uncertainty) for missing values
-    if 'stdev' not in df.columns:
-        df['stdev'] = 1.0
-    df['stdev'] = df['stdev'].fillna(1.0).astype(float)
-    
+    for numeric in ['average', 'stdev']:
+        if numeric not in df.columns:
+            df[numeric] = np.nan
+        df[numeric] = df[numeric].astype(float)
     if 'choices' not in df.columns:
         df['choices'] = [[] for _ in range(len(df))]
     if 'nonsensical' not in df.columns:
@@ -152,27 +129,10 @@ def standardize_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def highlight_target(sentence: str, homonym: str) -> str:
-    """Highlight target word in sentence, handling case/inflection mismatches."""
     if not sentence or '[TGT]' in sentence or not homonym:
         return sentence
-    
-    # Try exact word boundary match first (case-insensitive)
-    pattern = re.compile(rf"\b{re.escape(homonym)}\b", re.IGNORECASE)
-    
-    # Check if pattern matches before substituting
-    if pattern.search(sentence):
-        return pattern.sub(lambda m: TARGET_TEMPLATE.format(token=m.group(0)), sentence, count=1)
-    
-    # Fallback: try matching prefix (handles "running" when homonym is "run")
-    # Only match if homonym is substantial (>= 3 chars) to avoid false positives
-    if len(homonym) >= 3:
-        prefix_pattern = re.compile(rf"\b{re.escape(homonym)}\w*\b", re.IGNORECASE)
-        if prefix_pattern.search(sentence):
-            return prefix_pattern.sub(lambda m: TARGET_TEMPLATE.format(token=m.group(0)), sentence, count=1)
-    
-    # Last resort: if no match found, just return original sentence
-    # This prevents errors but means target won't be highlighted
-    return sentence
+    pattern = re.compile(rf"\\b{re.escape(homonym)}\\b", re.IGNORECASE)
+    return pattern.sub(lambda m: TARGET_TEMPLATE.format(token=m.group(0)), sentence, count=1)
 
 
 def create_text_input(row: pd.Series, mark_homonym: bool) -> str:
@@ -238,65 +198,38 @@ def load_fews_dataframe(
         examples = rng.sample(examples, max_examples)
 
     rows = []
-    skipped_missing = 0
-    skipped_empty_gloss = 0
-    
     for idx, (raw_sentence, sense_id) in enumerate(tqdm(examples, desc="FEWS -> SemEval")):
         sense_meta = senses.get(sense_id)
         if not sense_meta:
-            skipped_missing += 1
             continue
-        
-        # Extract bare lemma from sense_id (e.g., "potential.noun.0" -> "potential")
-        # This ensures homonym matches AmbiStory format (no suffix)
-        lemma = sense_id.split('.')[0] if '.' in sense_id else sense_id
-        
-        # Validate gloss exists and is non-empty
-        gloss = sense_meta.get('gloss', '').strip()
-        if not gloss:
-            skipped_empty_gloss += 1
-            continue
-        
-        sentence, target_token = _normalize_fews_sentence(raw_sentence)
-        
-        # If no explicit target found, use lemma for highlighting
-        # Handle case/inflection: try exact match first, then case-insensitive
-        if not target_token:
-            sentence = highlight_target(sentence, lemma)
-        
+        sentence, target = _normalize_fews_sentence(raw_sentence)
+        homonym = sense_meta.get('word', '')
+        if not target:
+            sentence = highlight_target(sentence, homonym)
         rows.append(
             _build_fews_row(
                 base_id=f"fews-{idx}",
-                lemma=lemma,  # Use bare lemma (no .pos.sense suffix)
+                homonym=homonym,
                 sentence=sentence,
                 sense_meta=sense_meta,
-                sense_id=sense_id,  # Keep full sense_id for internal use only
+                sense_id=sense_id,
                 positive=True,
                 rng=rng,
                 weight_multiplier=weight_multiplier,
             )
         )
-        
-        # Generate negative examples with OTHER senses of same lemma
-        lemma_senses = [sid for sid in lemma_to_senses.get(lemma, []) if sid != sense_id]
+        lemma_senses = [sid for sid in lemma_to_senses.get(homonym, []) if sid != sense_id]
         if not lemma_senses:
             continue
-        
         for neg in range(negatives):
             neg_id = rng.choice(lemma_senses)
             neg_meta = senses.get(neg_id)
             if not neg_meta:
                 continue
-            
-            # Validate negative gloss exists
-            neg_gloss = neg_meta.get('gloss', '').strip()
-            if not neg_gloss:
-                continue
-            
             rows.append(
                 _build_fews_row(
                     base_id=f"fews-{idx}-neg{neg}",
-                    lemma=lemma,  # Same lemma, different sense
+                    homonym=homonym,
                     sentence=sentence,
                     sense_meta=neg_meta,
                     sense_id=neg_id,
@@ -305,27 +238,6 @@ def load_fews_dataframe(
                     weight_multiplier=weight_multiplier,
                 )
             )
-    
-    # Report statistics
-    print(f"\n   FEWS Processing Stats:")
-    print(f"     ✓ Successfully processed: {len(rows)} samples")
-    print(f"     ⚠ Skipped (missing sense_id): {skipped_missing}")
-    print(f"     ⚠ Skipped (empty gloss): {skipped_empty_gloss}")
-    
-    # Validation: print sample conversions for debugging
-    if len(rows) > 0:
-        print(f"\n   Sample FEWS -> AmbiStory conversions:")
-        for i in range(min(3, len(rows))):
-            sample = rows[i]
-            print(f"\n   Example {i+1}:")
-            print(f"     Homonym (bare lemma): '{sample['homonym']}'")
-            print(f"     Sense ID (internal): '{sample['sense_id']}'")
-            print(f"     Gloss: '{sample['judged_meaning'][:80]}...'")
-            print(f"     Sentence: '{sample['sentence'][:100]}...'")
-            # Verify no sense_id suffix in homonym
-            if '.' in sample['homonym']:
-                print(f"     ❌ WARNING: Homonym contains suffix!")
-    
     return pd.DataFrame(rows)
 
 
@@ -382,10 +294,10 @@ def _normalize_fews_sentence(raw_sentence: str) -> Tuple[str, Optional[str]]:
 
 def _build_fews_row(
     base_id: str,
-    lemma: str,  # Changed from 'homonym' to 'lemma' for clarity
+    homonym: str,
     sentence: str,
     sense_meta: Dict[str, str],
-    sense_id: str,  # Full sense_id ONLY for internal tracking - NOT exposed to model
+    sense_id: str,
     positive: bool,
     rng: random.Random,
     weight_multiplier: float,
@@ -404,36 +316,26 @@ def _build_fews_row(
         votes.append(int(round(score)))
     average = float(statistics.mean(votes))
     stdev = float(statistics.pstdev(votes)) if len(votes) > 1 else 0.6  # Higher variance
-    
-    # Extract metadata - ensure gloss exists
-    synonyms = sense_meta.get('synonyms', '').strip()
-    tags = sense_meta.get('tags', '').strip()
-    gloss = sense_meta.get('gloss', '').strip()
-    
-    # CRITICAL: Ensure gloss is never empty (would harm model)
-    if not gloss:
-        gloss = f"A sense of {lemma}"  # Fallback
-    
-    # Build AmbiStory-compatible row
-    # IMPORTANT: Use ONLY the bare lemma (no .pos.sense suffix) for homonym field
-    # sense_id is stored but NEVER exposed in the text fields seen by the model
+    synonyms = sense_meta.get('synonyms', '')
+    tags = sense_meta.get('tags', '')
+    gloss = sense_meta.get('gloss', '')
     return {
         'id': base_id,
         'sample_id': base_id,
-        'homonym': lemma,  # ✓ BARE LEMMA ONLY (e.g., "potential" not "potential.noun.0")
-        'judged_meaning': gloss,  # ✓ Validated non-empty gloss
-        'precontext': '',  # FEWS has no story context
-        'sentence': sentence,  # Already has [TGT] markers
-        'ending': '',  # FEWS has no ending
+        'homonym': homonym,
+        'judged_meaning': gloss,
+        'precontext': '',
+        'sentence': sentence,
+        'ending': '',
         'choices': votes,
         'average': average,
         'stdev': stdev,
         'nonsensical': [False] * len(votes),
-        'example_sentence': synonyms if synonyms else '',  # Use synonyms as example
-        'sense_tags': tags if tags else '',  # POS/usage tags
-        'sense_synonyms': synonyms if synonyms else '',
+        'example_sentence': synonyms,
+        'sense_tags': tags,
+        'sense_synonyms': synonyms,
         'source': 'fews-positive' if positive else 'fews-negative',
-        'sense_id': sense_id,  # ⚠️ INTERNAL ONLY - not used in create_text_input()
+        'sense_id': sense_id,
         'confidence_weight': compute_sample_weight(stdev, weight_multiplier),
     }
 
@@ -481,68 +383,14 @@ class PlausibilityModel(nn.Module):
             self.attn = nn.Linear(hidden, 1)
 
         # Regression head with LayerNorm: 768 → LayerNorm → 128 → 1
-        # Output will be scaled to [1, 5] range
-        # Using GELU instead of Tanh for smoother gradients (used in BERT/GPT)
         self.regressor = nn.Sequential(
             nn.LayerNorm(hidden),  # Stabilizes training
             nn.Linear(hidden, 128),
-            nn.GELU(),  # Smoother activation than Tanh, better gradient flow
+            nn.Tanh(),
             nn.Dropout(dropout),
-            nn.Linear(128, 1),
-            nn.Sigmoid()  # Scale to [0, 1]
+            nn.Linear(128, 1)
         )
-        
-        # EXPERIMENTAL: Larger regression head (COMMENTED OUT - caused worse performance)
-        # NOTE: The size itself may not be bad - it was combined with other problematic changes
-        # The GELU activation below is probably better than Tanh - worth testing separately
-        # Tested 768→256→128→1 architecture with GELU activations
-        # Result: More parameters but worse generalization on small dataset (2,280 samples)
-        # Keep for future testing with larger datasets
-        # 
-        # OPTION A: Moderately larger head with GELU (worth trying)
-        self.regressor = nn.Sequential(
-            nn.LayerNorm(hidden),  # Stabilizes training
-            nn.Linear(hidden, 128),
-            nn.GELU(),  # smoother activation than Tanh (safe improvement)
-            nn.Dropout(dropout),
-            nn.Linear(128, 1),
-            nn.Sigmoid()  # Scale to [0, 1]
-        )
-        # 
-        # OPTION B: Original size but with GELU (safest improvement)
-        # self.regressor = nn.Sequential(
-        #     nn.LayerNorm(hidden),
-        #     nn.Linear(hidden, 128),
-        #     nn.GELU(),  # Just replace Tanh with GELU
-        #     nn.Dropout(dropout),
-        #     nn.Linear(128, 1),
-        #     nn.Sigmoid()
-        # )
-        # 
-        # OPTION C: Full experimental version (risky on small dataset)
-        # self.regressor = nn.Sequential(
-        #     nn.LayerNorm(hidden),  # Stabilizes training
-        #     nn.Linear(hidden, 256),
-        #     nn.GELU(),  # GELU is smoother than Tanh
-        #     nn.Dropout(dropout * 0.5),  # Less dropout in middle layers
-        #     nn.Linear(256, 128),
-        #     nn.GELU(),
-        #     nn.Dropout(dropout * 0.5),
-        #     nn.Linear(128, 1)
-        # )
-        # 
-        # # Initialize final layer to output values near target mean (3.0)
-        # # This helps the model start in the right range instead of near zero
-        # with torch.no_grad():
-        #     self.regressor[-1].bias.fill_(3.0)  # Initialize bias to target mean
-        #     # Larger initial weights to encourage variance
-        #     nn.init.xavier_uniform_(self.regressor[-1].weight, gain=0.5)
-        
         self.dropout = nn.Dropout(dropout)
-        
-        # Scale sigmoid output to [1, 5]
-        self.output_scale = 4.0  # Range width (5 - 1)
-        self.output_bias = 1.0   # Minimum value
         
         if freeze_layers > 0:
             self._freeze_layers(freeze_layers)
@@ -581,11 +429,10 @@ class PlausibilityModel(nn.Module):
             pooled = hidden_states[:, 0, :]
 
         pooled = self.dropout(pooled)
-        # Regression head outputs sigmoid [0, 1], then scale to [1, 5]
+        # Direct linear projection to score
         logits = self.regressor(pooled)
-        logits = logits * self.output_scale + self.output_bias
 
-        # Clamp to valid range
+        # Clamp only at inference
         if not self.training:
             logits = torch.clamp(logits, min=PRED_MIN, max=PRED_MAX)
 
@@ -606,10 +453,8 @@ def calculate_metrics(predictions, targets, stdevs):
     }
 
 
-def print_metrics(metrics, label, train_loss: Optional[float] = None):
+def print_metrics(metrics, label):
     print(f"\n=== {label} Performance ===")
-    if train_loss is not None:
-        print(f"Training Loss: {train_loss:.4f}")
     print(f"Spearman Correlation: {metrics['spearman_correlation']:.4f} (p={metrics['spearman_pvalue']:.4e})")
     print(f"Accuracy Within SD: {metrics['accuracy_within_sd']:.4f} ({metrics['accuracy_within_sd']*100:.2f}%)")
     print(f"Mean Squared Error: {metrics['mse']:.4f}")
@@ -629,80 +474,15 @@ def check_data_distribution(df, label):
         print("  ⚠️  WARNING: Low variance in target values - model may predict mean!")
 
 
-# ============================================================================
-# EXPERIMENTAL LOSS FUNCTIONS (COMMENTED OUT - caused performance degradation)
-# ============================================================================
-# These were tested but resulted in worse performance than simple Huber loss
-# The complex multi-objective optimization confused the model
-# Keep for future experimentation with larger datasets
-
-# def spearman_loss(preds, targets):
-#     """Differentiable approximation of Spearman correlation loss (1 - correlation)"""
-#     # Rank predictions and targets
-#     pred_ranks = torch.argsort(torch.argsort(preds, dim=0, descending=True), dim=0).float()
-#     target_ranks = torch.argsort(torch.argsort(targets, dim=0, descending=True), dim=0).float()
-#     
-#     # Center the ranks
-#     pred_ranks = pred_ranks - pred_ranks.mean()
-#     target_ranks = target_ranks - target_ranks.mean()
-#     
-#     # Compute correlation
-#     numerator = (pred_ranks * target_ranks).sum()
-#     pred_std = torch.sqrt((pred_ranks ** 2).sum())
-#     target_std = torch.sqrt((target_ranks ** 2).sum())
-#     denominator = pred_std * target_std + 1e-6
-#     
-#     correlation = numerator / denominator
-#     # Return 1 - correlation as loss (we want to maximize correlation)
-#     return 1.0 - correlation
-
-
-# def accuracy_within_sd_loss(preds, targets, stdevs):
-#     """Loss that directly optimizes Accuracy Within SD metric
-#     
-#     Accuracy Within SD = mean(|pred - target| <= max(stdev, 1.0))
-#     We want to maximize this, so we minimize the percentage of predictions outside the acceptable range.
-#     """
-#     # Calculate acceptable margin for each sample (at least 1.0)
-#     margins = torch.clamp(stdevs, min=1.0)
-#     
-#     # Calculate absolute errors
-#     abs_errors = torch.abs(preds - targets)
-#     
-#     # Binary: 1 if within margin, 0 if outside
-#     within_margin = (abs_errors <= margins).float()
-#     
-#     # Loss = 1 - accuracy_within_sd (we want to minimize this)
-#     accuracy_loss = 1.0 - within_margin.mean()
-#     
-#     # Also add a smooth penalty for being outside margin (helps gradients)
-#     # Use a smooth approximation: penalty increases quadratically outside margin
-#     # Increase penalty weight to strongly discourage predictions outside margin
-#     excess_error = torch.clamp(abs_errors - margins, min=0.0)
-#     smooth_penalty = (excess_error ** 2).mean()
-#     
-#     # Also add a reward for being well within margin (encourages tight predictions)
-#     within_margin_ratio = (abs_errors / (margins + 1e-6)).clamp(max=1.0)
-#     tightness_bonus = (1.0 - within_margin_ratio).mean()  # Higher when predictions are tight
-#     
-#     return accuracy_loss + 0.5 * smooth_penalty - 0.1 * tightness_bonus
-
-# ============================================================================
-
-
 def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum, use_amp):
-    """Training loop with Huber loss + variance penalty + label smoothing"""
+    """Training loop with Huber loss to prevent collapse to mean"""
     model.train()
     total_loss = 0.0
     # Huber loss: MSE for small errors, MAE for large errors
     # More robust than MSE, penalizes constant predictions more
     criterion = nn.HuberLoss(delta=1.0)
-    label_smoothing = 0.02  # Reduced smoothing (safer, was 0.03)
     
-    # Create progress bar that updates live
-    pbar = tqdm(dataloader, desc="Training", position=0, leave=True)
-    
-    for step, batch in enumerate(pbar):
+    for step, batch in enumerate(tqdm(dataloader, desc="Training")):
         input_ids = batch['input_ids'].to(device)
         attention_mask = batch['attention_mask'].to(device)
         scores = batch['score'].to(device)
@@ -710,54 +490,23 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
         # Forward pass
         preds = model(input_ids, attention_mask)
         
-        # Apply label smoothing: add small noise to targets for regularization
-        if model.training and label_smoothing > 0:
-            noise = torch.randn_like(scores) * label_smoothing
-            scores_smoothed = torch.clamp(scores + noise, min=PRED_MIN, max=PRED_MAX)
-        else:
-            scores_smoothed = scores
-        
         # Debug every 100 batches
         if step % 100 == 0:
             pred_std = preds.std().item()
-            pbar.write(f"Batch {step}: Pred range [{preds.min().item():.3f}, {preds.max().item():.3f}], "
+            print(f"\nBatch {step}: Pred range [{preds.min().item():.3f}, {preds.max().item():.3f}], "
                   f"Mean: {preds.mean().item():.3f}, Std: {pred_std:.3f} | "
                   f"Actual range [{scores.min().item():.3f}, {scores.max().item():.3f}], "
                   f"Mean: {scores.mean().item():.3f}")
         
         # Huber loss for main prediction error
-        loss = criterion(preds, scores_smoothed)
+        loss = criterion(preds, scores)
         
         # Add variance penalty: encourage diverse predictions
         # If all predictions are similar (low std), add penalty
         pred_std = preds.std()
         target_std = scores.std()
-        variance_penalty = torch.relu(target_std - pred_std) * 0.2  # Increased from 0.1 to 0.2
+        variance_penalty = torch.relu(target_std - pred_std) * 0.1  # 10% weight
         loss = loss + variance_penalty
-        
-        # EXPERIMENTAL: Multi-objective loss (COMMENTED OUT - caused performance drop)
-        # Tested combining MSE + accuracy_within_sd_loss + spearman_loss + variance_penalty
-        # Result: Model confused by conflicting objectives, Spearman dropped from 0.497 to 0.35
-        # The complex weighted combination didn't help on small dataset:
-        # loss = 5.0 * accuracy_loss + 0.2 * mse_loss + 0.3 * spearman_corr_loss + variance_penalty
-        # 
-        # Also tried getting stdevs from batch for accuracy loss:
-        # batch_stdevs = batch.get('stdev', torch.ones_like(scores) * 1.0).to(device)
-        # accuracy_loss = accuracy_within_sd_loss(preds, scores_smoothed, batch_stdevs)
-        # spearman_corr_loss = spearman_loss(preds, scores_smoothed)
-        # mse_loss = criterion(preds, scores_smoothed)
-        # 
-        # Extra debug output for loss components:
-        # if step % 50 == 0:
-        #     with torch.no_grad():
-        #         pred_np = preds.cpu().numpy()
-        #         target_np = scores_smoothed.cpu().numpy()
-        #         stdev_np = batch_stdevs.cpu().numpy()
-        #         actual_spearman = spearmanr(pred_np, target_np)[0]
-        #         actual_accuracy = np.mean(np.abs(pred_np - target_np) <= np.maximum(stdev_np, 1.0))
-        #     print(f"  Loss: AccLoss={accuracy_loss.item():.4f}, MSE={mse_loss.item():.4f}, "
-        #           f"SpearmanLoss={spearman_corr_loss.item():.4f} | "
-        #           f"Actual Acc={actual_accuracy:.3f}, Spearman={actual_spearman:.4f}")
         
         total_loss += loss.item()
         
@@ -782,28 +531,19 @@ def train_one_epoch(model, dataloader, optimizer, scheduler, device, grad_accum,
 def evaluate_model(model, dataloader, device):
     model.eval()
     preds, labels = [], []
-    
-    # Create progress bar that updates live
-    pbar = tqdm(dataloader, desc="Evaluating", position=0, leave=True)
-    
     with torch.no_grad():
-        for batch in pbar:
+        for batch in tqdm(dataloader, desc="Evaluating"):
             input_ids = batch['input_ids'].to(device)
             attention_mask = batch['attention_mask'].to(device)
             scores = batch['score'].to(device)
             outputs = model(input_ids, attention_mask)
             preds.append(outputs.cpu().numpy())
             labels.append(scores.cpu().numpy())
-    
     return np.concatenate(preds), np.concatenate(labels)
 
 
 def create_visualizations(train_df, dev_df, dev_targets, baseline_preds, roberta_preds,
                            roberta_targets, baseline_metrics, roberta_metrics):
-    if not HAS_MATPLOTLIB:
-        print("⚠️  Matplotlib not available, skipping visualizations")
-        return
-    
     sns.set_style("whitegrid")
     plt.rcParams['figure.dpi'] = 300
 
@@ -890,12 +630,6 @@ def main():
         )
         print(f"   FEWS synthetic samples: {len(fews_df)}")
         train_df = pd.concat([train_df, fews_df], ignore_index=True)
-    
-    if args.llm_ambistory_path:
-        llm_df = load_json_dataset(args.llm_ambistory_path, 'llm-generated-ambistory')
-        llm_df = standardize_columns(llm_df)
-        print(f"   LLM-generated AmbiStory samples: {len(llm_df)}")
-        train_df = pd.concat([train_df, llm_df], ignore_index=True)
 
     for df in [train_df, dev_df]:
         df['sentence'] = df['sentence'].fillna('')
@@ -914,10 +648,6 @@ def main():
     if args.fews_dir:
         mask = train_df['source'].astype(str).str.startswith('fews')
         train_df.loc[mask, 'weight'] *= args.fews_weight
-    
-    if args.llm_ambistory_path:
-        mask = train_df['source'].astype(str).str.startswith('llm-generated-ambistory')
-        train_df.loc[mask, 'weight'] *= args.llm_ambistory_weight
 
     # Check data distribution for potential issues
     check_data_distribution(train_df, "Training Set")
@@ -971,37 +701,15 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
     dev_loader = DataLoader(dev_dataset, batch_size=args.batch_size, shuffle=False)
 
-    print(f"Creating model on device: {device}")
     model = PlausibilityModel(
         model_name=args.model_name,
         dropout=args.dropout,
         pooling=args.pooling,  # Use the pooling argument from command line
         freeze_layers=args.freeze_layers
-    )
-    print(f"Moving model to device: {device}")
-    model = model.to(device)
-    print(f"Model successfully moved to {device}")
+    ).to(device)
 
     # SIMPLE: Single learning rate for everything
     optimizer = AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
-    
-    # EXPERIMENTAL: Different learning rates for encoder vs regressor (COMMENTED OUT)
-    # Tested 10x higher LR for regression head vs encoder
-    # Result: Caused instability and worse performance
-    # The regressor learned too fast and encoder couldn't keep up
-    # encoder_params = []
-    # regressor_params = []
-    # for name, param in model.named_parameters():
-    #     if 'regressor' in name:
-    #         regressor_params.append(param)
-    #     else:
-    #         encoder_params.append(param)
-    # 
-    # optimizer = AdamW([
-    #     {'params': encoder_params, 'lr': args.learning_rate},
-    #     {'params': regressor_params, 'lr': args.learning_rate * 10.0}  # 10x higher LR for regression head
-    # ], weight_decay=args.weight_decay, betas=(0.9, 0.999))
-    
     total_steps = math.ceil(len(train_loader) / args.grad_accumulation) * args.epochs
     
     # Standard warmup schedule
@@ -1034,7 +742,7 @@ def main():
             dev_actuals,
             dev_df['stdev'].fillna(1.0).values
         )
-        print_metrics(dev_metrics, f"Transformer (Dev) - Epoch {epoch + 1}", train_loss=train_loss)
+        print_metrics(dev_metrics, f"Transformer (Dev) - Epoch {epoch + 1}")
 
         if dev_metrics['spearman_correlation'] > best_spearman:
             best_spearman = dev_metrics['spearman_correlation']
