@@ -1,0 +1,589 @@
+id,homonym,judged_meaning,sentence,actual,predicted,error,stdev
+0,track,a pair of parallel rails providing a runway for wheels,They followed the track.,3.6,4.1788654,0.5788655,1.6733200530681511
+1,track,evidence pointing to a possible solution,They followed the track.,3.6,4.2036567,0.60365677,0.5477225575051661
+2,track,a pair of parallel rails providing a runway for wheels,They followed the track.,3.8,3.6507924,-0.14920759,1.3038404810405297
+3,track,evidence pointing to a possible solution,They followed the track.,4.2,4.155806,-0.044193745,0.8366600265340756
+4,track,a pair of parallel rails providing a runway for wheels,They followed the track.,3.0,4.0418496,1.0418496,1.8708286933869707
+5,track,evidence pointing to a possible solution,They followed the track.,3.0,4.1951904,1.1951904,1.224744871391589
+6,dribbling,"propel,",He had been dribbling constantly.,4.6,4.2830973,-0.31690264,0.5477225575051661
+7,dribbling,let saliva drivel from the mouth,He had been dribbling constantly.,1.3333334,3.4241483,2.090815,0.5163977794943223
+8,dribbling,"propel,",He had been dribbling constantly.,2.2,2.3771844,0.17718434,1.3038404810405297
+9,dribbling,let saliva drivel from the mouth,He had been dribbling constantly.,3.8,3.4358294,-0.36417055,1.0954451150103321
+10,dribbling,"propel,",He had been dribbling constantly.,3.2,3.4049332,0.20493317,1.4832396974191326
+11,dribbling,let saliva drivel from the mouth,He had been dribbling constantly.,2.2,2.1351929,-0.06480718,1.6431676725154984
+12,dribbled,"propel,",The hungry child dribbled all over the football pitch.,4.0,3.0569096,-0.94309044,1.0
+13,dribbled,let saliva drivel from the mouth,The hungry child dribbled all over the football pitch.,3.0,2.109964,-0.8900361,1.5811388300841898
+14,dribbled,"propel,",The hungry child dribbled all over the football pitch.,2.2,2.3235493,0.12354922,0.8366600265340756
+15,dribbled,let saliva drivel from the mouth,The hungry child dribbled all over the football pitch.,2.4,2.1097245,-0.29027557,1.140175425099138
+16,dribbled,"propel,",The hungry child dribbled all over the football pitch.,3.4,2.3258123,-1.0741878,1.816590212458495
+17,dribbled,let saliva drivel from the mouth,The hungry child dribbled all over the football pitch.,2.0,1.9836147,-0.016385317,0.8944271909999159
+18,guts,fortitude and determination,The surgeon said the patient had guts like she'd never seen before.,4.6,4.5451336,-0.054866314,0.8944271909999159
+19,guts,the part of the alimentary canal between the stomach and the anus,The surgeon said the patient had guts like she'd never seen before.,1.2,3.6688743,2.4688742,0.4472135954999579
+20,guts,fortitude and determination,The surgeon said the patient had guts like she'd never seen before.,2.2,3.4298491,1.2298491,1.6431676725154984
+21,guts,the part of the alimentary canal between the stomach and the anus,The surgeon said the patient had guts like she'd never seen before.,4.8,4.3840523,-0.4159479,0.4472135954999579
+22,guts,fortitude and determination,The surgeon said the patient had guts like she'd never seen before.,3.2,3.5070515,0.30705142,0.8366600265340756
+23,guts,the part of the alimentary canal between the stomach and the anus,The surgeon said the patient had guts like she'd never seen before.,3.0,3.833869,0.833869,1.4142135623730951
+24,guts,fortitude and determination,He wasn't sure if his guts could handle the pressure of the situation.,2.4,4.107195,1.7071948,1.6733200530681511
+25,guts,the part of the alimentary canal between the stomach and the anus,He wasn't sure if his guts could handle the pressure of the situation.,2.6,4.260738,1.660738,1.816590212458495
+26,guts,fortitude and determination,He wasn't sure if his guts could handle the pressure of the situation.,3.8,4.456669,0.6566689,1.6431676725154984
+27,guts,the part of the alimentary canal between the stomach and the anus,He wasn't sure if his guts could handle the pressure of the situation.,1.8,2.195595,0.39559507,1.3038404810405297
+28,guts,fortitude and determination,He wasn't sure if his guts could handle the pressure of the situation.,3.0,4.437027,1.437027,1.5811388300841898
+29,guts,the part of the alimentary canal between the stomach and the anus,He wasn't sure if his guts could handle the pressure of the situation.,2.8,2.8843412,0.08434129,1.0954451150103321
+30,coached,"teach and supervise (someone); act as a trainer or coach (to), as in sports",He coached the team all the way to the championship.,4.4,4.6014066,0.20140648,0.5477225575051661
+31,coached,drive a coach,He coached the team all the way to the championship.,2.0,2.7427497,0.7427497,1.7320508075688772
+32,coached,"teach and supervise (someone); act as a trainer or coach (to), as in sports",He coached the team all the way to the championship.,4.6,4.2666845,-0.33331537,0.8944271909999159
+33,coached,drive a coach,He coached the team all the way to the championship.,2.4,3.2815647,0.8815646,1.6733200530681511
+34,coached,"teach and supervise (someone); act as a trainer or coach (to), as in sports",He coached the team all the way to the championship.,4.8,4.498596,-0.301404,0.4472135954999579
+35,coached,drive a coach,He coached the team all the way to the championship.,2.8,2.5066652,-0.29333472,1.6431676725154984
+36,mean,approximating the statistical norm or average or expected value,The results of the test were higher in the mean cohort.,4.4,4.1050606,-0.29493952,0.5477225575051661
+37,mean,characterized by malice,The results of the test were higher in the mean cohort.,1.2,3.1629686,1.9629686,0.4472135954999579
+38,mean,approximating the statistical norm or average or expected value,The results of the test were higher in the mean cohort.,3.8,4.2990413,0.49904132,1.7888543819998317
+39,mean,characterized by malice,The results of the test were higher in the mean cohort.,1.8,2.4025052,0.6025052,0.8366600265340756
+40,mean,approximating the statistical norm or average or expected value,The results of the test were higher in the mean cohort.,4.4,4.279736,-0.12026405,0.8944271909999159
+41,mean,characterized by malice,The results of the test were higher in the mean cohort.,1.6,2.0191565,0.41915643,1.3416407864998738
+42,sage,a mentor in spiritual and philosophical topics who is renowned for profound wisdom,The sage was very bold.,1.8,1.9157832,0.115783215,0.8366600265340756
+43,sage,aromatic fresh or dried grey-green leaves used widely as seasoning for meats and fowl and game etc,The sage was very bold.,2.4,3.5329847,1.1329846,1.6733200530681511
+44,sage,a mentor in spiritual and philosophical topics who is renowned for profound wisdom,The sage was very bold.,1.2,1.6576505,0.45765042,0.4472135954999579
+45,sage,aromatic fresh or dried grey-green leaves used widely as seasoning for meats and fowl and game etc,The sage was very bold.,5.0,4.007825,-0.9921751,0.0
+46,sage,a mentor in spiritual and philosophical topics who is renowned for profound wisdom,The sage was very bold.,2.0,2.5892928,0.58929276,1.4142135623730951
+47,sage,aromatic fresh or dried grey-green leaves used widely as seasoning for meats and fowl and game etc,The sage was very bold.,3.4,3.010549,-0.38945103,1.51657508881031
+48,suit,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,John's morning could hardly have gone much worse; an awful suit had arrived at his front door.,5.0,4.391645,-0.60835505,0.0
+49,suit,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,John's morning could hardly have gone much worse; an awful suit had arrived at his front door.,1.0,2.049356,1.049356,0.0
+50,suit,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,John's morning could hardly have gone much worse; an awful suit had arrived at his front door.,1.6,1.9450525,0.34505248,1.3416407864998738
+51,suit,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,John's morning could hardly have gone much worse; an awful suit had arrived at his front door.,3.0,4.116108,1.116108,1.5811388300841898
+52,suit,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,John's morning could hardly have gone much worse; an awful suit had arrived at his front door.,4.8,2.8900561,-1.909944,0.4472135954999579
+53,suit,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,John's morning could hardly have gone much worse; an awful suit had arrived at his front door.,1.8,2.2590513,0.45905137,1.3038404810405297
+54,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,He had many suits last year.,4.8,4.1816244,-0.6183758,0.4472135954999579
+55,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,He had many suits last year.,1.0,1.9119897,0.9119897,0.0
+56,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,He had many suits last year.,2.2,2.2449245,0.044924498,1.6431676725154984
+57,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,He had many suits last year.,4.0,4.503396,0.50339603,0.7071067811865476
+58,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,He had many suits last year.,3.0,3.9872243,0.98722434,1.5811388300841898
+59,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,He had many suits last year.,2.6,3.8793755,1.2793756,1.51657508881031
+60,suit,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,The suit made him angry.,5.0,3.9347281,-1.0652719,0.0
+61,suit,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,The suit made him angry.,2.6666667,1.9123647,-0.754302,1.3662601021279464
+62,suit,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,The suit made him angry.,4.6,3.6524787,-0.9475212,0.5477225575051661
+63,suit,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,The suit made him angry.,1.2,1.6621444,0.46214437,0.4472135954999579
+64,suit,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,The suit made him angry.,4.4,3.4457645,-0.95423555,0.8944271909999159
+65,suit,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,The suit made him angry.,1.8,2.7426083,0.94260836,1.3038404810405297
+66,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,The suits became costly.,4.0,3.8321946,-0.16780543,1.224744871391589
+67,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,The suits became costly.,2.4,1.7204632,-0.67953694,1.949358868961793
+68,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,The suits became costly.,2.0,2.8324118,0.83241177,1.224744871391589
+69,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,The suits became costly.,5.0,4.464792,-0.5352082,0.0
+70,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,The suits became costly.,2.6,3.6443453,1.0443454,1.3416407864998738
+71,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,The suits became costly.,4.4,4.169072,-0.23092794,0.8944271909999159
+72,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,"The suits were interesting, to say the least.",3.8,4.196829,0.3968289,1.6431676725154984
+73,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,"The suits were interesting, to say the least.",1.2,1.6285038,0.42850375,0.4472135954999579
+74,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,"The suits were interesting, to say the least.",3.0,2.1470754,-0.8529246,1.5811388300841898
+75,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,"The suits were interesting, to say the least.",3.4,2.8821583,-0.5178418,1.51657508881031
+76,suits,a set of garments (usually including a jacket and trousers or skirt) for outerwear all of the same fabric and color,"The suits were interesting, to say the least.",4.0,2.7813056,-1.2186944,1.0
+77,suits,a comprehensive term for any proceeding in a court of law whereby an individual seeks a legal remedy,"The suits were interesting, to say the least.",2.4,3.535231,1.135231,1.3416407864998738
+78,stars,(astronomy) a celestial body of hot gases that radiates energy derived from thermonuclear reactions in the interior,He looked forward to seeing the stars.,5.0,3.5435176,-1.4564824,0.0
+79,stars,an actor who plays a principal role,He looked forward to seeing the stars.,1.6,1.7019653,0.10196531,1.3416407864998738
+80,stars,(astronomy) a celestial body of hot gases that radiates energy derived from thermonuclear reactions in the interior,He looked forward to seeing the stars.,5.0,4.500639,-0.49936104,0.0
+81,stars,an actor who plays a principal role,He looked forward to seeing the stars.,1.0,1.9890063,0.9890063,0.0
+82,stars,(astronomy) a celestial body of hot gases that radiates energy derived from thermonuclear reactions in the interior,He looked forward to seeing the stars.,4.4,4.0174656,-0.3825345,0.5477225575051661
+83,stars,an actor who plays a principal role,He looked forward to seeing the stars.,2.0,2.129857,0.12985706,0.0
+84,star,(astronomy) a celestial body of hot gases that radiates energy derived from thermonuclear reactions in the interior,It was clear which one was the outstanding star.,4.4,4.2785745,-0.12142563,0.8944271909999159
+85,star,an actor who plays a principal role,It was clear which one was the outstanding star.,2.0,2.9752932,0.97529316,1.7320508075688772
+86,star,(astronomy) a celestial body of hot gases that radiates energy derived from thermonuclear reactions in the interior,It was clear which one was the outstanding star.,1.8,1.6789638,-0.12103617,0.8366600265340756
+87,star,an actor who plays a principal role,It was clear which one was the outstanding star.,4.4,4.232317,-0.16768312,0.5477225575051661
+88,star,(astronomy) a celestial body of hot gases that radiates energy derived from thermonuclear reactions in the interior,It was clear which one was the outstanding star.,4.8,4.3388586,-0.4611416,0.4472135954999579
+89,star,an actor who plays a principal role,It was clear which one was the outstanding star.,1.2,2.6143425,1.4143424,0.4472135954999579
+90,reservation,a district that is reserved for particular purpose,The couple went to their reservation.,4.2,3.683648,-0.5163517,1.3038404810405297
+91,reservation,the act of reserving (a place or passage) or engaging the services of (a person or group),The couple went to their reservation.,4.2,4.3533874,0.15338755,1.3038404810405297
+92,reservation,a district that is reserved for particular purpose,The couple went to their reservation.,1.8,2.2295327,0.42953277,1.3038404810405297
+93,reservation,the act of reserving (a place or passage) or engaging the services of (a person or group),The couple went to their reservation.,4.6,4.0084686,-0.5915313,0.5477225575051661
+94,reservation,a district that is reserved for particular purpose,The couple went to their reservation.,2.0,3.0850167,1.0850167,0.7071067811865476
+95,reservation,the act of reserving (a place or passage) or engaging the services of (a person or group),The couple went to their reservation.,4.0,3.337052,-0.6629479,1.0
+96,reservation,the act of reserving (a place or passage) or engaging the services of (a person or group),"She agreed to join them for the dinner, but only after making a reservation.",4.8,4.4609184,-0.33908176,0.4472135954999579
+97,reservation,a statement that limits or restricts some claim,"She agreed to join them for the dinner, but only after making a reservation.",2.0,3.3153934,1.3153934,1.7320508075688772
+98,reservation,the act of reserving (a place or passage) or engaging the services of (a person or group),"She agreed to join them for the dinner, but only after making a reservation.",4.8,4.3102107,-0.4897895,0.4472135954999579
+99,reservation,a statement that limits or restricts some claim,"She agreed to join them for the dinner, but only after making a reservation.",1.8,3.7549615,1.9549615,0.4472135954999579
+100,reservation,the act of reserving (a place or passage) or engaging the services of (a person or group),"She agreed to join them for the dinner, but only after making a reservation.",5.0,3.8500643,-1.1499357,0.0
+101,reservation,a statement that limits or restricts some claim,"She agreed to join them for the dinner, but only after making a reservation.",1.0,3.2690623,2.2690623,0.0
+102,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,They both had reservations about staying at the hotel.,4.8,4.512027,-0.2879734,0.4472135954999579
+103,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),They both had reservations about staying at the hotel.,2.2,2.1929717,-0.0070283413,1.6431676725154984
+104,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,They both had reservations about staying at the hotel.,4.6,4.5099998,-0.09000015,0.5477225575051661
+105,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),They both had reservations about staying at the hotel.,1.2,3.5137079,2.3137078,0.4472135954999579
+106,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,They both had reservations about staying at the hotel.,5.0,4.513942,-0.48605824,0.0
+107,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),They both had reservations about staying at the hotel.,2.2,2.6489568,0.44895673,1.6431676725154984
+108,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,The guy on the bus told him about his reservations.,3.8,4.378137,0.57813716,0.8366600265340756
+109,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),The guy on the bus told him about his reservations.,1.6,2.274627,0.67462695,0.8944271909999159
+110,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,The guy on the bus told him about his reservations.,3.2,2.4982903,-0.70170975,0.8366600265340756
+111,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),The guy on the bus told him about his reservations.,4.0,4.402397,0.40239716,1.0
+112,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,The guy on the bus told him about his reservations.,2.8,3.2292657,0.42926574,0.8366600265340756
+113,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),The guy on the bus told him about his reservations.,3.2,2.604773,-0.595227,0.8366600265340756
+114,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,They had reservations but still continued despite the situation.,4.8,4.4725113,-0.3274889,0.4472135954999579
+115,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),They had reservations but still continued despite the situation.,1.4,2.3044753,0.90447533,0.5477225575051661
+116,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,They had reservations but still continued despite the situation.,5.0,4.1703978,-0.82960224,0.0
+117,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),They had reservations but still continued despite the situation.,3.0,2.4196603,-0.58033967,1.5811388300841898
+118,reservations,an unstated doubt that prevents you from accepting something wholeheartedly,They had reservations but still continued despite the situation.,5.0,4.447023,-0.5529771,0.0
+119,reservations,the act of reserving (a place or passage) or engaging the services of (a person or group),They had reservations but still continued despite the situation.,1.4,2.5955174,1.1955174,0.5477225575051661
+120,downhill,toward a lower or inferior state,"The market has been downhill lately, and this is really affecting John.",4.0,3.2688658,-0.7311342,0.7071067811865476
+121,downhill,toward the bottom of a hill,"The market has been downhill lately, and this is really affecting John.",1.4,3.7875724,2.3875723,0.5477225575051661
+122,downhill,toward a lower or inferior state,"The market has been downhill lately, and this is really affecting John.",2.6,3.215073,0.6150732,1.816590212458495
+123,downhill,toward the bottom of a hill,"The market has been downhill lately, and this is really affecting John.",3.0,3.5780826,0.57808256,2.0
+124,downhill,toward a lower or inferior state,"The market has been downhill lately, and this is really affecting John.",3.0,3.1606932,0.16069317,1.8708286933869707
+125,downhill,toward the bottom of a hill,"The market has been downhill lately, and this is really affecting John.",2.0,3.317859,1.3178589,0.7071067811865476
+126,downhill,toward the bottom of a hill,Things were going downhill.,3.6,4.620562,1.0205622,1.140175425099138
+127,downhill,toward a lower or inferior state,Things were going downhill.,2.6,3.8265595,1.2265596,1.51657508881031
+128,downhill,toward the bottom of a hill,Things were going downhill.,1.8,3.057513,1.257513,0.8366600265340756
+129,downhill,toward a lower or inferior state,Things were going downhill.,3.8,3.3329053,-0.46709466,0.8366600265340756
+130,downhill,toward the bottom of a hill,Things were going downhill.,2.8,4.3951626,1.5951626,0.8366600265340756
+131,downhill,toward a lower or inferior state,Things were going downhill.,3.8,3.9729142,0.17291427,1.0954451150103321
+132,downhill,toward a lower or inferior state,He started going downhill after leaving home.,4.0,3.7204418,-0.27955818,1.0
+133,downhill,toward the bottom of a hill,He started going downhill after leaving home.,3.0,4.2455196,1.2455196,1.5811388300841898
+134,downhill,toward a lower or inferior state,He started going downhill after leaving home.,1.8,2.3556285,0.55562854,1.7888543819998317
+135,downhill,toward the bottom of a hill,He started going downhill after leaving home.,4.2,4.6766014,0.4766016,1.7888543819998317
+136,downhill,toward a lower or inferior state,He started going downhill after leaving home.,2.6,3.1285868,0.52858686,1.3416407864998738
+137,downhill,toward the bottom of a hill,He started going downhill after leaving home.,3.6,4.507602,0.9076023,1.140175425099138
+138,downhill,toward a lower or inferior state,They didn't realize how fast it would all go downhill.,3.4,2.7589931,-0.64100695,0.8944271909999159
+139,downhill,toward the bottom of a hill,They didn't realize how fast it would all go downhill.,3.2,4.452985,1.2529848,1.0954451150103321
+140,downhill,toward a lower or inferior state,They didn't realize how fast it would all go downhill.,2.6,2.770591,0.17059112,1.3416407864998738
+141,downhill,toward the bottom of a hill,They didn't realize how fast it would all go downhill.,4.6,4.659752,0.059751987,0.5477225575051661
+142,downhill,toward a lower or inferior state,They didn't realize how fast it would all go downhill.,2.8,2.5568511,-0.2431488,1.6431676725154984
+143,downhill,toward the bottom of a hill,They didn't realize how fast it would all go downhill.,3.6,4.623193,1.0231929,1.140175425099138
+144,downhill,toward a lower or inferior state,The restaurant has gone downhill since moving sites.,3.6,3.7454033,0.14540339,1.51657508881031
+145,downhill,toward the bottom of a hill,The restaurant has gone downhill since moving sites.,2.4,4.1835947,1.7835946,1.51657508881031
+146,downhill,toward a lower or inferior state,The restaurant has gone downhill since moving sites.,5.0,3.9391356,-1.0608644,0.0
+147,downhill,toward the bottom of a hill,The restaurant has gone downhill since moving sites.,1.8,2.2576215,0.45762157,0.8366600265340756
+148,downhill,toward a lower or inferior state,The restaurant has gone downhill since moving sites.,3.8,3.5619345,-0.23806548,0.8366600265340756
+149,downhill,toward the bottom of a hill,The restaurant has gone downhill since moving sites.,1.4,3.6713204,2.2713203,0.5477225575051661
+150,fallout,the radioactive particles that settle to the ground after a nuclear explosion,The fallout was an impressive sight to behold.,4.0,4.167906,0.16790581,1.7320508075688772
+151,fallout,any adverse and unwanted secondary effect,The fallout was an impressive sight to behold.,3.0,2.4040751,-0.59592485,1.8708286933869707
+152,fallout,the radioactive particles that settle to the ground after a nuclear explosion,The fallout was an impressive sight to behold.,4.2,4.0914183,-0.10858154,1.3038404810405297
+153,fallout,any adverse and unwanted secondary effect,The fallout was an impressive sight to behold.,2.6,2.362042,-0.23795795,1.51657508881031
+154,fallout,the radioactive particles that settle to the ground after a nuclear explosion,The fallout was an impressive sight to behold.,3.6,3.6858335,0.08583355,0.5477225575051661
+155,fallout,any adverse and unwanted secondary effect,The fallout was an impressive sight to behold.,3.6,2.6253817,-0.9746182,1.3416407864998738
+156,fallout,the radioactive particles that settle to the ground after a nuclear explosion,There was a lot of fallout from the whole situation.,4.4,3.774631,-0.6253691,0.8944271909999159
+157,fallout,any adverse and unwanted secondary effect,There was a lot of fallout from the whole situation.,3.0,3.6213415,0.62134147,1.4142135623730951
+158,fallout,the radioactive particles that settle to the ground after a nuclear explosion,There was a lot of fallout from the whole situation.,1.8,2.0594893,0.2594893,0.8366600265340756
+159,fallout,any adverse and unwanted secondary effect,There was a lot of fallout from the whole situation.,4.4,4.640727,0.24072695,0.8944271909999159
+160,fallout,the radioactive particles that settle to the ground after a nuclear explosion,There was a lot of fallout from the whole situation.,2.0,2.0296965,0.029696465,1.224744871391589
+161,fallout,any adverse and unwanted secondary effect,There was a lot of fallout from the whole situation.,4.2,4.5971923,0.39719248,0.4472135954999579
+162,underground,under the level of the ground,The underground system is one of the best.,3.8,3.8753896,0.07538962,1.3038404810405297
+163,underground,conducted with or marked by hidden aims or methods,The underground system is one of the best.,1.0,2.044608,1.0446081,0.0
+164,underground,under the level of the ground,The underground system is one of the best.,3.0,3.9928215,0.99282146,1.224744871391589
+165,underground,conducted with or marked by hidden aims or methods,The underground system is one of the best.,1.4,2.359231,0.959231,0.8944271909999159
+166,underground,under the level of the ground,The underground system is one of the best.,4.0,3.840763,-0.15923691,0.7071067811865476
+167,underground,conducted with or marked by hidden aims or methods,The underground system is one of the best.,1.2,1.9205365,0.7205365,0.4472135954999579
+168,underground,under the level of the ground,There was a suggestion that they should move underground for the next stage of the process.,3.8,3.6052675,-0.19473243,1.6431676725154984
+169,underground,conducted with or marked by hidden aims or methods,There was a suggestion that they should move underground for the next stage of the process.,2.4,3.5984943,1.1984942,1.140175425099138
+170,underground,under the level of the ground,There was a suggestion that they should move underground for the next stage of the process.,2.6,2.6023595,0.0023596287,0.5477225575051661
+171,underground,conducted with or marked by hidden aims or methods,There was a suggestion that they should move underground for the next stage of the process.,4.0,4.235553,0.23555279,1.224744871391589
+172,underground,under the level of the ground,There was a suggestion that they should move underground for the next stage of the process.,2.0,2.8759542,0.87595415,1.4142135623730951
+173,underground,conducted with or marked by hidden aims or methods,There was a suggestion that they should move underground for the next stage of the process.,3.4,4.07778,0.6777797,0.8944271909999159
+174,hops,twining perennials having cordate leaves and flowers arranged in conelike spikes; the dried flowers of this plant are used in brewing to add the characteristic bitter taste to beer,Ana had lots of hops.,3.2,3.7456803,0.5456803,1.7888543819998317
+175,hops,the act of hopping; jumping upward or forward (especially on one foot),Ana had lots of hops.,1.8,3.0243735,1.2243736,0.8366600265340756
+176,hops,twining perennials having cordate leaves and flowers arranged in conelike spikes; the dried flowers of this plant are used in brewing to add the characteristic bitter taste to beer,Ana had lots of hops.,2.0,1.8909634,-0.109036565,0.7071067811865476
+177,hops,the act of hopping; jumping upward or forward (especially on one foot),Ana had lots of hops.,2.8,3.6312988,0.8312988,1.6431676725154984
+178,hops,twining perennials having cordate leaves and flowers arranged in conelike spikes; the dried flowers of this plant are used in brewing to add the characteristic bitter taste to beer,Ana had lots of hops.,3.2,2.8653233,-0.33467674,1.4832396974191326
+179,hops,the act of hopping; jumping upward or forward (especially on one foot),Ana had lots of hops.,3.4,3.625707,0.22570682,1.816590212458495
+180,flop,fall loosely,"After all the preparations, the dancer made an entrance, only to flop on stage.",4.2,3.3727844,-0.82721543,1.3038404810405297
+181,flop,fail utterly; collapse,"After all the preparations, the dancer made an entrance, only to flop on stage.",3.0,4.1075597,1.1075597,1.8708286933869707
+182,flop,fall loosely,"After all the preparations, the dancer made an entrance, only to flop on stage.",2.6,2.2934506,-0.3065493,1.51657508881031
+183,flop,fail utterly; collapse,"After all the preparations, the dancer made an entrance, only to flop on stage.",4.0,4.487851,0.48785114,1.0
+184,flop,fall loosely,"After all the preparations, the dancer made an entrance, only to flop on stage.",2.6,2.9509962,0.35099626,0.5477225575051661
+185,flop,fail utterly; collapse,"After all the preparations, the dancer made an entrance, only to flop on stage.",4.2,4.5443892,0.34438944,0.8366600265340756
+186,flop,fall loosely,"Despite all his practice, his dive at the competition was a flop.",2.2,2.8759167,0.6759167,1.0954451150103321
+187,flop,fail utterly; collapse,"Despite all his practice, his dive at the competition was a flop.",4.4,3.936469,-0.46353102,0.8944271909999159
+188,flop,fall loosely,"Despite all his practice, his dive at the competition was a flop.",2.4,1.9868037,-0.41319644,0.5477225575051661
+189,flop,fail utterly; collapse,"Despite all his practice, his dive at the competition was a flop.",4.6,4.0235105,-0.57648945,0.8944271909999159
+190,flop,fall loosely,"Despite all his practice, his dive at the competition was a flop.",2.2,1.9844171,-0.21558297,0.8366600265340756
+191,flop,fail utterly; collapse,"Despite all his practice, his dive at the competition was a flop.",4.0,3.9509904,-0.04900956,0.7071067811865476
+192,fledgling,any new participant in some activity,The fledgling has just arrived.,4.8,4.559257,-0.24074316,0.4472135954999579
+193,fledgling,young bird that has just fledged or become capable of flying,The fledgling has just arrived.,1.4,2.163583,0.76358306,0.8944271909999159
+194,fledgling,any new participant in some activity,The fledgling has just arrived.,2.4,3.198399,0.798399,1.140175425099138
+195,fledgling,young bird that has just fledged or become capable of flying,The fledgling has just arrived.,4.0,4.5584903,0.5584903,1.7320508075688772
+196,fledgling,any new participant in some activity,The fledgling has just arrived.,3.8,3.8866677,0.086667776,1.3038404810405297
+197,fledgling,young bird that has just fledged or become capable of flying,The fledgling has just arrived.,2.8,2.4772642,-0.3227358,0.4472135954999579
+198,fledgling,any new participant in some activity,"The fledgling wobbled uncertainly on the edge, eyeing the vast world ahead.",3.4,4.201869,0.8018689,0.8944271909999159
+199,fledgling,young bird that has just fledged or become capable of flying,"The fledgling wobbled uncertainly on the edge, eyeing the vast world ahead.",2.0,3.0220535,1.0220535,0.7071067811865476
+200,fledgling,any new participant in some activity,"The fledgling wobbled uncertainly on the edge, eyeing the vast world ahead.",4.2,3.8475895,-0.35241032,1.0954451150103321
+201,fledgling,young bird that has just fledged or become capable of flying,"The fledgling wobbled uncertainly on the edge, eyeing the vast world ahead.",2.6,2.727645,0.12764502,1.51657508881031
+202,fledgling,any new participant in some activity,"The fledgling wobbled uncertainly on the edge, eyeing the vast world ahead.",4.0,3.371022,-0.628978,1.7320508075688772
+203,fledgling,young bird that has just fledged or become capable of flying,"The fledgling wobbled uncertainly on the edge, eyeing the vast world ahead.",2.6,3.409211,0.809211,1.51657508881031
+204,Drawing,make a mark or lines on a surface,Drawing water can be quite difficult.,3.6,3.767784,0.16778421,1.51657508881031
+205,Drawing,take liquid out of a container or well;,Drawing water can be quite difficult.,2.6,1.8910245,-0.70897543,2.1908902300206643
+206,Drawing,make a mark or lines on a surface,Drawing water can be quite difficult.,4.2,2.8762794,-1.3237205,0.8366600265340756
+207,Drawing,take liquid out of a container or well;,Drawing water can be quite difficult.,1.8,2.1032982,0.30329823,1.3038404810405297
+208,Drawing,make a mark or lines on a surface,Drawing water can be quite difficult.,3.2,2.6493201,-0.5506799,1.3038404810405297
+209,Drawing,take liquid out of a container or well;,Drawing water can be quite difficult.,3.8,2.8897355,-0.9102645,1.0954451150103321
+210,draw,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Sheila was about to draw on the cigarette.,4.6,4.0971947,-0.50280523,0.5477225575051661
+211,draw,suck in or take (air),Sheila was about to draw on the cigarette.,2.0,1.4632299,-0.5367701,1.7320508075688772
+212,draw,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Sheila was about to draw on the cigarette.,2.0,3.0807314,1.0807314,1.7320508075688772
+213,draw,suck in or take (air),Sheila was about to draw on the cigarette.,4.2,3.7282043,-0.47179556,1.3038404810405297
+214,draw,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Sheila was about to draw on the cigarette.,1.1666666,3.9130669,2.7464004,0.408248290463863
+215,draw,suck in or take (air),Sheila was about to draw on the cigarette.,4.8,1.5113117,-3.2886887,0.4472135954999579
+216,draw,"bring, take, or pull out of a container or from under a cover",Mark believed he could draw it very quickly.,3.0,4.1548615,1.1548615,1.5811388300841898
+217,draw,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Mark believed he could draw it very quickly.,3.0,2.1682389,-0.8317611,1.8708286933869707
+218,draw,"bring, take, or pull out of a container or from under a cover",Mark believed he could draw it very quickly.,2.4,3.3091831,0.909183,1.51657508881031
+219,draw,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Mark believed he could draw it very quickly.,4.4,3.367047,-1.032953,0.5477225575051661
+220,draw,"bring, take, or pull out of a container or from under a cover",Mark believed he could draw it very quickly.,4.0,3.0579796,-0.9420204,1.0
+221,draw,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Mark believed he could draw it very quickly.,3.8,3.16858,-0.6314199,1.0954451150103321
+222,drawing,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Adam enjoyed drawing a crowd.,1.0,1.7281692,0.7281692,0.0
+223,drawing,direct toward itself or oneself by means of some psychological power or physical attributes,Adam enjoyed drawing a crowd.,5.0,4.193029,-0.8069711,0.0
+224,drawing,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Adam enjoyed drawing a crowd.,1.4,2.044941,0.644941,0.5477225575051661
+225,drawing,direct toward itself or oneself by means of some psychological power or physical attributes,Adam enjoyed drawing a crowd.,4.5,4.5530615,0.053061485,0.5477225575051661
+226,drawing,"represent by making a drawing of, as with a pencil, chalk, etc. on a surface",Adam enjoyed drawing a crowd.,1.4,2.6297684,1.2297684,0.5477225575051661
+227,drawing,direct toward itself or oneself by means of some psychological power or physical attributes,Adam enjoyed drawing a crowd.,4.0,4.339325,0.33932495,0.7071067811865476
+228,drawn,make a mark or lines on a surface,"This time, he wasn't easily drawn.",1.6,2.820362,1.2203621,0.5477225575051661
+229,drawn,bring or lead someone to a certain action or condition,"This time, he wasn't easily drawn.",4.2,3.8740664,-0.32593346,0.8366600265340756
+230,drawn,make a mark or lines on a surface,"This time, he wasn't easily drawn.",1.8,2.8188891,1.0188892,0.8366600265340756
+231,drawn,bring or lead someone to a certain action or condition,"This time, he wasn't easily drawn.",4.8,3.8272977,-0.9727025,0.4472135954999579
+232,drawn,make a mark or lines on a surface,"This time, he wasn't easily drawn.",1.6,3.1964824,1.5964824,0.5477225575051661
+233,drawn,bring or lead someone to a certain action or condition,"This time, he wasn't easily drawn.",4.4,3.7488873,-0.6511128,0.5477225575051661
+234,branch,"a division of a stem, or secondary stem arising from the main stem of a plant",The big branch was very close to where they were staying.,5.0,4.2149425,-0.78505754,0.0
+235,branch,a division of some larger or more complex organization,The big branch was very close to where they were staying.,1.6,1.6146266,0.014626622,1.3416407864998738
+236,branch,"a division of a stem, or secondary stem arising from the main stem of a plant",The big branch was very close to where they were staying.,2.2,1.9947224,-0.20527768,1.6431676725154984
+237,branch,a division of some larger or more complex organization,The big branch was very close to where they were staying.,2.8,2.1550577,-0.6449423,1.4832396974191326
+238,branch,"a division of a stem, or secondary stem arising from the main stem of a plant",The big branch was very close to where they were staying.,2.6,2.9490232,0.34902334,0.5477225575051661
+239,branch,a division of some larger or more complex organization,The big branch was very close to where they were staying.,2.4,2.1930263,-0.20697379,0.5477225575051661
+240,fiddle,avoid (one's assigned duties),They both decided to fiddle together.,2.2,3.742839,1.542839,1.3038404810405297
+241,fiddle,play the violin or fiddle,They both decided to fiddle together.,4.6,3.6391735,-0.9608264,0.5477225575051661
+242,fiddle,avoid (one's assigned duties),They both decided to fiddle together.,2.4,3.532617,1.132617,1.6733200530681511
+243,fiddle,play the violin or fiddle,They both decided to fiddle together.,4.0,4.115107,0.11510706,1.224744871391589
+244,fiddle,avoid (one's assigned duties),They both decided to fiddle together.,2.4,3.2701216,0.8701215,1.6733200530681511
+245,fiddle,play the violin or fiddle,They both decided to fiddle together.,4.2,3.7669897,-0.4330101,0.8366600265340756
+246,fiddling,avoid (one's assigned duties),Can they stop fiddling? It's really irritating and annoying.,1.4,4.098776,2.6987758,0.8944271909999159
+247,fiddling,play the violin or fiddle,Can they stop fiddling? It's really irritating and annoying.,1.2,2.0432193,0.8432193,0.4472135954999579
+248,fiddling,avoid (one's assigned duties),Can they stop fiddling? It's really irritating and annoying.,3.0,4.1655865,1.1655865,1.224744871391589
+249,fiddling,play the violin or fiddle,Can they stop fiddling? It's really irritating and annoying.,1.0,2.404328,1.4043281,0.0
+250,fiddling,avoid (one's assigned duties),Can they stop fiddling? It's really irritating and annoying.,2.4,4.3018646,1.9018645,1.51657508881031
+251,fiddling,play the violin or fiddle,Can they stop fiddling? It's really irritating and annoying.,1.4,2.4650047,1.0650047,0.5477225575051661
+252,fiddling,avoid (one's assigned duties),The team was not impressed with Tom's fiddling.,4.4,4.324539,-0.07546091,1.3416407864998738
+253,fiddling,play the violin or fiddle,The team was not impressed with Tom's fiddling.,2.2,2.3222919,0.1222918,0.8366600265340756
+254,fiddling,avoid (one's assigned duties),The team was not impressed with Tom's fiddling.,1.2,2.6081605,1.4081604,0.4472135954999579
+255,fiddling,play the violin or fiddle,The team was not impressed with Tom's fiddling.,4.2,4.052101,-0.14789867,1.3038404810405297
+256,fiddling,avoid (one's assigned duties),The team was not impressed with Tom's fiddling.,2.4,3.7179623,1.3179622,0.5477225575051661
+257,fiddling,play the violin or fiddle,The team was not impressed with Tom's fiddling.,4.0,2.4173388,-1.5826612,1.0
+258,try,make an effort or attempt,This will be his third try.,4.6,4.279509,-0.32049084,0.5477225575051661
+259,try,put on trial or hear a case and sit as the judge at the trial of,This will be his third try.,1.0,2.2816095,1.2816095,0.0
+260,try,make an effort or attempt,This will be his third try.,5.0,3.9012842,-1.0987158,0.0
+261,try,put on trial or hear a case and sit as the judge at the trial of,This will be his third try.,2.2,3.915431,1.715431,1.0954451150103321
+262,try,make an effort or attempt,This will be his third try.,4.6,4.237472,-0.36252785,0.8944271909999159
+263,try,put on trial or hear a case and sit as the judge at the trial of,This will be his third try.,1.4,2.1741009,0.7741009,0.5477225575051661
+264,docked,"deprive someone of benefits, as a penalty",Sean was docked pay as soon as he arrived late yesterday.,5.0,4.0887947,-0.9112053,0.0
+265,docked,come into dock,Sean was docked pay as soon as he arrived late yesterday.,1.0,1.9140595,0.9140595,0.0
+266,docked,"deprive someone of benefits, as a penalty",Sean was docked pay as soon as he arrived late yesterday.,5.0,3.9680998,-1.0319002,0.0
+267,docked,come into dock,Sean was docked pay as soon as he arrived late yesterday.,1.2,2.400019,1.2000189,0.4472135954999579
+268,docked,"deprive someone of benefits, as a penalty",Sean was docked pay as soon as he arrived late yesterday.,4.8,3.757594,-1.0424061,0.4472135954999579
+269,docked,come into dock,Sean was docked pay as soon as he arrived late yesterday.,1.0,2.2883575,1.2883575,0.0
+270,tipped,cause to topple or tumble by pushing,"After the meal, he accidentally tipped the table on his way out.",4.2,3.2366457,-0.9633541,1.3038404810405297
+271,tipped,"give a tip or gratuity to in return for a service, beyond the compensation agreed on","After the meal, he accidentally tipped the table on his way out.",1.0,3.3720615,2.3720615,0.0
+272,tipped,cause to topple or tumble by pushing,"After the meal, he accidentally tipped the table on his way out.",3.4,2.1634872,-1.2365129,1.140175425099138
+273,tipped,"give a tip or gratuity to in return for a service, beyond the compensation agreed on","After the meal, he accidentally tipped the table on his way out.",3.0,4.677084,1.677084,1.224744871391589
+274,tipped,cause to topple or tumble by pushing,"After the meal, he accidentally tipped the table on his way out.",4.2,3.7805936,-0.41940618,0.8366600265340756
+275,tipped,"give a tip or gratuity to in return for a service, beyond the compensation agreed on","After the meal, he accidentally tipped the table on his way out.",2.8,4.3254023,1.5254023,1.6431676725154984
+276,tips,the extreme end of something; especially something pointed,Those are some small tips over there.,4.2,3.5873966,-0.6126032,0.4472135954999579
+277,tips,a relatively small amount of money given for services rendered (as by a waiter),Those are some small tips over there.,1.0,1.6444967,0.6444967,0.0
+278,tips,the extreme end of something; especially something pointed,Those are some small tips over there.,2.2,1.6462092,-0.5537908,1.0954451150103321
+279,tips,a relatively small amount of money given for services rendered (as by a waiter),Those are some small tips over there.,5.0,4.294036,-0.7059641,0.0
+280,tips,the extreme end of something; especially something pointed,Those are some small tips over there.,3.0,2.0624952,-0.93750477,1.5811388300841898
+281,tips,a relatively small amount of money given for services rendered (as by a waiter),Those are some small tips over there.,1.8,3.2652388,1.4652388,0.8366600265340756
+282,tips,a relatively small amount of money given for services rendered (as by a waiter),There were some decent tips to be taken advantage of.,4.2,4.1255374,-0.074462414,1.3038404810405297
+283,tips,an indication of potential opportunity,There were some decent tips to be taken advantage of.,2.8,3.1638136,0.36381364,0.8366600265340756
+284,tips,a relatively small amount of money given for services rendered (as by a waiter),There were some decent tips to be taken advantage of.,1.8,2.0210295,0.22102952,0.8366600265340756
+285,tips,an indication of potential opportunity,There were some decent tips to be taken advantage of.,4.8,3.6850514,-1.1149487,0.4472135954999579
+286,tips,a relatively small amount of money given for services rendered (as by a waiter),There were some decent tips to be taken advantage of.,1.0,2.916653,1.9166529,0.0
+287,tips,an indication of potential opportunity,There were some decent tips to be taken advantage of.,4.4,3.300424,-1.099576,0.8944271909999159
+288,tips,a relatively small amount of money given for services rendered (as by a waiter),"After the meal, he shared some valued tips with the waiter.",4.0,4.660704,0.66070414,1.224744871391589
+289,tips,an indication of potential opportunity,"After the meal, he shared some valued tips with the waiter.",2.0,4.19923,2.1992302,1.7320508075688772
+290,tips,a relatively small amount of money given for services rendered (as by a waiter),"After the meal, he shared some valued tips with the waiter.",1.0,4.6039615,3.6039615,0.0
+291,tips,an indication of potential opportunity,"After the meal, he shared some valued tips with the waiter.",2.6,3.5054045,0.90540457,1.140175425099138
+292,tips,a relatively small amount of money given for services rendered (as by a waiter),"After the meal, he shared some valued tips with the waiter.",3.2,4.6760044,1.4760044,1.0954451150103321
+293,tips,an indication of potential opportunity,"After the meal, he shared some valued tips with the waiter.",2.4,3.8712606,1.4712605,0.8944271909999159
+294,tip,a relatively small amount of money given for services rendered (as by a waiter),Anna was thrilled when she received a really good tip from Adam.,4.4,4.589388,0.1893878,0.8944271909999159
+295,tip,an indication of potential opportunity,Anna was thrilled when she received a really good tip from Adam.,2.8,3.751462,0.95146203,1.3038404810405297
+296,tip,a relatively small amount of money given for services rendered (as by a waiter),Anna was thrilled when she received a really good tip from Adam.,3.4,4.096837,0.69683695,1.140175425099138
+297,tip,an indication of potential opportunity,Anna was thrilled when she received a really good tip from Adam.,4.0,2.7710555,-1.2289445,1.7320508075688772
+298,tip,a relatively small amount of money given for services rendered (as by a waiter),Anna was thrilled when she received a really good tip from Adam.,4.4,4.5176144,0.11761427,0.5477225575051661
+299,tip,an indication of potential opportunity,Anna was thrilled when she received a really good tip from Adam.,2.0,3.909821,1.909821,1.224744871391589
+300,comfortable,providing or experiencing physical well-being or relief ('comfy' is informal),David did not feel comfortable in his new house.,3.6,2.1289718,-1.4710281,1.3416407864998738
+301,comfortable,free from stress or conducive to mental ease; having or affording peace of mind,David did not feel comfortable in his new house.,4.6,4.2162004,-0.38379955,0.5477225575051661
+302,comfortable,providing or experiencing physical well-being or relief ('comfy' is informal),David did not feel comfortable in his new house.,4.0,2.2013125,-1.7986875,1.224744871391589
+303,comfortable,free from stress or conducive to mental ease; having or affording peace of mind,David did not feel comfortable in his new house.,4.6,3.6658044,-0.9341955,0.5477225575051661
+304,comfortable,providing or experiencing physical well-being or relief ('comfy' is informal),David did not feel comfortable in his new house.,2.8,2.9693756,0.16937566,1.3038404810405297
+305,comfortable,free from stress or conducive to mental ease; having or affording peace of mind,David did not feel comfortable in his new house.,4.0,4.126447,0.1264472,1.0
+306,blaze,a strong flame that burns brightly,The blaze could only worsen.,5.0,3.924806,-1.0751939,0.0
+307,blaze,a cause of difficulty and suffering,The blaze could only worsen.,2.6,3.2851262,0.6851263,0.5477225575051661
+308,blaze,a strong flame that burns brightly,The blaze could only worsen.,5.0,4.368919,-0.6310811,0.0
+309,blaze,a cause of difficulty and suffering,The blaze could only worsen.,2.0,4.0252047,2.0252047,0.7071067811865476
+310,blaze,a strong flame that burns brightly,The blaze could only worsen.,4.8,3.7277048,-1.0722954,0.4472135954999579
+311,blaze,a cause of difficulty and suffering,The blaze could only worsen.,3.0,2.7934275,-0.20657253,1.224744871391589
+312,snorted,make a snorting sound by exhaling hard,Mary snorted during the last class period.,4.2,3.1814296,-1.0185702,0.4472135954999579
+313,snorted,inhale recreational drugs,Mary snorted during the last class period.,1.4,1.935801,0.53580105,0.8944271909999159
+314,snorted,make a snorting sound by exhaling hard,Mary snorted during the last class period.,2.4,2.3404207,-0.059579372,1.51657508881031
+315,snorted,inhale recreational drugs,Mary snorted during the last class period.,4.0,3.6694422,-0.33055782,0.7071067811865476
+316,snorted,make a snorting sound by exhaling hard,Mary snorted during the last class period.,3.4,2.736818,-0.663182,1.3416407864998738
+317,snorted,inhale recreational drugs,Mary snorted during the last class period.,2.2,1.9118934,-0.28810668,0.8366600265340756
+318,snorted,make a snorting sound by exhaling hard,He snorted and heard a loud noise from outside.,3.8,3.696279,-0.1037209,1.3038404810405297
+319,snorted,inhale recreational drugs,He snorted and heard a loud noise from outside.,3.0,2.091185,-0.9088149,0.7071067811865476
+320,snorted,make a snorting sound by exhaling hard,He snorted and heard a loud noise from outside.,2.4,2.3793077,-0.020692348,1.51657508881031
+321,snorted,inhale recreational drugs,He snorted and heard a loud noise from outside.,4.2,3.6890407,-0.51095915,1.7888543819998317
+322,snorted,make a snorting sound by exhaling hard,He snorted and heard a loud noise from outside.,4.4,2.5468931,-1.853107,0.8944271909999159
+323,snorted,inhale recreational drugs,He snorted and heard a loud noise from outside.,2.2,1.7238542,-0.47614586,0.8366600265340756
+324,snorted,make a snorting sound by exhaling hard,"When he leaned over the table and snorted loudly, everyone turned to look at him in shock.",3.8,3.0223582,-0.7776418,0.4472135954999579
+325,snorted,inhale recreational drugs,"When he leaned over the table and snorted loudly, everyone turned to look at him in shock.",1.0,1.9401054,0.94010544,0.0
+326,snorted,make a snorting sound by exhaling hard,"When he leaned over the table and snorted loudly, everyone turned to look at him in shock.",4.0,3.4344893,-0.56551075,1.5491933384829668
+327,snorted,inhale recreational drugs,"When he leaned over the table and snorted loudly, everyone turned to look at him in shock.",2.6,3.40232,0.80232,1.816590212458495
+328,snorted,make a snorting sound by exhaling hard,"When he leaned over the table and snorted loudly, everyone turned to look at him in shock.",4.4,3.8127186,-0.58728147,0.5477225575051661
+329,snorted,inhale recreational drugs,"When he leaned over the table and snorted loudly, everyone turned to look at him in shock.",2.2,3.4026017,1.2026017,0.8366600265340756
+330,bank,sloping land (especially the slope beside a body of water),He would wait for her near the bank.,4.0,3.9883447,-0.011655331,0.7071067811865476
+331,bank,a building in which the business of banking transacted,He would wait for her near the bank.,1.6,2.1505437,0.55054367,0.5477225575051661
+332,bank,sloping land (especially the slope beside a body of water),He would wait for her near the bank.,1.4,2.4880495,1.0880495,0.5477225575051661
+333,bank,a building in which the business of banking transacted,He would wait for her near the bank.,4.0,3.5590467,-0.44095325,1.224744871391589
+334,bank,sloping land (especially the slope beside a body of water),He would wait for her near the bank.,2.4,3.0239587,0.6239586,0.8944271909999159
+335,bank,a building in which the business of banking transacted,He would wait for her near the bank.,3.2,3.6411142,0.4411142,0.4472135954999579
+336,bank,sloping land (especially the slope beside a body of water),Joe was to meet Peter at the bank that morning.,4.0,2.800528,-1.199472,0.7071067811865476
+337,bank,a building in which the business of banking transacted,Joe was to meet Peter at the bank that morning.,2.4,3.2841928,0.8841927,0.8944271909999159
+338,bank,sloping land (especially the slope beside a body of water),Joe was to meet Peter at the bank that morning.,3.4,1.550952,-1.8490481,0.5477225575051661
+339,bank,a building in which the business of banking transacted,Joe was to meet Peter at the bank that morning.,2.8,3.686294,0.8862941,1.3038404810405297
+340,bank,sloping land (especially the slope beside a body of water),Joe was to meet Peter at the bank that morning.,3.2,1.540304,-1.6596961,0.4472135954999579
+341,bank,a building in which the business of banking transacted,Joe was to meet Peter at the bank that morning.,3.2,3.953318,0.7533181,0.4472135954999579
+342,pay,"give money, usually in exchange for goods or services",The goons made the man pay.,3.0,4.12195,1.1219501,0.7071067811865476
+343,pay,"bear (a cost or penalty), in recompense for some action",The goons made the man pay.,4.4,4.3393784,-0.06062174,0.5477225575051661
+344,pay,"give money, usually in exchange for goods or services",The goons made the man pay.,4.2,4.406504,0.20650434,0.8366600265340756
+345,pay,"bear (a cost or penalty), in recompense for some action",The goons made the man pay.,4.2,4.4345913,0.23459148,1.3038404810405297
+346,pay,"give money, usually in exchange for goods or services",The goons made the man pay.,3.8,4.394027,0.5940273,0.8366600265340756
+347,pay,"bear (a cost or penalty), in recompense for some action",The goons made the man pay.,3.6,4.3063917,0.7063918,0.8944271909999159
+348,peach,downy juicy fruit with sweet yellowish or whitish flesh,That peach over there is grabbing her attention.,5.0,4.4679146,-0.5320854,0.0
+349,peach,a very attractive or seductive looking woman,That peach over there is grabbing her attention.,1.8,1.7107418,-0.089258194,1.3038404810405297
+350,peach,downy juicy fruit with sweet yellowish or whitish flesh,That peach over there is grabbing her attention.,3.6,1.7413856,-1.8586143,1.3416407864998738
+351,peach,a very attractive or seductive looking woman,That peach over there is grabbing her attention.,3.4,4.1034517,0.70345163,1.140175425099138
+352,peach,downy juicy fruit with sweet yellowish or whitish flesh,That peach over there is grabbing her attention.,4.8,2.9436107,-1.8563895,0.4472135954999579
+353,peach,a very attractive or seductive looking woman,That peach over there is grabbing her attention.,1.8,3.2547598,1.4547598,0.8366600265340756
+354,flexible,capable of being changed,"To succeed in this position, one needs to be flexible.",3.6,4.2853823,0.68538237,1.3416407864998738
+355,flexible,able to flex; able to bend easily,"To succeed in this position, one needs to be flexible.",2.8,2.274671,-0.5253289,0.8366600265340756
+356,flexible,capable of being changed,"To succeed in this position, one needs to be flexible.",2.6,3.4512553,0.8512554,1.140175425099138
+357,flexible,able to flex; able to bend easily,"To succeed in this position, one needs to be flexible.",4.6,4.092351,-0.50764894,0.5477225575051661
+358,flexible,capable of being changed,"To succeed in this position, one needs to be flexible.",3.4,4.0909758,0.69097567,1.51657508881031
+359,flexible,able to flex; able to bend easily,"To succeed in this position, one needs to be flexible.",3.0,2.854209,-0.14579105,1.224744871391589
+360,flexible,capable of being changed,They are quite flexible when going to the gym.,4.6,3.9176717,-0.6823282,0.5477225575051661
+361,flexible,able to flex; able to bend easily,They are quite flexible when going to the gym.,2.2,2.1573434,-0.04265666,1.0954451150103321
+362,flexible,capable of being changed,They are quite flexible when going to the gym.,3.2,3.4842546,0.28425455,1.4832396974191326
+363,flexible,able to flex; able to bend easily,They are quite flexible when going to the gym.,3.1666667,4.1047845,0.93811774,0.752772652709081
+364,flexible,capable of being changed,They are quite flexible when going to the gym.,4.0,4.0917244,0.091724396,0.7071067811865476
+365,flexible,able to flex; able to bend easily,They are quite flexible when going to the gym.,2.4,2.3785136,-0.02148652,0.5477225575051661
+366,flexible,capable of being changed,They chose her for the role because she was incredibly flexible.,4.2,3.910344,-0.28965592,0.4472135954999579
+367,flexible,able to flex; able to bend easily,They chose her for the role because she was incredibly flexible.,1.2,3.134789,1.934789,0.4472135954999579
+368,flexible,capable of being changed,They chose her for the role because she was incredibly flexible.,3.4,4.0888405,0.6888404,1.3416407864998738
+369,flexible,able to flex; able to bend easily,They chose her for the role because she was incredibly flexible.,3.2,3.41392,0.21391988,0.8366600265340756
+370,flexible,capable of being changed,They chose her for the role because she was incredibly flexible.,3.4,4.081191,0.68119097,0.8944271909999159
+371,flexible,able to flex; able to bend easily,They chose her for the role because she was incredibly flexible.,1.6,2.8627734,1.2627734,0.8944271909999159
+372,flexible,capable of being changed,"At times, she can be flexible.",4.4,4.0915623,-0.30843782,0.5477225575051661
+373,flexible,able to flex; able to bend easily,"At times, she can be flexible.",2.0,1.7850156,-0.21498442,1.224744871391589
+374,flexible,capable of being changed,"At times, she can be flexible.",3.6,3.4247625,-0.17523742,1.140175425099138
+375,flexible,able to flex; able to bend easily,"At times, she can be flexible.",2.4,2.284589,-0.11541104,1.140175425099138
+376,flexible,capable of being changed,"At times, she can be flexible.",4.8,3.9146996,-0.88530064,0.4472135954999579
+377,flexible,able to flex; able to bend easily,"At times, she can be flexible.",2.0,2.0419912,0.041991234,0.7071067811865476
+378,vision,the ability to see; the visual faculty,Alex found it hard to clear his vision.,4.8,4.601731,-0.19826937,0.4472135954999579
+379,vision,the formation of a mental image of something that is not perceived as real and is not present to the senses,Alex found it hard to clear his vision.,2.2,3.0048041,0.8048041,1.6431676725154984
+380,vision,the ability to see; the visual faculty,Alex found it hard to clear his vision.,4.2,3.6352897,-0.56471014,0.8366600265340756
+381,vision,the formation of a mental image of something that is not perceived as real and is not present to the senses,Alex found it hard to clear his vision.,2.4,3.4125986,1.0125985,0.5477225575051661
+382,vision,the ability to see; the visual faculty,Alex found it hard to clear his vision.,4.8,4.3767056,-0.42329454,0.4472135954999579
+383,vision,the formation of a mental image of something that is not perceived as real and is not present to the senses,Alex found it hard to clear his vision.,2.0,3.6387565,1.6387565,1.0
+384,vision,the ability to see; the visual faculty,He had a very clear vision.,2.4,2.1561503,-0.24384975,0.5477225575051661
+385,vision,the formation of a mental image of something that is not perceived as real and is not present to the senses,He had a very clear vision.,4.8,3.6885858,-1.1114144,0.4472135954999579
+386,vision,the ability to see; the visual faculty,He had a very clear vision.,2.5,2.4981585,-0.0018415451,1.6431676725154984
+387,vision,the formation of a mental image of something that is not perceived as real and is not present to the senses,He had a very clear vision.,5.0,4.001161,-0.9988389,0.0
+388,vision,the ability to see; the visual faculty,He had a very clear vision.,2.8,3.0783281,0.27832818,0.8366600265340756
+389,vision,the formation of a mental image of something that is not perceived as real and is not present to the senses,He had a very clear vision.,3.2,4.102926,0.9029257,1.7888543819998317
+390,pick,select carefully from a group,Harry had a bad tendency to pick without discernment or discrimination.,4.0,4.313752,0.31375217,1.0
+391,pick,harass with constant criticism,Harry had a bad tendency to pick without discernment or discrimination.,1.4,1.8918426,0.49184263,0.5477225575051661
+392,pick,select carefully from a group,Harry had a bad tendency to pick without discernment or discrimination.,3.2,3.4683778,0.26837778,2.04939015319192
+393,pick,harass with constant criticism,Harry had a bad tendency to pick without discernment or discrimination.,3.0,1.9579684,-1.0420316,1.5811388300841898
+394,pick,select carefully from a group,Harry had a bad tendency to pick without discernment or discrimination.,3.8,3.9760194,0.17601943,1.6431676725154984
+395,pick,harass with constant criticism,Harry had a bad tendency to pick without discernment or discrimination.,1.6,1.8266377,0.22663772,1.3416407864998738
+396,pick,select carefully from a group,He didn't know what she was going to pick.,4.8,4.284948,-0.5150523,0.4472135954999579
+397,pick,pull lightly but sharply with a plucking motion,He didn't know what she was going to pick.,1.2,3.098071,1.898071,0.4472135954999579
+398,pick,select carefully from a group,He didn't know what she was going to pick.,4.6,3.7289774,-0.87102246,0.8944271909999159
+399,pick,pull lightly but sharply with a plucking motion,He didn't know what she was going to pick.,2.2,3.4652061,1.2652061,1.0954451150103321
+400,pick,select carefully from a group,He didn't know what she was going to pick.,5.0,4.4457226,-0.5542774,0.0
+401,pick,pull lightly but sharply with a plucking motion,He didn't know what she was going to pick.,3.0,2.3013825,-0.69861746,1.0
+402,pick,select carefully from a group,She had to pick the fruit from the tree before it fell.,3.6,4.4902334,0.8902335,1.3416407864998738
+403,pick,pull lightly but sharply with a plucking motion,She had to pick the fruit from the tree before it fell.,3.2,3.4107559,0.21075583,1.4832396974191326
+404,pick,select carefully from a group,She had to pick the fruit from the tree before it fell.,3.0,3.91021,0.9102099,1.4142135623730951
+405,pick,pull lightly but sharply with a plucking motion,She had to pick the fruit from the tree before it fell.,4.6,4.4592733,-0.14072657,0.8944271909999159
+406,pick,select carefully from a group,She had to pick the fruit from the tree before it fell.,3.0,3.9862144,0.9862144,1.5811388300841898
+407,pick,pull lightly but sharply with a plucking motion,She had to pick the fruit from the tree before it fell.,5.0,3.6784015,-1.3215985,0.0
+408,croak,pass from physical life and lose all bodily attributes and functions necessary to sustain life,The frog began to croak.,2.0,4.093563,2.093563,0.7071067811865476
+409,croak,"utter a hoarse sound, like a raven",The frog began to croak.,5.0,4.4686103,-0.5313897,0.0
+410,croak,pass from physical life and lose all bodily attributes and functions necessary to sustain life,The frog began to croak.,1.1666666,3.850653,2.6839862,0.408248290463863
+411,croak,"utter a hoarse sound, like a raven",The frog began to croak.,4.2,4.667611,0.4676113,1.7888543819998317
+412,croak,pass from physical life and lose all bodily attributes and functions necessary to sustain life,The frog began to croak.,1.0,3.8979177,2.8979177,0.0
+413,croak,"utter a hoarse sound, like a raven",The frog began to croak.,4.6,4.643429,0.043428898,0.5477225575051661
+414,croaked,pass from physical life and lose all bodily attributes and functions necessary to sustain life,The boy thought his father had croaked.,4.6,4.0066047,-0.59339523,0.8944271909999159
+415,croaked,make complaining remarks or noises under one's breath,The boy thought his father had croaked.,1.8,3.112072,1.312072,1.3038404810405297
+416,croaked,pass from physical life and lose all bodily attributes and functions necessary to sustain life,The boy thought his father had croaked.,4.0,4.1982684,0.19826841,1.4142135623730951
+417,croaked,make complaining remarks or noises under one's breath,The boy thought his father had croaked.,2.6,4.0703278,1.4703279,1.51657508881031
+418,croaked,pass from physical life and lose all bodily attributes and functions necessary to sustain life,The boy thought his father had croaked.,4.6,4.3704233,-0.22957659,0.5477225575051661
+419,croaked,make complaining remarks or noises under one's breath,The boy thought his father had croaked.,1.0,3.0548577,2.0548577,0.0
+420,pile,the yarn (as in a rug or velvet or corduroy) that stands up from the weave,There was a good pile on it.,3.4,4.008013,0.6080127,1.816590212458495
+421,pile,a large sum of money (especially as pay or profit),There was a good pile on it.,2.2,3.324867,1.124867,1.3038404810405297
+422,pile,the yarn (as in a rug or velvet or corduroy) that stands up from the weave,There was a good pile on it.,1.0,1.873559,0.873559,0.0
+423,pile,a large sum of money (especially as pay or profit),There was a good pile on it.,3.4,4.578622,1.1786218,1.140175425099138
+424,pile,the yarn (as in a rug or velvet or corduroy) that stands up from the weave,There was a good pile on it.,2.2,1.9040309,-0.29596913,1.6431676725154984
+425,pile,a large sum of money (especially as pay or profit),There was a good pile on it.,2.4,3.6908214,1.2908213,1.140175425099138
+426,pile,the yarn (as in a rug or velvet or corduroy) that stands up from the weave,The workers moved the pile quickly to clear the area.,3.0,3.6301656,0.6301656,1.224744871391589
+427,pile,a large sum of money (especially as pay or profit),The workers moved the pile quickly to clear the area.,1.0,1.6553324,0.65533245,0.0
+428,pile,the yarn (as in a rug or velvet or corduroy) that stands up from the weave,The workers moved the pile quickly to clear the area.,1.2,1.660836,0.46083593,0.4472135954999579
+429,pile,a large sum of money (especially as pay or profit),The workers moved the pile quickly to clear the area.,1.2,1.6586139,0.45861387,0.4472135954999579
+430,pile,the yarn (as in a rug or velvet or corduroy) that stands up from the weave,The workers moved the pile quickly to clear the area.,1.2,1.7585893,0.5585892,0.4472135954999579
+431,pile,a large sum of money (especially as pay or profit),The workers moved the pile quickly to clear the area.,1.6,1.8249501,0.22495008,0.8944271909999159
+432,rare,(of meat) cooked a short time; still red inside,"Well, this particular steak has to be rare.",3.2,4.436396,1.2363961,1.7888543819998317
+433,rare,recurring only at long intervals,"Well, this particular steak has to be rare.",3.6,3.2916253,-0.30837464,1.6733200530681511
+434,rare,(of meat) cooked a short time; still red inside,"Well, this particular steak has to be rare.",2.8,4.352317,1.5523169,1.6431676725154984
+435,rare,recurring only at long intervals,"Well, this particular steak has to be rare.",2.0,2.4461856,0.4461856,1.0
+436,rare,(of meat) cooked a short time; still red inside,"Well, this particular steak has to be rare.",2.6,4.539199,1.939199,0.5477225575051661
+437,rare,recurring only at long intervals,"Well, this particular steak has to be rare.",3.4,2.4797072,-0.92029285,1.816590212458495
+438,rare,(of meat) cooked a short time; still red inside,"At the festival, she had a rare treat that she didn't come across very often.",2.2,4.475888,2.2758877,1.0954451150103321
+439,rare,recurring only at long intervals,"At the festival, she had a rare treat that she didn't come across very often.",3.8,2.9295042,-0.8704958,1.0954451150103321
+440,rare,(of meat) cooked a short time; still red inside,"At the festival, she had a rare treat that she didn't come across very often.",1.4,2.7102265,1.3102266,0.5477225575051661
+441,rare,recurring only at long intervals,"At the festival, she had a rare treat that she didn't come across very often.",5.0,3.789082,-1.210918,0.0
+442,rare,(of meat) cooked a short time; still red inside,"At the festival, she had a rare treat that she didn't come across very often.",2.0,3.1826382,1.1826382,0.7071067811865476
+443,rare,recurring only at long intervals,"At the festival, she had a rare treat that she didn't come across very often.",4.4,3.8418064,-0.5581937,0.8944271909999159
+444,rare,(of meat) cooked a short time; still red inside,He had waited a long time to have this rare beef.,4.2,4.6507573,0.4507575,1.0954451150103321
+445,rare,recurring only at long intervals,He had waited a long time to have this rare beef.,1.4,1.9615877,0.5615877,0.5477225575051661
+446,rare,(of meat) cooked a short time; still red inside,He had waited a long time to have this rare beef.,2.0,4.53462,2.5346198,1.7320508075688772
+447,rare,recurring only at long intervals,He had waited a long time to have this rare beef.,3.2,1.8988329,-1.3011671,2.04939015319192
+448,rare,(of meat) cooked a short time; still red inside,He had waited a long time to have this rare beef.,3.4,4.364459,0.96445894,1.51657508881031
+449,rare,recurring only at long intervals,He had waited a long time to have this rare beef.,2.8,2.652281,-0.1477189,1.3038404810405297
+450,bill,an itemized statement of money owed for goods shipped or services rendered,The bill made contact with the table in a quick manner.,5.0,4.601653,-0.3983469,0.0
+451,bill,horny projecting mouth of a bird,The bill made contact with the table in a quick manner.,1.2,1.9100714,0.7100713,0.4472135954999579
+452,bill,an itemized statement of money owed for goods shipped or services rendered,The bill made contact with the table in a quick manner.,3.8,3.7293272,-0.07067275,1.3038404810405297
+453,bill,horny projecting mouth of a bird,The bill made contact with the table in a quick manner.,2.4,3.309184,0.909184,1.3416407864998738
+454,bill,an itemized statement of money owed for goods shipped or services rendered,The bill made contact with the table in a quick manner.,4.8,4.380233,-0.41976738,0.4472135954999579
+455,bill,horny projecting mouth of a bird,The bill made contact with the table in a quick manner.,1.8,1.8293276,0.029327631,0.8366600265340756
+456,up,out of bed,"By 6 a.m., she was already up and ready for the big exam.",4.8,4.2107563,-0.5892439,0.4472135954999579
+457,up,(usually followed by 'on' or 'for') in readiness,"By 6 a.m., she was already up and ready for the big exam.",2.8,4.00959,1.2095902,1.3038404810405297
+458,up,out of bed,"By 6 a.m., she was already up and ready for the big exam.",5.0,4.175708,-0.8242922,0.0
+459,up,(usually followed by 'on' or 'for') in readiness,"By 6 a.m., she was already up and ready for the big exam.",2.6,4.335311,1.735311,1.816590212458495
+460,up,out of bed,"By 6 a.m., she was already up and ready for the big exam.",4.8,4.1723337,-0.6276665,0.4472135954999579
+461,up,(usually followed by 'on' or 'for') in readiness,"By 6 a.m., she was already up and ready for the big exam.",3.2,4.230492,1.0304921,1.7888543819998317
+462,up,out of bed,He was up and eager to take on the day.,4.8,4.5396914,-0.26030874,0.4472135954999579
+463,up,(usually followed by 'on' or 'for') in readiness,He was up and eager to take on the day.,4.0,4.008483,0.008482933,1.4142135623730951
+464,up,out of bed,He was up and eager to take on the day.,4.8,4.5667596,-0.2332406,0.4472135954999579
+465,up,(usually followed by 'on' or 'for') in readiness,He was up and eager to take on the day.,2.8,3.8319085,1.0319085,1.7888543819998317
+466,up,out of bed,He was up and eager to take on the day.,4.8,4.52695,-0.2730503,0.4472135954999579
+467,up,(usually followed by 'on' or 'for') in readiness,He was up and eager to take on the day.,4.2,3.8114555,-0.38854432,0.8366600265340756
+468,point,a brief version of the essential meaning of something,He got to the point.,2.6,3.405841,0.8058412,1.51657508881031
+469,point,sharp end,He got to the point.,2.0,2.1235144,0.123514414,0.7071067811865476
+470,point,a brief version of the essential meaning of something,He got to the point.,4.0,2.8191295,-1.1808705,0.7071067811865476
+471,point,sharp end,He got to the point.,1.4,1.9323084,0.53230846,0.5477225575051661
+472,point,a brief version of the essential meaning of something,He got to the point.,4.0,3.6473289,-0.35267115,1.224744871391589
+473,point,sharp end,He got to the point.,2.0,1.8315074,-0.16849256,1.224744871391589
+474,point,sharp end,He took a long time to reach the point.,3.4,3.9097464,0.5097463,1.816590212458495
+475,point,a brief version of the essential meaning of something,He took a long time to reach the point.,3.0,2.0307426,-0.96925735,1.8708286933869707
+476,point,sharp end,He took a long time to reach the point.,1.4,1.5843545,0.18435454,0.8944271909999159
+477,point,a brief version of the essential meaning of something,He took a long time to reach the point.,4.8,4.3811913,-0.41880894,0.4472135954999579
+478,point,sharp end,He took a long time to reach the point.,1.4,1.7472075,0.34720755,0.8944271909999159
+479,point,a brief version of the essential meaning of something,He took a long time to reach the point.,4.4,4.3007708,-0.099229336,0.5477225575051661
+480,point,the object of an activity,"He did bring a knife, but there was no point.",4.8,2.946608,-1.8533921,0.4472135954999579
+481,point,sharp end,"He did bring a knife, but there was no point.",1.2,3.6090631,2.409063,0.4472135954999579
+482,point,the object of an activity,"He did bring a knife, but there was no point.",3.2,2.0325608,-1.1674392,1.6431676725154984
+483,point,sharp end,"He did bring a knife, but there was no point.",3.2,4.026023,0.82602286,1.6431676725154984
+484,point,the object of an activity,"He did bring a knife, but there was no point.",4.0,2.7846878,-1.2153122,1.0
+485,point,sharp end,"He did bring a knife, but there was no point.",2.4,3.5591707,1.1591706,0.8944271909999159
+486,point,sharp end,They tried their hardest to avoid the point.,2.2,1.6730361,-0.52696395,0.4472135954999579
+487,point,a brief version of the essential meaning of something,They tried their hardest to avoid the point.,2.2,2.2912855,0.09128547,1.0954451150103321
+488,point,sharp end,They tried their hardest to avoid the point.,2.8,1.6244915,-1.1755085,1.6431676725154984
+489,point,a brief version of the essential meaning of something,They tried their hardest to avoid the point.,2.2,2.650023,0.45002294,1.3038404810405297
+490,point,sharp end,They tried their hardest to avoid the point.,2.2,2.5178597,0.31785965,0.4472135954999579
+491,point,a brief version of the essential meaning of something,They tried their hardest to avoid the point.,3.2,2.4324338,-0.7675662,0.8366600265340756
+492,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,The guy in the crowd appeared to be next to a plant.,4.8,3.9659996,-0.8340006,0.4472135954999579
+493,plant,(botany) a living organism lacking the power of locomotion,The guy in the crowd appeared to be next to a plant.,1.4,2.4319777,1.0319778,0.5477225575051661
+494,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,The guy in the crowd appeared to be next to a plant.,1.8,2.4133549,0.6133549,0.4472135954999579
+495,plant,(botany) a living organism lacking the power of locomotion,The guy in the crowd appeared to be next to a plant.,5.0,3.5216305,-1.4783695,0.0
+496,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,The guy in the crowd appeared to be next to a plant.,4.0,3.5073013,-0.49269867,1.4142135623730951
+497,plant,(botany) a living organism lacking the power of locomotion,The guy in the crowd appeared to be next to a plant.,4.0,2.7893279,-1.2106721,0.7071067811865476
+498,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,He could see a plant from his window.,2.2,3.5093524,1.3093524,1.3038404810405297
+499,plant,(botany) a living organism lacking the power of locomotion,He could see a plant from his window.,3.8,3.1862993,-0.6137006,1.3038404810405297
+500,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,He could see a plant from his window.,1.0,1.6875834,0.68758345,0.0
+501,plant,(botany) a living organism lacking the power of locomotion,He could see a plant from his window.,5.0,4.6438828,-0.35611725,0.0
+502,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,He could see a plant from his window.,1.6,1.5899589,-0.010041118,1.3416407864998738
+503,plant,(botany) a living organism lacking the power of locomotion,He could see a plant from his window.,4.8,4.2974772,-0.50252295,0.4472135954999579
+504,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,The plant in the theatre went unnoticed.,3.6,2.1173317,-1.4826682,1.3416407864998738
+505,plant,(botany) a living organism lacking the power of locomotion,The plant in the theatre went unnoticed.,3.8,2.4255795,-1.3744204,1.3038404810405297
+506,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,The plant in the theatre went unnoticed.,1.0,1.9625816,0.96258163,0.0
+507,plant,(botany) a living organism lacking the power of locomotion,The plant in the theatre went unnoticed.,5.0,3.963386,-1.036614,0.0
+508,plant,an actor situated in the audience whose acting is rehearsed but seems spontaneous to the audience,The plant in the theatre went unnoticed.,4.2,3.1657908,-1.034209,0.4472135954999579
+509,plant,(botany) a living organism lacking the power of locomotion,The plant in the theatre went unnoticed.,2.8,2.2933905,-0.50660944,0.8366600265340756
+510,picture,a visual representation (of an object or scene or person or abstraction) produced on a surface,The picture she presented at the meeting was both striking and thought-provoking.,3.6,3.9282925,0.3282926,1.140175425099138
+511,picture,a situation treated as an observable object,The picture she presented at the meeting was both striking and thought-provoking.,1.6,3.1912594,1.5912594,0.8944271909999159
+512,picture,a visual representation (of an object or scene or person or abstraction) produced on a surface,The picture she presented at the meeting was both striking and thought-provoking.,3.6,3.3701367,-0.22986317,0.5477225575051661
+513,picture,a situation treated as an observable object,The picture she presented at the meeting was both striking and thought-provoking.,3.0,3.5081465,0.5081465,0.7071067811865476
+514,picture,a visual representation (of an object or scene or person or abstraction) produced on a surface,The picture she presented at the meeting was both striking and thought-provoking.,4.0,3.5093067,-0.49069333,0.7071067811865476
+515,picture,a situation treated as an observable object,The picture she presented at the meeting was both striking and thought-provoking.,3.4,3.6664662,0.26646614,1.140175425099138
+516,pictured,imagine; conceive of; see in one's mind,He pictured all of them together.,5.0,4.4408526,-0.55914736,0.0
+517,pictured,"show in, or as in, a picture",He pictured all of them together.,3.0,2.9811342,-0.018865824,0.7071067811865476
+518,pictured,imagine; conceive of; see in one's mind,He pictured all of them together.,4.8,4.588345,-0.21165514,0.4472135954999579
+519,pictured,"show in, or as in, a picture",He pictured all of them together.,3.4,3.8281753,0.4281752,1.816590212458495
+520,pictured,imagine; conceive of; see in one's mind,He pictured all of them together.,4.8,4.400372,-0.39962816,0.4472135954999579
+521,pictured,"show in, or as in, a picture",He pictured all of them together.,2.8,3.093544,0.29354405,2.04939015319192
+522,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,He was successful in achieving his goal in the match.,3.6,4.5758963,0.97589636,1.140175425099138
+523,goal,a successful attempt at scoring,He was successful in achieving his goal in the match.,3.0,3.9129689,0.9129689,1.4142135623730951
+524,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,He was successful in achieving his goal in the match.,4.0,4.5509596,0.5509596,1.0
+525,goal,a successful attempt at scoring,He was successful in achieving his goal in the match.,4.6,4.5877085,-0.012291431,0.8944271909999159
+526,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,He was successful in achieving his goal in the match.,4.2,4.5655775,0.3655777,0.8366600265340756
+527,goal,a successful attempt at scoring,He was successful in achieving his goal in the match.,3.4,4.264378,0.864378,1.140175425099138
+528,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,The goalkeeper had reached his goal.,4.3333335,4.2933226,-0.04001093,1.2110601416389966
+529,goal,a successful attempt at scoring,The goalkeeper had reached his goal.,1.2,2.02113,0.82113004,0.4472135954999579
+530,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,The goalkeeper had reached his goal.,3.8,4.449173,0.649173,1.3038404810405297
+531,goal,a successful attempt at scoring,The goalkeeper had reached his goal.,3.2,4.5544705,1.3544705,1.0954451150103321
+532,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,The goalkeeper had reached his goal.,4.0,4.406145,0.4061451,0.7071067811865476
+533,goal,a successful attempt at scoring,The goalkeeper had reached his goal.,2.2,2.2376866,0.037686586,1.0954451150103321
+534,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,"After years of hard work, his goal finally came in the last minute.",1.4,4.3785996,2.9785995,0.5477225575051661
+535,goal,a successful attempt at scoring,"After years of hard work, his goal finally came in the last minute.",4.6,4.2675285,-0.33247137,0.5477225575051661
+536,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,"After years of hard work, his goal finally came in the last minute.",2.8,4.376929,1.5769289,1.0954451150103321
+537,goal,a successful attempt at scoring,"After years of hard work, his goal finally came in the last minute.",4.2,4.518589,0.3185892,0.8366600265340756
+538,goal,the state of affairs that a plan is intended to achieve and that (when achieved) terminates behavior intended to achieve it,"After years of hard work, his goal finally came in the last minute.",2.6,4.4299035,1.8299036,1.51657508881031
+539,goal,a successful attempt at scoring,"After years of hard work, his goal finally came in the last minute.",3.2,4.2733107,1.0733106,1.3038404810405297
+540,logs,a segment of the trunk of a tree when stripped of branches,"Some wood had gone missing from the warehouse, and John was desperately trying to locate the logs.",4.2,4.3875437,0.18754387,1.0954451150103321
+541,logs,a written record of messages sent or received,"Some wood had gone missing from the warehouse, and John was desperately trying to locate the logs.",2.6,1.4621437,-1.1378562,1.140175425099138
+542,logs,a segment of the trunk of a tree when stripped of branches,"Some wood had gone missing from the warehouse, and John was desperately trying to locate the logs.",3.8,4.1764793,0.3764794,0.8366600265340756
+543,logs,a written record of messages sent or received,"Some wood had gone missing from the warehouse, and John was desperately trying to locate the logs.",2.6,1.9420717,-0.6579282,1.51657508881031
+544,logs,a segment of the trunk of a tree when stripped of branches,"Some wood had gone missing from the warehouse, and John was desperately trying to locate the logs.",2.6,4.2738237,1.6738238,1.140175425099138
+545,logs,a written record of messages sent or received,"Some wood had gone missing from the warehouse, and John was desperately trying to locate the logs.",2.2,2.2833323,0.0833323,1.3038404810405297
+546,log,a segment of the trunk of a tree when stripped of branches,They discovered an old log near the shore that revealed a lot about the past.,4.8,4.173344,-0.62665606,0.4472135954999579
+547,log,a written record of events on a voyage (of a ship or plane),They discovered an old log near the shore that revealed a lot about the past.,1.8,3.1591554,1.3591554,1.7888543819998317
+548,log,a segment of the trunk of a tree when stripped of branches,They discovered an old log near the shore that revealed a lot about the past.,1.6,2.1870735,0.58707345,0.8944271909999159
+549,log,a written record of events on a voyage (of a ship or plane),They discovered an old log near the shore that revealed a lot about the past.,4.8,4.3423724,-0.45762777,0.4472135954999579
+550,log,a segment of the trunk of a tree when stripped of branches,They discovered an old log near the shore that revealed a lot about the past.,4.6,4.163119,-0.43688107,0.5477225575051661
+551,log,a written record of events on a voyage (of a ship or plane),They discovered an old log near the shore that revealed a lot about the past.,2.8333333,3.8089776,0.97564435,1.1690451944500122
+552,logs,a segment of the trunk of a tree when stripped of branches,She enjoys her collection of logs.,2.8,4.5580716,1.7580717,1.6431676725154984
+553,logs,a written record of events on a voyage (of a ship or plane),She enjoys her collection of logs.,1.6,1.6494517,0.04945171,0.8944271909999159
+554,logs,a segment of the trunk of a tree when stripped of branches,She enjoys her collection of logs.,3.0,3.2641652,0.26416516,1.5811388300841898
+555,logs,a written record of events on a voyage (of a ship or plane),She enjoys her collection of logs.,3.6,2.8605208,-0.73947906,1.6733200530681511
+556,logs,a segment of the trunk of a tree when stripped of branches,She enjoys her collection of logs.,2.8,3.863257,1.063257,1.6431676725154984
+557,logs,a written record of events on a voyage (of a ship or plane),She enjoys her collection of logs.,4.0,3.170051,-0.8299489,1.224744871391589
+558,identities,the distinct personality of an individual regarded as a persisting entity,"The identities did not change, given the circumstances.",3.6,4.3568277,0.75682783,1.949358868961793
+559,identities,an operator that leaves unchanged the element on which it operates,"The identities did not change, given the circumstances.",3.6666667,3.5899367,-0.07673001,0.816496580927726
+560,identities,the distinct personality of an individual regarded as a persisting entity,"The identities did not change, given the circumstances.",2.4,4.0805445,1.6805444,1.51657508881031
+561,identities,an operator that leaves unchanged the element on which it operates,"The identities did not change, given the circumstances.",2.6,3.219623,0.6196232,1.816590212458495
+562,identities,the distinct personality of an individual regarded as a persisting entity,"The identities did not change, given the circumstances.",2.6,4.0953474,1.4953475,1.51657508881031
+563,identities,an operator that leaves unchanged the element on which it operates,"The identities did not change, given the circumstances.",2.4,3.0574093,0.6574092,1.949358868961793
+564,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,That trailer is good to look at.,4.4,4.6201773,0.22017717,0.5477225575051661
+565,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,That trailer is good to look at.,1.8,1.6341103,-0.16588962,1.7888543819998317
+566,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,That trailer is good to look at.,4.6,3.3502035,-1.2497964,0.5477225575051661
+567,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,That trailer is good to look at.,1.2,1.766914,0.56691396,0.4472135954999579
+568,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,That trailer is good to look at.,3.0,3.095779,0.09577894,1.224744871391589
+569,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,That trailer is good to look at.,3.0,3.4176505,0.41765046,1.224744871391589
+570,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,She watched the trailer carefully.,5.0,4.6921663,-0.30783367,0.0
+571,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,She watched the trailer carefully.,1.2,1.5248158,0.32481575,0.4472135954999579
+572,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,She watched the trailer carefully.,1.2,2.1642356,0.96423554,0.4472135954999579
+573,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,She watched the trailer carefully.,4.6,3.8930616,-0.70693827,0.5477225575051661
+574,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,She watched the trailer carefully.,2.6,4.3168836,1.7168837,1.140175425099138
+575,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,She watched the trailer carefully.,1.8,1.8559256,0.055925608,0.8366600265340756
+576,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,"At the drive-in movie, they looked at the trailer in front of them.",4.6,2.073587,-2.526413,0.5477225575051661
+577,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,"At the drive-in movie, they looked at the trailer in front of them.",1.6,1.7867422,0.18674219,0.8944271909999159
+578,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,"At the drive-in movie, they looked at the trailer in front of them.",2.8,2.387515,-0.41248488,1.3038404810405297
+579,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,"At the drive-in movie, they looked at the trailer in front of them.",2.6,2.6034398,0.0034399033,0.5477225575051661
+580,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,"At the drive-in movie, they looked at the trailer in front of them.",3.8,3.7486606,-0.051339388,0.8366600265340756
+581,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,"At the drive-in movie, they looked at the trailer in front of them.",1.8,2.6227722,0.82277226,0.8366600265340756
+582,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,She really didn't want to go to the trailer tonight.,3.6,3.7055964,0.10559654,1.6733200530681511
+583,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,She really didn't want to go to the trailer tonight.,1.4,1.8476272,0.4476272,0.8944271909999159
+584,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,She really didn't want to go to the trailer tonight.,2.0,1.6293385,-0.3706615,1.7320508075688772
+585,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,She really didn't want to go to the trailer tonight.,4.6,3.703697,-0.89630294,0.5477225575051661
+586,trailer,an advertisement consisting of short scenes from a motion picture that will appear in the near future,She really didn't want to go to the trailer tonight.,2.2,2.5406163,0.34061623,0.8366600265340756
+587,trailer,a wheeled vehicle that can be pulled by a car or truck and is equipped for occupancy,She really didn't want to go to the trailer tonight.,2.4,2.2684088,-0.13159132,0.8944271909999159

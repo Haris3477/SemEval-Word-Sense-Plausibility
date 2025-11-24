@@ -46,17 +46,17 @@ def parse_args():
     parser.add_argument('--train_path', default='data/train.json')
     parser.add_argument('--dev_path', default='data/dev.json')
     parser.add_argument('--model_name', default='roberta-base')
-    parser.add_argument('--epochs', type=int, default=8)  # More epochs for exploration
+    parser.add_argument('--epochs', type=int, default=10)  # More epochs for exploration
     parser.add_argument('--batch_size', type=int, default=16)  # Slightly larger batches
     parser.add_argument('--grad_accumulation', type=int, default=1)
-    parser.add_argument('--learning_rate', type=float, default=1e-4)  # Higher starting LR
-    parser.add_argument('--weight_decay', type=float, default=0.05)  # Reduced regularization
+    parser.add_argument('--learning_rate', type=float, default=1e-5)  # Higher starting LR
+    parser.add_argument('--weight_decay', type=float, default=0.15)  # Increased regularization
     parser.add_argument('--warmup_ratio', type=float, default=0.15)  # More warmup steps
     parser.add_argument('--max_length', type=int, default=512)
-    parser.add_argument('--dropout', type=float, default=0.25)  # Moderate dropout
+    parser.add_argument('--dropout', type=float, default=0.35)  # Moderate dropout
     parser.add_argument('--pooling', choices=['cls', 'mean', 'weighted'], default='weighted')
     parser.add_argument('--use_amp', action='store_true')
-    parser.add_argument('--early_stop_patience', type=int, default=2)
+    parser.add_argument('--early_stop_patience', type=int, default=3)
     parser.add_argument('--save_dir', default='outputs')
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--skip_baseline', action='store_true')
