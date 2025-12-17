@@ -31,7 +31,8 @@ except ImportError:
     HAS_MATPLOTLIB = False
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
-from transformers import AdamW, AutoModel, AutoTokenizer, get_linear_schedule_with_warmup
+from transformers import AutoModel, AutoTokenizer, get_linear_schedule_with_warmup
+from torch.optim import AdamW
 
 warnings_imported = False
 try:
