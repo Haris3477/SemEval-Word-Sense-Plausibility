@@ -250,16 +250,16 @@ def parse_args():
                        help='Path to test/dev JSON file')
     parser.add_argument('--model_path', default='outputs/best_model.pt',
                        help='Path to trained model checkpoint')
-    parser.add_argument('--output_file', default='predictions.jsonl',
+    parser.add_argument('--output_file', default='predictions3.jsonl',
                        help='Output predictions file')
     
     # Model settings (should match training config)
     parser.add_argument('--model_name', default='microsoft/deberta-v3-large',
                        help='Base model name (must match training)')
     parser.add_argument('--max_length', type=int, default=512)
-    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--batch_size', type=int, default=2)
     parser.add_argument('--pooling', choices=['cls', 'mean', 'weighted'], default='weighted')
-    parser.add_argument('--dropout', type=float, default=0.35)
+    parser.add_argument('--dropout', type=float, default=0.3)
     parser.add_argument('--num_classes', type=int, default=5)
     
     # LoRA settings
