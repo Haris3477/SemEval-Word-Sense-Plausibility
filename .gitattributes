@@ -1,0 +1,4 @@
+*.pt filter=lfs diff=lfs merge=lfs -text
+Experiment-1/fews_train_max_balanced.json filter=lfs diff=lfs merge=lfs -text
+Experiment-1/combined_train_max.json filter=lfs diff=lfs merge=lfs -text
+data/fews/fews/raw/quotations.txt filter=lfs diff=lfs merge=lfs -text
