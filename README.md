@@ -4,6 +4,10 @@
 
 This project implements a system for rating the plausibility of word senses in ambiguous sentences through narrative understanding. The task involves disambiguating homonyms in short stories by understanding contextual clues.
 
+## Current SemEval 2026 Task 5 ranking
+<img width="1600" height="874" alt="image" src="https://github.com/user-attachments/assets/af69da08-2d75-4dc9-8cd5-58b1d3933c69" />
+SU NLP 29 - Rank 4
+
 ## Dataset
 
 - **Training Set**: `train.json` - Large training dataset with annotated plausibility scores
