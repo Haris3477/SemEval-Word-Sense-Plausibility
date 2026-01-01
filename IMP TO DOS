@@ -1,8 +1,0 @@
-to do:
-
-k fold cross validation
-sratified split (1, 5 classes are  rare)
-extensive hyperparam tuning
-train val early stop loss curve
-we did class imbalance on train, now do prediction imbalance
-save best model with timestamp
