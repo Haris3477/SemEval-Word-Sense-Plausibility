@@ -1,0 +1,278 @@
+﻿Expert Strategic Blueprint for SemEval 2026 Task 5: High-Performance Narrative Plausibility Prediction under Resource Constraints
+
+
+
+
+I. Strategic Imperatives and Task Formalization
+
+
+The SemEval 2026 Task 5 presents a specialized Natural Language Processing challenge that requires predicting the human-perceived plausibility of a word sense within a narrative context, graded on an ordinal scale of 1 to 5. Achieving the target performance thresholds of $\rho_S \ge 0.8$ (Spearman Correlation) and ACC w/ SD $\ge 0.8$ (Accuracy Within Standard Deviation) necessitates a highly engineered system that addresses three primary challenges: (1) formalizing the task as rank-consistent ordinal regression, (2) selecting loss functions that prioritize the rank metric, and (3) mitigating catastrophic overfitting due to the severely limited 2,000-sample dataset.
+
+
+1.1 Formalizing the Plausibility Prediction Task as Ordinal Regression
+
+
+The target variable, human-perceived plausibility, is an ordinal variable, meaning the discrete class labels (1, 2, 3, 4, 5) possessed an inherent order. Confusing two classes that are from one another (e.g., predicting 1 of 5) is more detrimental confusing than adjacent classes (e.g., instead of 5).1 This characteristic invalidates the direct use of standard classification techniques, such as those relying on Cross-Entropy loss, which treats all categories as as independent and unordered.
+Ordinal regression methods seek class label predictions where the penalty incurred for mistakes increases according to the underlying label ordering.1 Standard regression approaches, such as minimizing Mean Squared Error (MSE), also face difficulties, as the absolute error of a predictor on training data is typically a non-convex or non-conuous function of the predictionor’s parameters for discrete outcomes, leading to a complex optimization landscape.1
+The central dilemma in applying deep learning to this task lies in the disparity between the training objective (loss function) and the evaluation metric ($\rho_S$). Traditional word-level Cross-Entropy losses often fail to align with sentence-level evaluation metrics.2 For Task 5, where the evaluation criterion is rank-based, standard surrogate losses are often suboptimal because they do not prioritize rankency.3 The optimization strategy must therefore employ surrogate ordinal regression losses that enforce rank coherence to directly maximize the Spearman correlation.
+
+
+1.2 Dissection of SemEval 2026 Evaluation Metrics: Rank and Precision
+
+
+The mandated performance goals ($\rho_S$ and ACC w/ SD) demand a deliberate training approach that satisfies both ranking accuracy and score precision.
+Spearman's rank correlation ($\rho_S \ge 0.8$) assesses the monotonic relationship between the predicted scores and the true human scores. Since the objective is to maximize performance, the training loss must aim to minimize the negative correlation coefficient with respect to the desired metric.2 Maximizing $\rho_S$ ensures that the relative ordering of plausibility among different narrative examples is correctly maintained by the model.
+In contrast, Accuracy Within Standard Deviation (ACC w/ SD $\ge 0.8$) requires predictive precision. This metric penalizes scores that deviate significantly from the gold label, rewarding predictions that fall within the estimated human variance of the true score. A model purely optimized for rank might achieve a high $\rho_S$, but if its predictions are systematically biased (e.g., predicting scores that are consistently $0.5$ points lower than the human mean), the absolute precision (ACC w/ SD) will suffer. Therefore, the strategic plan must involve an initial optimization for rank consistency followed by an output calibration mechanism, most effectively implemented through a final ensemble layer, designed to match the known mean and variance of the human scores.
+
+
+1.3 Constraints: The Low-Resource, High-Performance Trade-Off
+
+
+The combination of a small 2,000-sample dataset and the initial hardware constraint (RTX 4060 8GB VRAM) establishes the methodological path. Small datasets inherently lead to increased risks of overfitting and poor generalization.4 To counter this while still utilizing a highly performant backbone, Parameter-Efficient Fine-Tuning (PEFT) is mandatory.
+The chosen baseline model, DeBERTa-v3-large, boasts 304 million backbone parameters 5, requiring significant VRAM, generally exceeding the 8GB limit for full fine-tuning.5 The solution involves leveraging Low-Rank Adaptation (LoRA).4 LoRA reduces the required resources, making it feasible to fine-tune DeBERTa-v3-large within the 8GB VRAM limit.6 Critically, by restricting the number of trainable parameters to a small subset of the total (often 1-5 million parameters), LoRA acts as an inherent regularization mechanism, substantially mitigating the high risk of catastrophic overfitting associated with training on only 2,000 samples.4 LoRA is therefore not just a hardware necessity but a core component of the overfitting mitigation strategy.
+
+
+II. Foundational Architectural Design and Resource Management
+
+
+
+
+2.1 Baseline Model Selection: DeBERTa-v3-large
+
+
+The selection of DeBERTa-v3-large as the foundational transfer learning backbone is based on its state-of-the-art performance in Natural Language Understanding (NLU) tasks and its robust architecture designed for complex context processing.
+DeBERTa-v3-large improves upon predecessors like BERT and RoBERTa by using disentangled attention and an enhanced mask decoder.5 This architecture is particularly adept at context-aware representations, which is essential for the "narrative understanding" required by Task 5. Its superior performance is evidenced by its results on benchmarks such as SQuAD 2.0 and MNLI.5 The model has 24 layers and a hidden size of 1024, containing 304 million backbone parameters.5
+
+
+Input Structuring for Narrative Context
+
+
+For classification and regression tasks using DeBERTa, the input structure follows the standard format: the sequence or sequences are enclosed by special tokens, typically X for a single sequence.8 Since the task involves narrative understanding, the model must process multi-sentence context. The input narrative, which may span several paragraphs, will be concatenated and tokenized as a single, multi-sentence unit fed into the model.9
+A deeper level of contextual comprehension, crucial for complex narratives, requires the model to process context hierarchically. The final design must account for the possibility of enriching the word representations by injecting explicit structure information from the passage, encoding at granular levels such as word, chunk, sentence, and document.10 While DeBERTa is strong, hybrid approaches that generate high-quality sentence embeddings, potentially using models like the Universal Sentence Encoder (USE) or ELMo 11, could be explored in later stages. These embeddings capture semantic meaning and context, and if concatenated with the DeBERTa output, they could enhance the model's ability to handle polysemy and long-range dependencies inherent in narrative text.
+
+
+2.2 Parameter-Efficient Fine-Tuning (PEFT) Strategy: LoRA Implementation
+
+
+Given the resource constraints, LoRA is implemented immediately as the primary fine-tuning method. LoRA works by adjusting only a small number of parameters through low-rank update matrices injected into the pre-trained weights.4 The deployment will rely on modern frameworks such as the Hugging Face PEFT and Accelerate libraries.4
+
+
+Optimal LoRA Configuration Parameters
+
+
+The initial configuration must be optimized for VRAM usage and effective fine-tuning. Experiments will commence with a low rank $r=8$ and a standard scaling factor $\alpha=32$.12 Subsequent studies (Phase 2) may explore increasing the rank to $r=16$ or $r=32$ to evaluate if the performance gain outweighs the resource overhead.
+In Transformer models, LoRA is most effective when applied to the attention blocks.7 The target modules for LoRA injection will include the critical weight matrices in the attention mechanism: query_proj, key_proj, and value_proj. The dense layers should also be included.12
+A critical implementation requirement is the joint tuning of the backbone and the final prediction head. Since the task is Ordinal Regression, the specialized prediction layer (see Section III) must be trainable to learn the boundaries and biases specific to the 1-5 score scale. The LoRA setup must specifically configure these final head parameters as trainable, using mechanisms like PEFT’s modules_to_save.12 This ensures that the low-rank updates are applied not only to the general language representation within the encoder but also to the task-specific regression module itself, a necessary step for effective ordinal prediction.13
+
+
+2.3 Hardware Scaling and Resource Allocation Plan
+
+
+The project development is defined by two hardware phases, ensuring maximum efficiency with current resources and scalability upon upgrade.
+
+
+Phase 1: RTX 4060 (8GB VRAM)
+
+
+Under the current VRAM constraint, the system must employ extreme efficiency measures such as QLoRA or FP16 (half-precision) training. The batch size will be inherently small, potentially limited to $B=4$ or $B=8$ per device.5 Training execution must leverage gradient accumulation to simulate larger effective batch sizes without exceeding the memory limit. The primary focus of Phase 1 is establishing robust baselines using the specialized ordinal surrogate losses described in Section III and implementing aggressive early stopping to mitigate overfitting given the 2k dataset size.
+
+
+Phase 2: RTX 4080 Upgrade
+
+
+The upgrade to the RTX 4080 significantly relaxes the VRAM and computational bottleneck, enabling a substantial increase in research capability:
+1. Increased Capacity: Larger batch sizes allow for more stable training convergence and faster iteration speeds.
+2. Ensemble Training: Simultaneous training of multiple specialized models (e.g., CORAL, CORN variants) becomes feasible, which is essential for the final ensemble strategy.
+3. High-Quality Data Generation: Running unquantized Large Language Models (LLMs) becomes practical for generating high-quality synthetic data (Section IV). Running unquantized models ensures higher output quality, which is crucial for generating realistic narrative augmentations.14
+
+
+III. Metric-Specific Optimization: Training for Rank Correlation
+
+
+To satisfy the prerequisite of $\rho_S \ge 0.8$, the training process cannot rely on conventional loss functions. Instead, it must adopt Ordinal Regression surrogate losses explicitly designed to enforce rank consistency.
+
+
+3.1 The Imperative of Ordinal Surrogate Losses
+
+
+The relationship between loss functions and evaluation metrics is particularly acute in NLP, where evaluation often involves ranking or similarity metrics.2 Given that Spearman correlation measures the rank agreement, the chosen loss function must be a surrogate that directly penalizes rank-inconsistent predictions. Losses that involve pairs or triplets of sentences, optimizing the pairwise distances between sentence embeddings based on similarity scores, are known to enhance performance on Semantic Textual Similarity (STS) tasks, which also prioritize rank correlation.3
+
+
+3.2 Implementation of Rank-Consistent Ordinal Regression (CORAL/CORN)
+
+
+The most direct approach to achieving rank consistency involves using methods that transform the ordinal regression problem into a set of structured binary classification subtasks.
+
+
+CORAL and CORN Frameworks
+
+
+The recommended primary loss functions are CORAL (COnsistent RAnk Logits) and CORN (Conditional Ordinal Regression for Neural networks).15 These frameworks address the fundamental rank inconsistency issue observed in other ordinal regression approaches. They are compatible with state-of-the-art deep neural networks, requiring only modification of the output layer and loss calculation.15
+The mechanism involves reframing the K-class ordinal problem (1 to 5) as K-1 binary classification tasks (e.g., classifying whether the score is $>1$, $>2$, $>3$, or $>4$). By imposing a structural constraint, these methods ensure that the probability of predicting a higher rank is monotonically non-increasing, thereby enforcing the necessary rank order required for high $\rho_S$. PyTorch implementations of CORAL and CORN are readily available for integration.15
+
+
+Ablation Candidate: Rank-Consistent Biases
+
+
+As a high-performing alternative suitable for ensemble diversity, the strategy includes fine-tuning a model using a binary cross-entropy loss applied to cumulatively encoded labels. This method involves structuring the neural network such that the last layer shares its weights but has unique biases for the $K-1$ class boundaries.17 For a 5-class problem, this requires four biases. The resulting prediction vector is run through a sigmoid activation layer to ensure rank-consistent predictions. Research indicates that this approach substantially improves predictive accuracy compared to naive cumulative encoding.17 This model will serve as a crucial component of the final ensemble.
+
+
+3.3 Hyperparameter Tuning for Stability
+
+
+Given the limited dataset, stability during fine-tuning is paramount. Low learning rates are essential to ensure the pre-trained weights of DeBERTa-v3-large are adapted gradually rather than corrupted. Empirical evidence suggests learning rates around $6e-6$ are appropriate for NLU tasks.5 Furthermore, the training duration must be strictly limited. The process will be optimized for very few epochs (e.g., 2 to 5 epochs) 5, with strict monitoring via early stopping based on validation set $\rho_S$ performance, which is vital for preventing the catastrophic overfitting that often occurs with small data volumes.4
+Table: Evaluation of Loss Functions for SemEval 2026 Task 5
+
+
+Loss Function Type
+	Optimization Target
+	Impact on ρS​
+	Feasibility with LoRA Head
+	Strategic Justification
+	Mean Squared Error (MSE)
+	Absolute Distance
+	Indirect/Suboptimal
+	High
+	Serves only as a baseline comparison.
+	Cross-Entropy (Classification)
+	Class Boundary Separation
+	Indirect/Suboptimal
+	High
+	Ignores inherent ordering of scores.
+	CORAL/CORN 15
+	Rank Consistency/Conditional Probabilities
+	Direct & High Impact
+	High (via modules_to_save)
+	Primary method for maximizing Spearman correlation by enforcing monotonicity.
+	Rank-Consistent Bias 17
+	Rank Consistency (via BCE/Bias)
+	High Impact
+	High (via custom layer)
+	Provides model diversity for robust ensemble performance.
+	
+
+IV. Controlled Data Augmentation (CDA) Blueprint
+
+
+Overcoming the bottleneck of the 2,000-sample dataset requires supplementing the data with high-quality synthetic examples. This augmentation must be strictly controlled to ensure the synthesized narratives are task-relevant and maintain or predictably shift the plausibility label.4
+
+
+4.1 Necessity and Principles of CDA
+
+
+Data augmentation for text generally focuses on strengthening decision boundaries, brute-force training, or exploring causality and counterfactuals.18 For a complex task like plausibility prediction, augmentation must go beyond simple lexical changes. It should enrich the narrative context without introducing catastrophic distribution shift, a risk that must be controlled through an intuitive augmentation interface.18
+
+
+4.2 Strategy 1: Counterfactual Generation for Boundary Shifts
+
+
+The most effective controlled augmentation involves generating counterfactual examples that explicitly test the model’s understanding of why a score is high or low.
+
+
+CDA Protocol: Targeted Plausibility Shift
+
+
+This generation protocol leverages Large Language Models (LLMs), ideally running unquantized on the RTX 4080 (Phase 2) to ensure high output fidelity.14 The LLM is tasked with two-step generation:
+1. Scenario Derivation: First, the LLM infers a short narrative or story plot based on an existing gold example.19
+2. Counterfactual Construction: The LLM is then prompted to generate a new, structurally similar narrative ($N'$) where the context surrounding the target word sense is intentionally altered to reverse the original plausibility score (e.g., Score 5 $\rightarrow$ Score 1). For instance, if the original narrative yields a high plausibility score due to logical sequence, the counterfactual must introduce a logical or temporal impossibility, thereby strengthening the decision boundary between plausible and implausible scenarios.18
+To ensure diverse and novel outputs, instead of relying solely on numeric randomness, useful entropy will be injected directly into the prompt, instructing the LLM to vary the stylistic or linguistic complexity of the generated text.14 Given the inherent risk of factual inaccuracies or insufficient realism in LLM-generated text 20, all synthetic data must undergo automated verification, such as filtering against a simple high-confidence, fully fine-tuned BERT model, to reject low-quality examples.
+
+
+4.3 Strategy 2: Pretext Task-Based Augmentation (Semantic Preservation)
+
+
+To build resilience against irrelevant textual variations, semantically preserving transformations are applied. Simple text augmentations, such as paraphrasing or synonym replacement, are used to create variants of the original 2,000 narratives. These augmented samples are paired with the original gold plausibility score. The model's training objective becomes a pretext task: maintaining the prediction of the gold score despite surface-level textual changes.18 This technique strengthens the model's focus on deep contextual meaning over shallow linguistic cues.
+Table: Controlled Data Augmentation Framework & Strategic Integration
+
+
+Augmentation Strategy
+	Primary Objective
+	Plausibility Score Handling
+	Hardware Phase
+	Risk Mitigation & Control Mechanism
+	Counterfactual Generation 18
+	Strengthening decision boundaries
+	Shifts Label (e.g., $5 \rightarrow 1$)
+	Phase 2 (RTX 4080)
+	LLM Entropy Injection and Verification Filtering 14
+	Paraphrasing / Style Transfer 11
+	Improving robustness/generalization
+	Preserves Label (Gold $S$ retained)
+	Phase 1 (RTX 4060)
+	Semantic retention validation via manual spot checks.
+	Negative Sample Injection
+	Stress testing extreme boundaries
+	Explicitly generates $S=1$ and $S=5$ cases
+	Phase 2 (RTX 4080)
+	Focused human-in-the-loop validation for boundary samples.18
+	
+
+V. Final Optimization and Competition Strategy
+
+
+The final phase involves maximizing performance via model integration and calibration, ensuring both rank ($\rho_S$) and precision (ACC w/ SD) thresholds are met.
+
+
+5.1 Advanced Context Integration and Encoding (Phase 2)
+
+
+Upon upgrading to the RTX 4080, computational overhead permits integrating richer, multi-layered encoding schemes necessary for full narrative understanding. The approach involves hybrid feature extraction: the deep contextual representations from DeBERTa will be supplemented by fixed-vector representations.
+Techniques such as the Universal Sentence Encoder (USE) or other models designed to generate fixed-vector embeddings for sentences that capture semantic meaning and context 11 can be utilized. These fixed embeddings, which often process context hierarchically at word, chunk, sentence, and document levels 10, will be concatenated with the pooled output vector from the DeBERTa-v3-large PEFT backbone. This combined vector is then fed into the final CORAL/CORN prediction head. This concatenation strategy injects explicit structural awareness alongside DeBERTa’s dynamic representation, enriching the information available for the final plausibility prediction.
+
+
+5.2 Ensemble Modeling Techniques
+
+
+Ensembling is a requirement for competitive performance in high-stakes NLP competitions, particularly those relying on Spearman correlation, where mean aggregation is a proven technique for correlation improvement.21 The strategy involves building a robust ensemble comprising the top-performing LoRA-DeBERTa models trained on diverse ordinal surrogate losses.
+
+
+Strategy 1: Mean Aggregation Ensemble
+
+
+The most straightforward ensemble involves combining the final predicted scores from models trained using distinct ordinal regression losses: CORAL, CORN, and the Rank-Consistent Bias structure. The final ensemble prediction $\hat{P}_{final}$ is the simple mean of these constituent predictions. This averaging process reduces the variance and smooths idiosyncratic errors present in individual models, thereby optimizing the global rank ordering and achieving high $\rho_S$.21
+
+
+Strategy 2: Supervised Feature Aggregation for Calibration
+
+
+To specifically optimize the secondary metric, ACC w/ SD, a more sophisticated feature-based ensemble is necessary. Instead of relying solely on simple averaging, the final output layer embeddings from the top individual models will be extracted. These embeddings will be concatenated with crucial derived statistical features, such as the confidence scores or conditional probabilities generated by the CORAL/CORN conditional output layers.
+This aggregated feature vector is then used to train a shallow Multilayer Perceptron (MLP) as the final predictor. This supervised approach allows the system to learn the optimal non-linear weightings and combinations of the underlying model representations.22 Importantly, by incorporating statistical features alongside the embeddings, the calibration of the absolute score is optimized, addressing the precision requirement of ACC w/ SD, as incorporating statistical features is generally more effective than simple embedding concatenation alone.22
+
+
+5.3 Robust Deployment and Submission Protocols
+
+
+The final stage involves rigorous output post-processing and compliance verification. The output distribution of the final ensemble model must be checked against the validation set statistics. If the distribution shows a systematic shift, a controlled monotonic transformation (calibration) may be applied to align the predicted scores with the known mean and standard deviation of the human-annotated gold labels. This final calibration step is critical to ensure that the scores fall within the acceptable margin of human error required by the ACC w/ SD metric. Finally, all predictions must be formatted precisely according to the SemEval submission guidelines, including the correct JSON structure and file specifications.23
+
+
+Conclusion and Recommendations
+
+
+The successful execution of SemEval 2026 Task 5 requires a highly disciplined, multi-layered approach centered on maximizing the utility of limited data through resource-efficient, metric-aware training.
+The core technical recommendation is the immediate adoption of LoRA-enabled DeBERTa-v3-large 5, ensuring state-of-the-art performance is achievable within the initial 8GB VRAM constraint. Concurrently, the training pipeline must eschew standard regression/classification losses in favor of rank-consistent ordinal surrogate losses, specifically CORAL and CORN 15, to guarantee optimization for the Spearman correlation ($\rho_S$).
+The long-term strategy focuses on overcoming data scarcity. Upon upgrading the hardware (Phase 2), resources must be allocated to a controlled data augmentation pipeline leveraging unquantized LLMs for high-fidelity counterfactual generation.14 The final strategic lever for achieving the performance target is the deployment of a supervised feature aggregation ensemble, combining the outputs of models trained under distinct ordinal losses and integrating additional statistical features.22 This layered system—from constrained fine-tuning (LoRA) to metric-specific training (CORAL/CORN) and advanced ensemble calibration—provides the most robust pathway toward achieving $\rho_S \ge 0.8$ and ACC w/ SD $\ge 0.8$.
+Alıntılanan çalışmalar
+1. Adversarial Surrogate Losses for Ordinal Regression - NIPS papers, erişim tarihi Kasım 23, 2025, http://papers.neurips.cc/paper/6659-adversarial-surrogate-losses-for-ordinal-regression.pdf
+2. relational surrogate loss learning - arXiv, erişim tarihi Kasım 23, 2025, https://arxiv.org/pdf/2202.13197
+3. Impact of Loss Functions in Fine-Tuning Large Language Models for Improving Sentence Embeddings, erişim tarihi Kasım 23, 2025, https://uwindsor.scholaris.ca/server/api/core/bitstreams/2614d75a-9bdc-47fa-b727-9e736c1e9edd/content
+4. Fine-Tuning LLMs with Small Data: Guide - Dialzara, erişim tarihi Kasım 23, 2025, https://dialzara.com/blog/fine-tuning-llms-with-small-data-guide
+5. microsoft/deberta-v3-large - Hugging Face, erişim tarihi Kasım 23, 2025, https://huggingface.co/microsoft/deberta-v3-large
+6. Hao Mei | Detect AI Text DeBERTa-v3-large | Kaggle, erişim tarihi Kasım 23, 2025, https://www.kaggle.com/models/tailen/detect-ai-text-deberta-v3-large/pyTorch/large/url
+7. Fine-tuning t5-small with LoRA - Kaggle, erişim tarihi Kasım 23, 2025, https://www.kaggle.com/code/aisuko/fine-tuning-t5-small-with-lora
+8. DeBERTa - Hugging Face, erişim tarihi Kasım 23, 2025, https://huggingface.co/docs/transformers/model_doc/deberta
+9. Quality Classifier Deberta · Models - Dataloop, erişim tarihi Kasım 23, 2025, https://dataloop.ai/library/model/nvidia_quality-classifier-deberta/
+10. Multi-Hop Question Generation Using Hierarchical Encoding-Decoding and Context Switch Mechanism - PMC - NIH, erişim tarihi Kasım 23, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC8618393/
+11. Variety Of Encoders In NLP. Master feature engineering for text | by Pratik Bhavsar - Medium, erişim tarihi Kasım 23, 2025, https://medium.com/modern-nlp/on-variety-of-encoding-text-8b7623969d1e
+12. sjrhuschlee/deberta-v3-large-squad2 - Hugging Face, erişim tarihi Kasım 23, 2025, https://huggingface.co/sjrhuschlee/deberta-v3-large-squad2
+13. Tracking Meets LoRA: Faster Training, Larger Model, Stronger Performance - arXiv, erişim tarihi Kasım 23, 2025, https://arxiv.org/html/2403.05231v1
+14. What's the best way to create a large synthetic data set with a Local LLM? - Reddit, erişim tarihi Kasım 23, 2025, https://www.reddit.com/r/LocalLLaMA/comments/1feh2xv/whats_the_best_way_to_create_a_large_synthetic/
+15. Raschka-research-group/coral-pytorch: CORAL and CORN implementations for ordinal regression with deep neural networks. - GitHub, erişim tarihi Kasım 23, 2025, https://github.com/Raschka-research-group/coral-pytorch
+16. GarrettJenkinson/condor_pytorch: CONditionals for Ordinal Regression and classification in PyTorch - GitHub, erişim tarihi Kasım 23, 2025, https://github.com/GarrettJenkinson/condor_pytorch
+17. How to set up neural network to output ordinal data? - Cross Validated, erişim tarihi Kasım 23, 2025, https://stats.stackexchange.com/questions/140061/how-to-set-up-neural-network-to-output-ordinal-data
+18. Text Data Augmentation for Deep Learning, erişim tarihi Kasım 23, 2025, https://d-nb.info/1243731540/34
+19. Controlled Data Augmentation for Training Task-Oriented Dialog Systems with Low Resource Data - ACL Anthology, erişim tarihi Kasım 23, 2025, https://aclanthology.org/2023.pandl-1.9.pdf
+20. [2503.14023] Synthetic Data Generation Using Large Language Models: Advances in Text and Code - arXiv, erişim tarihi Kasım 23, 2025, https://arxiv.org/abs/2503.14023
+21. ​ . ​ Top-performing models and their ensemble combination. ​ (A)... | Download Scientific Diagram - ResearchGate, erişim tarihi Kasım 23, 2025, https://www.researchgate.net/figure/Top-performing-models-and-their-ensemble-combination-A-Spearman-correlation_fig3_338452100
+22. Tübingen-CL at SemEval-2024 Task 1: Ensemble Learning for Semantic Relatedness Estimation - arXiv, erişim tarihi Kasım 23, 2025, https://arxiv.org/html/2410.10585v1
+23. SemEval 2025 Task 10 on "Multilingual Characterization and Extraction of Narratives from Online News" - Propaganda Analysis Project, erişim tarihi Kasım 23, 2025, https://propaganda.math.unipd.it/semeval2025task10/
+24. SemEval 2025 Shared Task 7 - Multilingual and Crosslingual Fact-Checked Claim Retrieval, erişim tarihi Kasım 23, 2025, https://www.codabench.org/competitions/3737/

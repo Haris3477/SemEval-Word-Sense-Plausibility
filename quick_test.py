@@ -20,9 +20,9 @@ print("="*60)
 
 # Load data
 print("\n1. Loading data...")
-with open('data/train.json', 'r') as f:
+with open('train.json', 'r') as f:
     train_data = json.load(f)
-with open('data/dev.json', 'r') as f:
+with open('dev.json', 'r') as f:
     dev_data = json.load(f)
 
 # Convert to DataFrame

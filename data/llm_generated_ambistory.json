@@ -1,0 +1,2882 @@
+{
+  "0": {
+    "id": "llm-ambistory-0-sense1",
+    "sample_id": "llm-ambistory-0-sense1",
+    "homonym": "dictionary",
+    "judged_meaning": "A reference work with a list of words from one or more languages, normally ordered alphabetically, explaining each word's meaning, and sometimes containing information on its etymology, pronunciation, usage, translations, and other data.",
+    "precontext": "Liam was meticulously crafting his speech for the linguistics conference. He wanted to ensure every archaic term was defined correctly, and also needed to cross-reference historical figures mentioned in his examples. It was crucial that all data, whether linguistic or biographical, was perfectly accurate and accessible.",
+    "sentence": "He knew he would have to consult the large, red [TGT]dictionary[/TGT] on the shelf.",
+    "ending": "He hoped it would clarify the exact nuances of the rarely used adjective he planned to include.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.0"
+  },
+  "1": {
+    "id": "llm-ambistory-0-sense1-neg",
+    "sample_id": "llm-ambistory-0-sense1-neg",
+    "homonym": "dictionary",
+    "judged_meaning": "Any work that has a list of material organized alphabetically; e.g., biographical dictionary, encyclopedic dictionary.",
+    "precontext": "Liam was meticulously crafting his speech for the linguistics conference. He wanted to ensure every archaic term was defined correctly, and also needed to cross-reference historical figures mentioned in his examples. It was crucial that all data, whether linguistic or biographical, was perfectly accurate and accessible.",
+    "sentence": "He knew he would have to consult the large, red [TGT]dictionary[/TGT] on the shelf.",
+    "ending": "He hoped it would clarify the exact nuances of the rarely used adjective he planned to include.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "average": 2.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.1"
+  },
+  "2": {
+    "id": "llm-ambistory-0-sense2",
+    "sample_id": "llm-ambistory-0-sense2",
+    "homonym": "dictionary",
+    "judged_meaning": "Any work that has a list of material organized alphabetically; e.g., biographical dictionary, encyclopedic dictionary.",
+    "precontext": "Sarah was deep into her art history project, researching the Renaissance period. She needed to understand the precise meaning of several architectural terms and also identify key patrons and artists. Finding a comprehensive source that covered both language and biographical details was essential.",
+    "sentence": "She knew she would have to consult the large, red [TGT]dictionary[/TGT] on the shelf.",
+    "ending": "She needed to confirm the birthdate of the obscure sculptor she was writing about.",
+    "choices": [
+      3,
+      3,
+      4,
+      4,
+      4
+    ],
+    "average": 3.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.1"
+  },
+  "3": {
+    "id": "llm-ambistory-0-sense2-neg",
+    "sample_id": "llm-ambistory-0-sense2-neg",
+    "homonym": "dictionary",
+    "judged_meaning": "A reference work with a list of words from one or more languages, normally ordered alphabetically, explaining each word's meaning, and sometimes containing information on its etymology, pronunciation, usage, translations, and other data.",
+    "precontext": "Sarah was deep into her art history project, researching the Renaissance period. She needed to understand the precise meaning of several architectural terms and also identify key patrons and artists. Finding a comprehensive source that covered both language and biographical details was essential.",
+    "sentence": "She knew she would have to consult the large, red [TGT]dictionary[/TGT] on the shelf.",
+    "ending": "She needed to confirm the birthdate of the obscure sculptor she was writing about.",
+    "choices": [
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "average": 2.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.0"
+  },
+  "4": {
+    "id": "llm-ambistory-1-sense1",
+    "sample_id": "llm-ambistory-1-sense1",
+    "homonym": "dictionary",
+    "judged_meaning": "A reference work with a list of words from one or more languages, normally ordered alphabetically, explaining each word's meaning, and sometimes containing information on its etymology, pronunciation, usage, translations, and other data.",
+    "precontext": "Liam was deep into his latest project, a complex system that required meticulous organization. He was struggling to correctly categorize a vast array of terms and ensure their precise meaning was captured. The sheer volume of information, both textual and structured, was overwhelming.",
+    "sentence": "He knew he needed to consult the [TGT]dictionary[/TGT] to get his facts straight.",
+    "ending": "The detailed explanations helped him clarify the nuanced differences in usage.",
+    "choices": [
+      4,
+      4,
+      5,
+      5,
+      5
+    ],
+    "average": 4.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.0"
+  },
+  "5": {
+    "id": "llm-ambistory-1-sense1-neg",
+    "sample_id": "llm-ambistory-1-sense1-neg",
+    "homonym": "dictionary",
+    "judged_meaning": "An associative array, a data structure where each value is referenced by a particular key, analogous to words and definitions in a physical dictionary.",
+    "precontext": "Liam was deep into his latest project, a complex system that required meticulous organization. He was struggling to correctly categorize a vast array of terms and ensure their precise meaning was captured. The sheer volume of information, both textual and structured, was overwhelming.",
+    "sentence": "He knew he needed to consult the [TGT]dictionary[/TGT] to get his facts straight.",
+    "ending": "The detailed explanations helped him clarify the nuanced differences in usage.",
+    "choices": [
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "average": 2.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.2"
+  },
+  "6": {
+    "id": "llm-ambistory-1-sense2",
+    "sample_id": "llm-ambistory-1-sense2",
+    "homonym": "dictionary",
+    "judged_meaning": "An associative array, a data structure where each value is referenced by a particular key, analogous to words and definitions in a physical dictionary.",
+    "precontext": "Anya was developing a new text analysis tool, aiming for maximum efficiency in data retrieval. She had to map thousands of unique identifiers to their corresponding descriptive labels. The current system was slow, especially when trying to find specific entries or meanings within large datasets.",
+    "sentence": "She knew she needed to implement a more robust [TGT]dictionary[/TGT] for optimal performance.",
+    "ending": "Its key-value pairs allowed for instantaneous lookups, drastically speeding up the program.",
+    "choices": [
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "average": 4.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.2"
+  },
+  "7": {
+    "id": "llm-ambistory-1-sense2-neg",
+    "sample_id": "llm-ambistory-1-sense2-neg",
+    "homonym": "dictionary",
+    "judged_meaning": "A reference work with a list of words from one or more languages, normally ordered alphabetically, explaining each word's meaning, and sometimes containing information on its etymology, pronunciation, usage, translations, and other data.",
+    "precontext": "Anya was developing a new text analysis tool, aiming for maximum efficiency in data retrieval. She had to map thousands of unique identifiers to their corresponding descriptive labels. The current system was slow, especially when trying to find specific entries or meanings within large datasets.",
+    "sentence": "She knew she needed to implement a more robust [TGT]dictionary[/TGT] for optimal performance.",
+    "ending": "Its key-value pairs allowed for instantaneous lookups, drastically speeding up the program.",
+    "choices": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "average": 1.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "dictionary.noun.0"
+  },
+  "8": {
+    "id": "llm-ambistory-4-sense1",
+    "sample_id": "llm-ambistory-4-sense1",
+    "homonym": "free",
+    "judged_meaning": "Unconstrained.",
+    "precontext": "The old lock on the shed was jammed again, adding to Sarah's growing list of frustrations. She also had an important presentation at work, where she needed to speak her mind without hesitation. The weight of everything felt heavy, and she longed for a lighter state of being.",
+    "sentence": "She hoped to feel [TGT]free[/TGT] soon.",
+    "ending": "She looked forward to having her weekend completely open, with no appointments or pressing chores.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      5
+    ],
+    "average": 4.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "free.adjective.0"
+  },
+  "9": {
+    "id": "llm-ambistory-4-sense1-neg",
+    "sample_id": "llm-ambistory-4-sense1-neg",
+    "homonym": "free",
+    "judged_meaning": "Unconstrained by timidity or distrust",
+    "precontext": "The old lock on the shed was jammed again, adding to Sarah's growing list of frustrations. She also had an important presentation at work, where she needed to speak her mind without hesitation. The weight of everything felt heavy, and she longed for a lighter state of being.",
+    "sentence": "She hoped to feel [TGT]free[/TGT] soon.",
+    "ending": "She looked forward to having her weekend completely open, with no appointments or pressing chores.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "free.adjective.2"
+  },
+  "10": {
+    "id": "llm-ambistory-4-sense2",
+    "sample_id": "llm-ambistory-4-sense2",
+    "homonym": "free",
+    "judged_meaning": "Unconstrained by timidity or distrust",
+    "precontext": "Mark felt a knot in his stomach, anticipating the team meeting where a sensitive topic would be discussed. He had some strong opinions but usually kept them to himself, feeling somewhat bound by unspoken office rules. He knew clarity was essential for moving forward, both personally and professionally.",
+    "sentence": "He hoped to feel [TGT]free[/TGT] soon.",
+    "ending": "He practiced his opening lines, determined to articulate his concerns clearly and openly, no matter the reaction.",
+    "choices": [
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "average": 4.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "free.adjective.2"
+  },
+  "11": {
+    "id": "llm-ambistory-4-sense2-neg",
+    "sample_id": "llm-ambistory-4-sense2-neg",
+    "homonym": "free",
+    "judged_meaning": "Unconstrained.",
+    "precontext": "Mark felt a knot in his stomach, anticipating the team meeting where a sensitive topic would be discussed. He had some strong opinions but usually kept them to himself, feeling somewhat bound by unspoken office rules. He knew clarity was essential for moving forward, both personally and professionally.",
+    "sentence": "He hoped to feel [TGT]free[/TGT] soon.",
+    "ending": "He practiced his opening lines, determined to articulate his concerns clearly and openly, no matter the reaction.",
+    "choices": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "average": 1.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "free.adjective.0"
+  },
+  "12": {
+    "id": "llm-ambistory-6-sense1",
+    "sample_id": "llm-ambistory-6-sense1",
+    "homonym": "thesaurus",
+    "judged_meaning": "A publication, usually in the form of a book, that provides synonyms (and sometimes antonyms) for the words of a given language.",
+    "precontext": "Mark was meticulously crafting a new marketing campaign, aiming for language that was both impactful and precise. He had several key concepts he wanted to explain, but finding the exact phrasing was proving difficult. He also needed to verify some industry-specific terms to ensure his message was universally understood.",
+    "sentence": "He decided to consult the large [TGT]thesaurus[/TGT] on his desk.",
+    "ending": "Flipping through its pages, he quickly located several alternative words that perfectly fit his argument.",
+    "choices": [
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "average": 4.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "thesaurus.noun.0"
+  },
+  "13": {
+    "id": "llm-ambistory-6-sense1-neg",
+    "sample_id": "llm-ambistory-6-sense1-neg",
+    "homonym": "thesaurus",
+    "judged_meaning": "A dictionary or encyclopedia.",
+    "precontext": "Mark was meticulously crafting a new marketing campaign, aiming for language that was both impactful and precise. He had several key concepts he wanted to explain, but finding the exact phrasing was proving difficult. He also needed to verify some industry-specific terms to ensure his message was universally understood.",
+    "sentence": "He decided to consult the large [TGT]thesaurus[/TGT] on his desk.",
+    "ending": "Flipping through its pages, he quickly located several alternative words that perfectly fit his argument.",
+    "choices": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "average": 1.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "thesaurus.noun.1"
+  },
+  "14": {
+    "id": "llm-ambistory-6-sense2",
+    "sample_id": "llm-ambistory-6-sense2",
+    "homonym": "thesaurus",
+    "judged_meaning": "A dictionary or encyclopedia.",
+    "precontext": "Eleanor was researching a complex historical period for her documentary, aiming to present a complete and accurate picture. She needed to understand the nuances of political movements, and also ensure all her dates and names were perfectly correct. Her script required not just eloquent language, but also a bedrock of verified facts.",
+    "sentence": "She reached for the heavy [TGT]thesaurus[/TGT] near her lamp.",
+    "ending": "Within its comprehensive entries, she found detailed explanations of various philosophical schools and their founding figures.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "thesaurus.noun.1"
+  },
+  "15": {
+    "id": "llm-ambistory-6-sense2-neg",
+    "sample_id": "llm-ambistory-6-sense2-neg",
+    "homonym": "thesaurus",
+    "judged_meaning": "A publication, usually in the form of a book, that provides synonyms (and sometimes antonyms) for the words of a given language.",
+    "precontext": "Eleanor was researching a complex historical period for her documentary, aiming to present a complete and accurate picture. She needed to understand the nuances of political movements, and also ensure all her dates and names were perfectly correct. Her script required not just eloquent language, but also a bedrock of verified facts.",
+    "sentence": "She reached for the heavy [TGT]thesaurus[/TGT] near her lamp.",
+    "ending": "Within its comprehensive entries, she found detailed explanations of various philosophical schools and their founding figures.",
+    "choices": [
+      1,
+      1,
+      1,
+      1,
+      2
+    ],
+    "average": 1.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "thesaurus.noun.0"
+  },
+  "16": {
+    "id": "llm-ambistory-10-sense1",
+    "sample_id": "llm-ambistory-10-sense1",
+    "homonym": "portmanteau",
+    "judged_meaning": "A large travelling case usually made of leather, and opening into two equal sections.",
+    "precontext": "The school year was finally over, and the house felt strangely quiet without the morning rush. Liam had spent the entire day sorting through old papers and books, preparing for a long journey ahead. He knew he'd need to carry a lot of items, some practical, some sentimental.",
+    "sentence": "He carefully opened the [TGT]portmanteau[/TGT], ready to begin packing.",
+    "ending": "Its weathered leather creaked as he laid out his neatly folded shirts and a worn travel guide.",
+    "choices": [
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "average": 4.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.0"
+  },
+  "17": {
+    "id": "llm-ambistory-10-sense1-neg",
+    "sample_id": "llm-ambistory-10-sense1-neg",
+    "homonym": "portmanteau",
+    "judged_meaning": "A schoolbag; often shortened to \"port\" or \"school port\"",
+    "precontext": "The school year was finally over, and the house felt strangely quiet without the morning rush. Liam had spent the entire day sorting through old papers and books, preparing for a long journey ahead. He knew he'd need to carry a lot of items, some practical, some sentimental.",
+    "sentence": "He carefully opened the [TGT]portmanteau[/TGT], ready to begin packing.",
+    "ending": "Its weathered leather creaked as he laid out his neatly folded shirts and a worn travel guide.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.1"
+  },
+  "18": {
+    "id": "llm-ambistory-10-sense2",
+    "sample_id": "llm-ambistory-10-sense2",
+    "homonym": "portmanteau",
+    "judged_meaning": "A schoolbag; often shortened to \"port\" or \"school port\"",
+    "precontext": "The summer holidays felt like a distant memory as the first bell of the new term loomed. Sarah was meticulously organizing her supplies, knowing the daily journey to class required careful preparation. She had a lot of heavy textbooks and notebooks to carry.",
+    "sentence": "She carefully opened the [TGT]portmanteau[/TGT], ready to begin packing.",
+    "ending": "Inside, she stacked her geometry textbook and a fresh notebook for history class.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 4.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.1"
+  },
+  "19": {
+    "id": "llm-ambistory-10-sense2-neg",
+    "sample_id": "llm-ambistory-10-sense2-neg",
+    "homonym": "portmanteau",
+    "judged_meaning": "A large travelling case usually made of leather, and opening into two equal sections.",
+    "precontext": "The summer holidays felt like a distant memory as the first bell of the new term loomed. Sarah was meticulously organizing her supplies, knowing the daily journey to class required careful preparation. She had a lot of heavy textbooks and notebooks to carry.",
+    "sentence": "She carefully opened the [TGT]portmanteau[/TGT], ready to begin packing.",
+    "ending": "Inside, she stacked her geometry textbook and a fresh notebook for history class.",
+    "choices": [
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "average": 2.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.0"
+  },
+  "20": {
+    "id": "llm-ambistory-11-sense1",
+    "sample_id": "llm-ambistory-11-sense1",
+    "homonym": "portmanteau",
+    "judged_meaning": "A large travelling case usually made of leather, and opening into two equal sections.",
+    "precontext": "The old house was bustling with activity, as preparations were underway for the big move. They needed to decide what to keep, what to store, and what to take with them on the upcoming trip. There was a pile of clothing on the bed, while several empty spots on the wall suggested recent removals.",
+    "sentence": "He finally located the [TGT]portmanteau[/TGT].",
+    "ending": "Its worn leather was sturdy, and it still promised to hold all his essentials for the long journey.",
+    "choices": [
+      4,
+      4,
+      5,
+      4,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.0"
+  },
+  "21": {
+    "id": "llm-ambistory-11-sense1-neg",
+    "sample_id": "llm-ambistory-11-sense1-neg",
+    "homonym": "portmanteau",
+    "judged_meaning": "A hook on which to hang clothing.",
+    "precontext": "The old house was bustling with activity, as preparations were underway for the big move. They needed to decide what to keep, what to store, and what to take with them on the upcoming trip. There was a pile of clothing on the bed, while several empty spots on the wall suggested recent removals.",
+    "sentence": "He finally located the [TGT]portmanteau[/TGT].",
+    "ending": "Its worn leather was sturdy, and it still promised to hold all his essentials for the long journey.",
+    "choices": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "average": 1.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.2"
+  },
+  "22": {
+    "id": "llm-ambistory-11-sense2",
+    "sample_id": "llm-ambistory-11-sense2",
+    "homonym": "portmanteau",
+    "judged_meaning": "A hook on which to hang clothing.",
+    "precontext": "The entryway was a chaotic scene, with coats and hats piled haphazardly on a nearby bench. They had just returned from a long trip, and the house still felt disorganized despite the unpacked bags. The owner sighed, wishing for a better system to keep things neat and accessible.",
+    "sentence": "He finally located the [TGT]portmanteau[/TGT].",
+    "ending": "He fixed it securely to the wall, right beside the door, ready for the visitor's heavy overcoat.",
+    "choices": [
+      5,
+      4,
+      5,
+      5,
+      5
+    ],
+    "average": 4.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.2"
+  },
+  "23": {
+    "id": "llm-ambistory-11-sense2-neg",
+    "sample_id": "llm-ambistory-11-sense2-neg",
+    "homonym": "portmanteau",
+    "judged_meaning": "A large travelling case usually made of leather, and opening into two equal sections.",
+    "precontext": "The entryway was a chaotic scene, with coats and hats piled haphazardly on a nearby bench. They had just returned from a long trip, and the house still felt disorganized despite the unpacked bags. The owner sighed, wishing for a better system to keep things neat and accessible.",
+    "sentence": "He finally located the [TGT]portmanteau[/TGT].",
+    "ending": "He fixed it securely to the wall, right beside the door, ready for the visitor's heavy overcoat.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "portmanteau.noun.0"
+  },
+  "24": {
+    "id": "llm-ambistory-13-sense1",
+    "sample_id": "llm-ambistory-13-sense1",
+    "homonym": "cat",
+    "judged_meaning": "An animal of the family Felidae:",
+    "precontext": "The research team was meticulous in their observations, documenting every subtle movement. Its fur was incredibly sleek, yet its gaze held an ancient, untamed wisdom. They hoped to learn more about its behavior and place in the natural world.",
+    "sentence": "Suddenly, a shadow moved, and they caught sight of the [TGT]cat[/TGT].",
+    "ending": "It disappeared into the dense undergrowth with powerful, silent strides, its roars echoing faintly in the distance.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "cat.noun.0"
+  },
+  "25": {
+    "id": "llm-ambistory-13-sense1-neg",
+    "sample_id": "llm-ambistory-13-sense1-neg",
+    "homonym": "cat",
+    "judged_meaning": "A domesticated subspecies (\"Felis silvestris catus\") of feline animal, commonly kept as a house pet. (from 8thc.)",
+    "precontext": "The research team was meticulous in their observations, documenting every subtle movement. Its fur was incredibly sleek, yet its gaze held an ancient, untamed wisdom. They hoped to learn more about its behavior and place in the natural world.",
+    "sentence": "Suddenly, a shadow moved, and they caught sight of the [TGT]cat[/TGT].",
+    "ending": "It disappeared into the dense undergrowth with powerful, silent strides, its roars echoing faintly in the distance.",
+    "choices": [
+      2,
+      3,
+      3,
+      3,
+      3
+    ],
+    "average": 2.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "cat.noun.1"
+  },
+  "26": {
+    "id": "llm-ambistory-13-sense2",
+    "sample_id": "llm-ambistory-13-sense2",
+    "homonym": "cat",
+    "judged_meaning": "A domesticated subspecies (\"Felis silvestris catus\") of feline animal, commonly kept as a house pet. (from 8thc.)",
+    "precontext": "The old house was quiet, save for a faint rustling in the corner. Its movements were surprisingly agile for such a small creature, always on the hunt for something. A half-eaten bowl of kibble sat patiently on the kitchen floor.",
+    "sentence": "Suddenly, a shadow moved, and they caught sight of the [TGT]cat[/TGT].",
+    "ending": "It leaped onto the windowsill, batting playfully at a dangling string, then settled down for a nap in the sunbeam.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 4.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "cat.noun.1"
+  },
+  "27": {
+    "id": "llm-ambistory-13-sense2-neg",
+    "sample_id": "llm-ambistory-13-sense2-neg",
+    "homonym": "cat",
+    "judged_meaning": "An animal of the family Felidae:",
+    "precontext": "The old house was quiet, save for a faint rustling in the corner. Its movements were surprisingly agile for such a small creature, always on the hunt for something. A half-eaten bowl of kibble sat patiently on the kitchen floor.",
+    "sentence": "Suddenly, a shadow moved, and they caught sight of the [TGT]cat[/TGT].",
+    "ending": "It leaped onto the windowsill, batting playfully at a dangling string, then settled down for a nap in the sunbeam.",
+    "choices": [
+      1,
+      2,
+      1,
+      2,
+      2
+    ],
+    "average": 1.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "cat.noun.0"
+  },
+  "28": {
+    "id": "llm-ambistory-17-sense1",
+    "sample_id": "llm-ambistory-17-sense1",
+    "homonym": "word",
+    "judged_meaning": "(Q8171)The smallest unit of language that has a particular meaning and can be expressed by itself; the smallest (contrast \"morpheme\".)",
+    "precontext": "The student was struggling with his language arts assignment. He had a long list of vocabulary terms to memorize, but also a speech to prepare for. His tutor emphasized the importance of both clear articulation and precise spelling.",
+    "sentence": "He just couldn't grasp the precise meaning of every single [TGT]word[/TGT].",
+    "ending": "He spent hours poring over the dictionary, trying to understand the nuances of each entry.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.0"
+  },
+  "29": {
+    "id": "llm-ambistory-17-sense1-neg",
+    "sample_id": "llm-ambistory-17-sense1-neg",
+    "homonym": "word",
+    "judged_meaning": "The smallest discrete unit of spoken language with a particular meaning, composed of one or more (phonemes and one or more morphemes)",
+    "precontext": "The student was struggling with his language arts assignment. He had a long list of vocabulary terms to memorize, but also a speech to prepare for. His tutor emphasized the importance of both clear articulation and precise spelling.",
+    "sentence": "He just couldn't grasp the precise meaning of every single [TGT]word[/TGT].",
+    "ending": "He spent hours poring over the dictionary, trying to understand the nuances of each entry.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "average": 2.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.1"
+  },
+  "30": {
+    "id": "llm-ambistory-17-sense2",
+    "sample_id": "llm-ambistory-17-sense2",
+    "homonym": "word",
+    "judged_meaning": "The smallest discrete unit of spoken language with a particular meaning, composed of one or more (phonemes and one or more morphemes)",
+    "precontext": "The actor was preparing for an audition, meticulously reviewing the script. He needed to deliver his lines with perfect timing, and ensure every syllable was clearly understood. The director had warned him about mumbling and mispronunciations, even while praising his memorization skills.",
+    "sentence": "He just couldn't grasp the precise meaning of every single [TGT]word[/TGT].",
+    "ending": "He repeated the difficult phrases aloud, trying to get his tongue around the unfamiliar sounds.",
+    "choices": [
+      4,
+      5,
+      4,
+      5,
+      5
+    ],
+    "average": 4.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.1"
+  },
+  "31": {
+    "id": "llm-ambistory-17-sense2-neg",
+    "sample_id": "llm-ambistory-17-sense2-neg",
+    "homonym": "word",
+    "judged_meaning": "(Q8171)The smallest unit of language that has a particular meaning and can be expressed by itself; the smallest (contrast \"morpheme\".)",
+    "precontext": "The actor was preparing for an audition, meticulously reviewing the script. He needed to deliver his lines with perfect timing, and ensure every syllable was clearly understood. The director had warned him about mumbling and mispronunciations, even while praising his memorization skills.",
+    "sentence": "He just couldn't grasp the precise meaning of every single [TGT]word[/TGT].",
+    "ending": "He repeated the difficult phrases aloud, trying to get his tongue around the unfamiliar sounds.",
+    "choices": [
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "average": 2.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.0"
+  },
+  "32": {
+    "id": "llm-ambistory-18-sense1",
+    "sample_id": "llm-ambistory-18-sense1",
+    "homonym": "word",
+    "judged_meaning": "(Q8171)The smallest unit of language that has a particular meaning and can be expressed by itself; the smallest (contrast \"morpheme\".)",
+    "precontext": "Elara paced her study, trying to formulate her thoughts. She had a complex idea she needed to convey, one that felt difficult to capture perfectly. Whether spoken aloud or put down on paper, the message had to resonate.",
+    "sentence": "She knew if she could just find the right [TGT]word[/TGT], everything would click into place.",
+    "ending": "The distinct sound of it forming in her mind, then on her tongue, brought a sense of relief.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 4.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.0"
+  },
+  "33": {
+    "id": "llm-ambistory-18-sense1-neg",
+    "sample_id": "llm-ambistory-18-sense1-neg",
+    "homonym": "word",
+    "judged_meaning": "The smallest discrete unit of written language with a particular meaning, composed of one or more (letters or symbols and one or more morphemes)",
+    "precontext": "Elara paced her study, trying to formulate her thoughts. She had a complex idea she needed to convey, one that felt difficult to capture perfectly. Whether spoken aloud or put down on paper, the message had to resonate.",
+    "sentence": "She knew if she could just find the right [TGT]word[/TGT], everything would click into place.",
+    "ending": "The distinct sound of it forming in her mind, then on her tongue, brought a sense of relief.",
+    "choices": [
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "average": 3.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.2"
+  },
+  "34": {
+    "id": "llm-ambistory-18-sense2",
+    "sample_id": "llm-ambistory-18-sense2",
+    "homonym": "word",
+    "judged_meaning": "The smallest discrete unit of written language with a particular meaning, composed of one or more (letters or symbols and one or more morphemes)",
+    "precontext": "Leo stared at the document on his screen, editing a crucial paragraph. He wanted the text to be impactful, not just in its visual arrangement, but also in its core meaning. The deadline for the final submission was fast approaching.",
+    "sentence": "He knew if he could just find the right [TGT]word[/TGT], everything would click into place.",
+    "ending": "He highlighted the blank space, ready to type the perfect string of letters into the document.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      5
+    ],
+    "average": 4.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.2"
+  },
+  "35": {
+    "id": "llm-ambistory-18-sense2-neg",
+    "sample_id": "llm-ambistory-18-sense2-neg",
+    "homonym": "word",
+    "judged_meaning": "(Q8171)The smallest unit of language that has a particular meaning and can be expressed by itself; the smallest (contrast \"morpheme\".)",
+    "precontext": "Leo stared at the document on his screen, editing a crucial paragraph. He wanted the text to be impactful, not just in its visual arrangement, but also in its core meaning. The deadline for the final submission was fast approaching.",
+    "sentence": "He knew if he could just find the right [TGT]word[/TGT], everything would click into place.",
+    "ending": "He highlighted the blank space, ready to type the perfect string of letters into the document.",
+    "choices": [
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "average": 1.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.0"
+  },
+  "36": {
+    "id": "llm-ambistory-19-sense1",
+    "sample_id": "llm-ambistory-19-sense1",
+    "homonym": "word",
+    "judged_meaning": "(Q8171)The smallest unit of language that has a particular meaning and can be expressed by itself; the smallest (contrast \"morpheme\".)",
+    "precontext": "The student was preparing for a challenging linguistics exam, reviewing various language components and their structures. They also had to ensure their accompanying essay used only formally accepted terminology and avoided jargon. The professor had emphasized the importance of both fundamental structural understanding and proper vocabulary in their field.",
+    "sentence": "He realized he was struggling to grasp the fundamental concept of a [TGT]word[/TGT].",
+    "ending": "He wondered if 'unforgettable' counted as one or many, considering its prefixes and suffixes and how they combined.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.0"
+  },
+  "37": {
+    "id": "llm-ambistory-19-sense1-neg",
+    "sample_id": "llm-ambistory-19-sense1-neg",
+    "homonym": "word",
+    "judged_meaning": "A discrete, meaningful unit of language approved by an (authority or native speaker (\"compare non-word\")).",
+    "precontext": "The student was preparing for a challenging linguistics exam, reviewing various language components and their structures. They also had to ensure their accompanying essay used only formally accepted terminology and avoided jargon. The professor had emphasized the importance of both fundamental structural understanding and proper vocabulary in their field.",
+    "sentence": "He realized he was struggling to grasp the fundamental concept of a [TGT]word[/TGT].",
+    "ending": "He wondered if 'unforgettable' counted as one or many, considering its prefixes and suffixes and how they combined.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.3"
+  },
+  "38": {
+    "id": "llm-ambistory-19-sense2",
+    "sample_id": "llm-ambistory-19-sense2",
+    "homonym": "word",
+    "judged_meaning": "A discrete, meaningful unit of language approved by an (authority or native speaker (\"compare non-word\")).",
+    "precontext": "The young writer meticulously crafted her sentences, paying close attention to both the overall flow and the individual components. She often consulted the stringent style guide, questioning whether certain modern coinages were truly acceptable for academic prose. Her editor was very particular about every element, from the smallest punctuation mark to the overall tone.",
+    "sentence": "She agonized over whether a particular [TGT]word[/TGT] should be included in her manuscript.",
+    "ending": "Her main concern was if it would be recognized by the dictionary committee or considered too informal for publication.",
+    "choices": [
+      4,
+      3,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.3"
+  },
+  "39": {
+    "id": "llm-ambistory-19-sense2-neg",
+    "sample_id": "llm-ambistory-19-sense2-neg",
+    "homonym": "word",
+    "judged_meaning": "(Q8171)The smallest unit of language that has a particular meaning and can be expressed by itself; the smallest (contrast \"morpheme\".)",
+    "precontext": "The young writer meticulously crafted her sentences, paying close attention to both the overall flow and the individual components. She often consulted the stringent style guide, questioning whether certain modern coinages were truly acceptable for academic prose. Her editor was very particular about every element, from the smallest punctuation mark to the overall tone.",
+    "sentence": "She agonized over whether a particular [TGT]word[/TGT] should be included in her manuscript.",
+    "ending": "Her main concern was if it would be recognized by the dictionary committee or considered too informal for publication.",
+    "choices": [
+      1,
+      2,
+      1,
+      2,
+      2
+    ],
+    "average": 1.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "word.noun.0"
+  },
+  "40": {
+    "id": "llm-ambistory-20-sense1",
+    "sample_id": "llm-ambistory-20-sense1",
+    "homonym": "livre",
+    "judged_meaning": "A unit of currency formerly used in France, divided into 20 sols or sous.",
+    "precontext": "Jean-Pierre surveyed his stall at the bustling Parisian market, a mix of rich aromas filling the air. He frowned at his account books, trying to balance the day's earnings against the cost of his imported spices. The heavy sacks of goods piled high around him were a constant reminder of his inventory.",
+    "sentence": "He knew he needed to earn at least another fifty [TGT]livre[/TGT] before sunset.",
+    "ending": "Otherwise, he wouldn't be able to pay the royal tax collector tomorrow.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      5
+    ],
+    "average": 4.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "livre.noun.0"
+  },
+  "41": {
+    "id": "llm-ambistory-20-sense1-neg",
+    "sample_id": "llm-ambistory-20-sense1-neg",
+    "homonym": "livre",
+    "judged_meaning": "An ancient French unit of weight, equal to about 1 avoirdupois pound.",
+    "precontext": "Jean-Pierre surveyed his stall at the bustling Parisian market, a mix of rich aromas filling the air. He frowned at his account books, trying to balance the day's earnings against the cost of his imported spices. The heavy sacks of goods piled high around him were a constant reminder of his inventory.",
+    "sentence": "He knew he needed to earn at least another fifty [TGT]livre[/TGT] before sunset.",
+    "ending": "Otherwise, he wouldn't be able to pay the royal tax collector tomorrow.",
+    "choices": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "average": 1.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "livre.noun.1"
+  },
+  "42": {
+    "id": "llm-ambistory-20-sense2",
+    "sample_id": "llm-ambistory-20-sense2",
+    "homonym": "livre",
+    "judged_meaning": "An ancient French unit of weight, equal to about 1 avoirdupois pound.",
+    "precontext": "Madame Dubois was meticulously preparing her ingredients in the dimly lit kitchen of her inn. She had carefully budgeted her week's expenses, knowing every sou counted towards her family's survival. The quality of her famous stew depended on precise measurements, a secret passed down through generations.",
+    "sentence": "She carefully measured out a single [TGT]livre[/TGT] of the precious saffron for the special order.",
+    "ending": "The golden threads settled onto the old brass scale, making the arm dip ever so slightly.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "livre.noun.1"
+  },
+  "43": {
+    "id": "llm-ambistory-20-sense2-neg",
+    "sample_id": "llm-ambistory-20-sense2-neg",
+    "homonym": "livre",
+    "judged_meaning": "A unit of currency formerly used in France, divided into 20 sols or sous.",
+    "precontext": "Madame Dubois was meticulously preparing her ingredients in the dimly lit kitchen of her inn. She had carefully budgeted her week's expenses, knowing every sou counted towards her family's survival. The quality of her famous stew depended on precise measurements, a secret passed down through generations.",
+    "sentence": "She carefully measured out a single [TGT]livre[/TGT] of the precious saffron for the special order.",
+    "ending": "The golden threads settled onto the old brass scale, making the arm dip ever so slightly.",
+    "choices": [
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "average": 1.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "livre.noun.0"
+  },
+  "44": {
+    "id": "llm-ambistory-21-sense1",
+    "sample_id": "llm-ambistory-21-sense1",
+    "homonym": "book",
+    "judged_meaning": "A collection of sheets of paper bound together to hinge at one edge, containing printed or written material, pictures, etc.",
+    "precontext": "Sarah was determined to get her project done. She had spent weeks organizing all the research, making sure every chapter flowed perfectly. Now, she just needed to figure out the best way to present it.",
+    "sentence": "She realized she needed to finish the [TGT]book[/TGT] soon.",
+    "ending": "The cover design wasn't finalized, and several pages were still unbound.",
+    "choices": [
+      4,
+      4,
+      5,
+      5,
+      5
+    ],
+    "average": 4.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.0"
+  },
+  "45": {
+    "id": "llm-ambistory-21-sense1-neg",
+    "sample_id": "llm-ambistory-21-sense1-neg",
+    "homonym": "book",
+    "judged_meaning": "A long work fit for publication, typically prose, such as a novel or textbook, and typically published as such a bound collection of sheets.",
+    "precontext": "Sarah was determined to get her project done. She had spent weeks organizing all the research, making sure every chapter flowed perfectly. Now, she just needed to figure out the best way to present it.",
+    "sentence": "She realized she needed to finish the [TGT]book[/TGT] soon.",
+    "ending": "The cover design wasn't finalized, and several pages were still unbound.",
+    "choices": [
+      2,
+      2,
+      3,
+      2,
+      3
+    ],
+    "average": 2.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.1"
+  },
+  "46": {
+    "id": "llm-ambistory-21-sense2",
+    "sample_id": "llm-ambistory-21-sense2",
+    "homonym": "book",
+    "judged_meaning": "A long work fit for publication, typically prose, such as a novel or textbook, and typically published as such a bound collection of sheets.",
+    "precontext": "Mark loved spending his weekends in the library. He'd often get lost in the stories, flipping through pages late into the night. He was always on the hunt for a new world to explore.",
+    "sentence": "He realized he needed to finish the [TGT]book[/TGT] soon.",
+    "ending": "The protagonist's journey still felt incomplete, and the ending lacked impact.",
+    "choices": [
+      3,
+      3,
+      4,
+      4,
+      4
+    ],
+    "average": 3.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.1"
+  },
+  "47": {
+    "id": "llm-ambistory-21-sense2-neg",
+    "sample_id": "llm-ambistory-21-sense2-neg",
+    "homonym": "book",
+    "judged_meaning": "A collection of sheets of paper bound together to hinge at one edge, containing printed or written material, pictures, etc.",
+    "precontext": "Mark loved spending his weekends in the library. He'd often get lost in the stories, flipping through pages late into the night. He was always on the hunt for a new world to explore.",
+    "sentence": "He realized he needed to finish the [TGT]book[/TGT] soon.",
+    "ending": "The protagonist's journey still felt incomplete, and the ending lacked impact.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      2
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.0"
+  },
+  "48": {
+    "id": "llm-ambistory-22-sense1",
+    "sample_id": "llm-ambistory-22-sense1",
+    "homonym": "book",
+    "judged_meaning": "A collection of sheets of paper bound together to hinge at one edge, containing printed or written material, pictures, etc.",
+    "precontext": "The old university hall always felt steeped in history. Students often gathered there, surrounded by symbols of knowledge and tradition. They were preparing for their upcoming exams, seeking wisdom from various sources.",
+    "sentence": "He spent hours meticulously examining the [TGT]book[/TGT].",
+    "ending": "He carefully turned to the next chapter, hoping for a clearer explanation.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 4.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.0"
+  },
+  "49": {
+    "id": "llm-ambistory-22-sense1-neg",
+    "sample_id": "llm-ambistory-22-sense1-neg",
+    "homonym": "book",
+    "judged_meaning": "A heraldic representation of such an object, used as a charge; as in the arms of the universities of Oxford and Cambridge.",
+    "precontext": "The old university hall always felt steeped in history. Students often gathered there, surrounded by symbols of knowledge and tradition. They were preparing for their upcoming exams, seeking wisdom from various sources.",
+    "sentence": "He spent hours meticulously examining the [TGT]book[/TGT].",
+    "ending": "He carefully turned to the next chapter, hoping for a clearer explanation.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.2"
+  },
+  "50": {
+    "id": "llm-ambistory-22-sense2",
+    "sample_id": "llm-ambistory-22-sense2",
+    "homonym": "book",
+    "judged_meaning": "A heraldic representation of such an object, used as a charge; as in the arms of the universities of Oxford and Cambridge.",
+    "precontext": "The grand academic institution was renowned for its rich history and scholarly pursuits. Its ancient archives contained not only valuable texts but also elaborate seals and insignia. Many scholars dedicated their lives to deciphering the meaning behind these historical markers.",
+    "sentence": "He spent hours meticulously examining the [TGT]book[/TGT].",
+    "ending": "Its golden pages were prominently displayed on the shield, an emblem of the college's founding principles.",
+    "choices": [
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "average": 4.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.2"
+  },
+  "51": {
+    "id": "llm-ambistory-22-sense2-neg",
+    "sample_id": "llm-ambistory-22-sense2-neg",
+    "homonym": "book",
+    "judged_meaning": "A collection of sheets of paper bound together to hinge at one edge, containing printed or written material, pictures, etc.",
+    "precontext": "The grand academic institution was renowned for its rich history and scholarly pursuits. Its ancient archives contained not only valuable texts but also elaborate seals and insignia. Many scholars dedicated their lives to deciphering the meaning behind these historical markers.",
+    "sentence": "He spent hours meticulously examining the [TGT]book[/TGT].",
+    "ending": "Its golden pages were prominently displayed on the shield, an emblem of the college's founding principles.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "average": 2.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "book.noun.0"
+  },
+  "52": {
+    "id": "llm-ambistory-25-sense1",
+    "sample_id": "llm-ambistory-25-sense1",
+    "homonym": "pound",
+    "judged_meaning": "A unit of mass equal to 16 avoirdupois ounces (= 453.592 37 g). Today this value is the most common meaning of \"pound\" as a unit of weight.",
+    "precontext": "Sarah was organizing her online grocery order for the week. She had a long list of items, some of which required specific numerical entries for quantity. Ensuring everything was correct before hitting 'submit' was crucial, especially for the heavier produce.",
+    "sentence": "She realized she needed to adjust the final [TGT]pound[/TGT].",
+    "ending": "The recipe wouldn't work otherwise, and she really needed that ingredient for dinner.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.0"
+  },
+  "53": {
+    "id": "llm-ambistory-25-sense1-neg",
+    "sample_id": "llm-ambistory-25-sense1-neg",
+    "homonym": "pound",
+    "judged_meaning": "The symbol (#) (octothorpe, hash)",
+    "precontext": "Sarah was organizing her online grocery order for the week. She had a long list of items, some of which required specific numerical entries for quantity. Ensuring everything was correct before hitting 'submit' was crucial, especially for the heavier produce.",
+    "sentence": "She realized she needed to adjust the final [TGT]pound[/TGT].",
+    "ending": "The recipe wouldn't work otherwise, and she really needed that ingredient for dinner.",
+    "choices": [
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "average": 1.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.2"
+  },
+  "54": {
+    "id": "llm-ambistory-25-sense2",
+    "sample_id": "llm-ambistory-25-sense2",
+    "homonym": "pound",
+    "judged_meaning": "The symbol (#) (octothorpe, hash)",
+    "precontext": "Mark was trying to send a message to his friend about a new social media campaign. He had specific instructions to include certain characters to ensure it reached the correct audience. The post draft was long, and he kept getting an error for some missing input.",
+    "sentence": "He realized he needed to adjust the final [TGT]pound[/TGT].",
+    "ending": "Without it, the system wouldn't recognize the specific tag he was trying to create for the trending topic.",
+    "choices": [
+      3,
+      3,
+      4,
+      4,
+      4
+    ],
+    "average": 3.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.2"
+  },
+  "55": {
+    "id": "llm-ambistory-25-sense2-neg",
+    "sample_id": "llm-ambistory-25-sense2-neg",
+    "homonym": "pound",
+    "judged_meaning": "A unit of mass equal to 16 avoirdupois ounces (= 453.592 37 g). Today this value is the most common meaning of \"pound\" as a unit of weight.",
+    "precontext": "Mark was trying to send a message to his friend about a new social media campaign. He had specific instructions to include certain characters to ensure it reached the correct audience. The post draft was long, and he kept getting an error for some missing input.",
+    "sentence": "He realized he needed to adjust the final [TGT]pound[/TGT].",
+    "ending": "Without it, the system wouldn't recognize the specific tag he was trying to create for the trending topic.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "average": 2.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.0"
+  },
+  "56": {
+    "id": "llm-ambistory-26-sense1",
+    "sample_id": "llm-ambistory-26-sense1",
+    "homonym": "pound",
+    "judged_meaning": "A unit of mass equal to 16 avoirdupois ounces (= 453.592 37 g). Today this value is the most common meaning of \"pound\" as a unit of weight.",
+    "precontext": "Liam was preparing for a big weekend market trip, needing specific ingredients for a complex recipe. He had a strict budget for his shopping, but also a precise amount of each item he needed to fit into his small kitchen. Every decision felt heavy with consequence, balancing both expense and physical bulk.",
+    "sentence": "He decided he could only afford to get one [TGT]pound[/TGT].",
+    "ending": "He knew it would be just enough to make the recipe work without making the bag too heavy.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 4.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.0"
+  },
+  "57": {
+    "id": "llm-ambistory-26-sense1-neg",
+    "sample_id": "llm-ambistory-26-sense1-neg",
+    "homonym": "pound",
+    "judged_meaning": "The unit of currency used in the United Kingdom and its dependencies. It is divided into 100 pence.",
+    "precontext": "Liam was preparing for a big weekend market trip, needing specific ingredients for a complex recipe. He had a strict budget for his shopping, but also a precise amount of each item he needed to fit into his small kitchen. Every decision felt heavy with consequence, balancing both expense and physical bulk.",
+    "sentence": "He decided he could only afford to get one [TGT]pound[/TGT].",
+    "ending": "He knew it would be just enough to make the recipe work without making the bag too heavy.",
+    "choices": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "average": 1.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.3"
+  },
+  "58": {
+    "id": "llm-ambistory-26-sense2",
+    "sample_id": "llm-ambistory-26-sense2",
+    "homonym": "pound",
+    "judged_meaning": "The unit of currency used in the United Kingdom and its dependencies. It is divided into 100 pence.",
+    "precontext": "Sophia checked her bank balance, knowing she had a few important payments due this week. She also had a shopping list for some essential items, which always seemed to add up quickly. Every transaction felt like a weight lifted or added to her financial shoulders.",
+    "sentence": "She decided she could only afford to get one [TGT]pound[/TGT].",
+    "ending": "She hoped it would be enough to cover the small souvenir she wanted, leaving her with some change.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.3"
+  },
+  "59": {
+    "id": "llm-ambistory-26-sense2-neg",
+    "sample_id": "llm-ambistory-26-sense2-neg",
+    "homonym": "pound",
+    "judged_meaning": "A unit of mass equal to 16 avoirdupois ounces (= 453.592 37 g). Today this value is the most common meaning of \"pound\" as a unit of weight.",
+    "precontext": "Sophia checked her bank balance, knowing she had a few important payments due this week. She also had a shopping list for some essential items, which always seemed to add up quickly. Every transaction felt like a weight lifted or added to her financial shoulders.",
+    "sentence": "She decided she could only afford to get one [TGT]pound[/TGT].",
+    "ending": "She hoped it would be enough to cover the small souvenir she wanted, leaving her with some change.",
+    "choices": [
+      2,
+      3,
+      3,
+      3,
+      3
+    ],
+    "average": 2.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pound.noun.0"
+  },
+  "60": {
+    "id": "llm-ambistory-32-sense1",
+    "sample_id": "llm-ambistory-32-sense1",
+    "homonym": "nonsense",
+    "judged_meaning": "Letters or words, in writing or speech, that have no meaning or pattern or seem to have no meaning.",
+    "precontext": "The report was due tomorrow, and Mark was struggling to make sense of the new data. His younger brother, Leo, was supposed to be helping, but instead, he was making peculiar noises and drawing strange lines on a notepad. The whole situation felt disorganized and utterly perplexing.",
+    "sentence": "He knew he couldn't submit all that [TGT]nonsense[/TGT].",
+    "ending": "The pages were filled with random symbols and misspelled words, making it impossible to interpret any coherent message.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "nonsense.noun.0"
+  },
+  "61": {
+    "id": "llm-ambistory-32-sense1-neg",
+    "sample_id": "llm-ambistory-32-sense1-neg",
+    "homonym": "nonsense",
+    "judged_meaning": "Something foolish.",
+    "precontext": "The report was due tomorrow, and Mark was struggling to make sense of the new data. His younger brother, Leo, was supposed to be helping, but instead, he was making peculiar noises and drawing strange lines on a notepad. The whole situation felt disorganized and utterly perplexing.",
+    "sentence": "He knew he couldn't submit all that [TGT]nonsense[/TGT].",
+    "ending": "The pages were filled with random symbols and misspelled words, making it impossible to interpret any coherent message.",
+    "choices": [
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "average": 1.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "nonsense.noun.3"
+  },
+  "62": {
+    "id": "llm-ambistory-32-sense2",
+    "sample_id": "llm-ambistory-32-sense2",
+    "homonym": "nonsense",
+    "judged_meaning": "Something foolish.",
+    "precontext": "The meeting had gone completely off track, with everyone talking over each other about impractical ideas for the new project. Sarah tried to focus on her notes, but the chaotic atmosphere made it impossible to concentrate on anything logical. She just wanted a sensible plan to emerge from the discussion.",
+    "sentence": "She knew she couldn't submit all that [TGT]nonsense[/TGT].",
+    "ending": "Their proposals were so outlandish and impractical that she couldn't believe anyone was seriously considering them.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "nonsense.noun.3"
+  },
+  "63": {
+    "id": "llm-ambistory-32-sense2-neg",
+    "sample_id": "llm-ambistory-32-sense2-neg",
+    "homonym": "nonsense",
+    "judged_meaning": "Letters or words, in writing or speech, that have no meaning or pattern or seem to have no meaning.",
+    "precontext": "The meeting had gone completely off track, with everyone talking over each other about impractical ideas for the new project. Sarah tried to focus on her notes, but the chaotic atmosphere made it impossible to concentrate on anything logical. She just wanted a sensible plan to emerge from the discussion.",
+    "sentence": "She knew she couldn't submit all that [TGT]nonsense[/TGT].",
+    "ending": "Their proposals were so outlandish and impractical that she couldn't believe anyone was seriously considering them.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "average": 2.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "nonsense.noun.0"
+  },
+  "64": {
+    "id": "llm-ambistory-34-sense1",
+    "sample_id": "llm-ambistory-34-sense1",
+    "homonym": "pie",
+    "judged_meaning": "A type of pastry that consists of an outer crust and a filling.",
+    "precontext": "The kitchen smelled wonderful, a mix of sweet and savory aromas. Sarah was planning a casual get-together, wanting something comforting and easy to share. She had already preheated the oven, ready for the main event.",
+    "sentence": "She decided to bake a [TGT]pie[/TGT] for everyone.",
+    "ending": "The sweet scent of apples and cinnamon soon filled the air, making everyone eager for dessert.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      5
+    ],
+    "average": 4.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.0"
+  },
+  "65": {
+    "id": "llm-ambistory-34-sense1-neg",
+    "sample_id": "llm-ambistory-34-sense1-neg",
+    "homonym": "pie",
+    "judged_meaning": "Pizza.",
+    "precontext": "The kitchen smelled wonderful, a mix of sweet and savory aromas. Sarah was planning a casual get-together, wanting something comforting and easy to share. She had already preheated the oven, ready for the main event.",
+    "sentence": "She decided to bake a [TGT]pie[/TGT] for everyone.",
+    "ending": "The sweet scent of apples and cinnamon soon filled the air, making everyone eager for dessert.",
+    "choices": [
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "average": 2.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.2"
+  },
+  "66": {
+    "id": "llm-ambistory-34-sense2",
+    "sample_id": "llm-ambistory-34-sense2",
+    "homonym": "pie",
+    "judged_meaning": "Pizza.",
+    "precontext": "It was Friday night, and the family was craving something savory and easy for dinner. They debated between cooking or ordering in, wanting something with a good crust. The kids were already setting out plates, anticipating a cheesy, delicious meal.",
+    "sentence": "They decided a [TGT]pie[/TGT] would hit the spot perfectly.",
+    "ending": "Soon, a large box arrived, bringing with it the aroma of melted mozzarella and pepperoni.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 4.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.2"
+  },
+  "67": {
+    "id": "llm-ambistory-34-sense2-neg",
+    "sample_id": "llm-ambistory-34-sense2-neg",
+    "homonym": "pie",
+    "judged_meaning": "A type of pastry that consists of an outer crust and a filling.",
+    "precontext": "It was Friday night, and the family was craving something savory and easy for dinner. They debated between cooking or ordering in, wanting something with a good crust. The kids were already setting out plates, anticipating a cheesy, delicious meal.",
+    "sentence": "They decided a [TGT]pie[/TGT] would hit the spot perfectly.",
+    "ending": "Soon, a large box arrived, bringing with it the aroma of melted mozzarella and pepperoni.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "average": 2.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.0"
+  },
+  "68": {
+    "id": "llm-ambistory-35-sense1",
+    "sample_id": "llm-ambistory-35-sense1",
+    "homonym": "pie",
+    "judged_meaning": "A type of pastry that consists of an outer crust and a filling.",
+    "precontext": "The board meeting had been long and intense, with heated discussions about budget allocations and profit sharing. Everyone was feeling the strain, and a growling stomach was adding to the tension. The chairman suggested a short break to re-energize before tackling the final agenda items.",
+    "sentence": "Someone suggested it was time to cut the [TGT]pie[/TGT].",
+    "ending": "A rich aroma of apples and cinnamon suddenly wafted from the kitchen down the hall.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.0"
+  },
+  "69": {
+    "id": "llm-ambistory-35-sense1-neg",
+    "sample_id": "llm-ambistory-35-sense1-neg",
+    "homonym": "pie",
+    "judged_meaning": "The whole of a wealth or resource, to be divided in parts.",
+    "precontext": "The board meeting had been long and intense, with heated discussions about budget allocations and profit sharing. Everyone was feeling the strain, and a growling stomach was adding to the tension. The chairman suggested a short break to re-energize before tackling the final agenda items.",
+    "sentence": "Someone suggested it was time to cut the [TGT]pie[/TGT].",
+    "ending": "A rich aroma of apples and cinnamon suddenly wafted from the kitchen down the hall.",
+    "choices": [
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "average": 1.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.3"
+  },
+  "70": {
+    "id": "llm-ambistory-35-sense2",
+    "sample_id": "llm-ambistory-35-sense2",
+    "homonym": "pie",
+    "judged_meaning": "The whole of a wealth or resource, to be divided in parts.",
+    "precontext": "The annual shareholders' meeting was notoriously contentious, with each faction vying for a larger portion of the company's success. Lunch had been served earlier, but the tension in the room was palpable, making it hard for anyone to truly enjoy their meal. The CEO cleared his throat, ready to present the final financial reports and propose a new distribution model.",
+    "sentence": "Someone suggested it was time to cut the [TGT]pie[/TGT].",
+    "ending": "The legal team began distributing the revised equity statements to each investor.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 4.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.3"
+  },
+  "71": {
+    "id": "llm-ambistory-35-sense2-neg",
+    "sample_id": "llm-ambistory-35-sense2-neg",
+    "homonym": "pie",
+    "judged_meaning": "A type of pastry that consists of an outer crust and a filling.",
+    "precontext": "The annual shareholders' meeting was notoriously contentious, with each faction vying for a larger portion of the company's success. Lunch had been served earlier, but the tension in the room was palpable, making it hard for anyone to truly enjoy their meal. The CEO cleared his throat, ready to present the final financial reports and propose a new distribution model.",
+    "sentence": "Someone suggested it was time to cut the [TGT]pie[/TGT].",
+    "ending": "The legal team began distributing the revised equity statements to each investor.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "pie.noun.0"
+  },
+  "72": {
+    "id": "llm-ambistory-38-sense1",
+    "sample_id": "llm-ambistory-38-sense1",
+    "homonym": "crow",
+    "judged_meaning": "A bird, usually black, of the genus \"Corvus\", having a strong conical beak, with projecting bristles; it has a harsh, croaking call.",
+    "precontext": "The old shed behind the house was falling apart, its timber warped and rotten. Strange noises echoed from the dense woods nearby, a mix of creaks and calls. He knew he had to deal with the problem before sundown, as the light was fading fast.",
+    "sentence": "He heard a distinct [TGT]crow[/TGT].",
+    "ending": "Its harsh, guttural call broke the evening silence, making him jump.",
+    "choices": [
+      4,
+      4,
+      3,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "crow.noun.0"
+  },
+  "73": {
+    "id": "llm-ambistory-38-sense1-neg",
+    "sample_id": "llm-ambistory-38-sense1-neg",
+    "homonym": "crow",
+    "judged_meaning": "A bar of iron with a beak, crook, or claw; a bar of iron used as a lever; a crowbar.",
+    "precontext": "The old shed behind the house was falling apart, its timber warped and rotten. Strange noises echoed from the dense woods nearby, a mix of creaks and calls. He knew he had to deal with the problem before sundown, as the light was fading fast.",
+    "sentence": "He heard a distinct [TGT]crow[/TGT].",
+    "ending": "Its harsh, guttural call broke the evening silence, making him jump.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      3
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "crow.noun.3"
+  },
+  "74": {
+    "id": "llm-ambistory-38-sense2",
+    "sample_id": "llm-ambistory-38-sense2",
+    "homonym": "crow",
+    "judged_meaning": "A bar of iron with a beak, crook, or claw; a bar of iron used as a lever; a crowbar.",
+    "precontext": "The old wooden crates were stubbornly nailed shut, making it impossible to see inside. He'd been told there were valuable items within, possibly even rare specimens. The air was filled with the metallic clang of distant work and the rustling of leaves.",
+    "sentence": "He needed to get the [TGT]crow[/TGT].",
+    "ending": "Its heavy, cold steel glinted under the dim light, ready for leverage.",
+    "choices": [
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "average": 4.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "crow.noun.3"
+  },
+  "75": {
+    "id": "llm-ambistory-38-sense2-neg",
+    "sample_id": "llm-ambistory-38-sense2-neg",
+    "homonym": "crow",
+    "judged_meaning": "A bird, usually black, of the genus \"Corvus\", having a strong conical beak, with projecting bristles; it has a harsh, croaking call.",
+    "precontext": "The old wooden crates were stubbornly nailed shut, making it impossible to see inside. He'd been told there were valuable items within, possibly even rare specimens. The air was filled with the metallic clang of distant work and the rustling of leaves.",
+    "sentence": "He needed to get the [TGT]crow[/TGT].",
+    "ending": "Its heavy, cold steel glinted under the dim light, ready for leverage.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "average": 2.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "crow.noun.0"
+  },
+  "76": {
+    "id": "llm-ambistory-43-sense1",
+    "sample_id": "llm-ambistory-43-sense1",
+    "homonym": "elephant",
+    "judged_meaning": "A mammal of the order Proboscidea, having a trunk, and two large ivory tusks jutting from the upper jaw.",
+    "precontext": "The old explorer's study was filled with curiosities from his travels. Polished wooden shelves held delicate figurines and maps detailing distant lands. Sunlight streamed in, illuminating dust motes dancing around a large, impressive display.",
+    "sentence": "He pointed to the magnificent [TGT]elephant[/TGT] in the center of the room.",
+    "ending": "Its wrinkled hide seemed to ripple under the light, as if it might lumber off at any moment.",
+    "choices": [
+      4,
+      4,
+      4,
+      4,
+      5
+    ],
+    "average": 4.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.0"
+  },
+  "77": {
+    "id": "llm-ambistory-43-sense1-neg",
+    "sample_id": "llm-ambistory-43-sense1-neg",
+    "homonym": "elephant",
+    "judged_meaning": "Ivory.",
+    "precontext": "The old explorer's study was filled with curiosities from his travels. Polished wooden shelves held delicate figurines and maps detailing distant lands. Sunlight streamed in, illuminating dust motes dancing around a large, impressive display.",
+    "sentence": "He pointed to the magnificent [TGT]elephant[/TGT] in the center of the room.",
+    "ending": "Its wrinkled hide seemed to ripple under the light, as if it might lumber off at any moment.",
+    "choices": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "average": 1.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.2"
+  },
+  "78": {
+    "id": "llm-ambistory-43-sense2",
+    "sample_id": "llm-ambistory-43-sense2",
+    "homonym": "elephant",
+    "judged_meaning": "Ivory.",
+    "precontext": "The auction house was bustling with collectors, eager for unique pieces. Outside, a documentary about African wildlife played silently on a large screen, showing vast savannas. Inside, the air hummed with anticipation for the rare items on display.",
+    "sentence": "The bidding began for the magnificent [TGT]elephant[/TGT] in the center of the room.",
+    "ending": "Its polished surface gleamed under the spotlights, a testament to the artisan's skill and the material's enduring beauty.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.2"
+  },
+  "79": {
+    "id": "llm-ambistory-43-sense2-neg",
+    "sample_id": "llm-ambistory-43-sense2-neg",
+    "homonym": "elephant",
+    "judged_meaning": "A mammal of the order Proboscidea, having a trunk, and two large ivory tusks jutting from the upper jaw.",
+    "precontext": "The auction house was bustling with collectors, eager for unique pieces. Outside, a documentary about African wildlife played silently on a large screen, showing vast savannas. Inside, the air hummed with anticipation for the rare items on display.",
+    "sentence": "The bidding began for the magnificent [TGT]elephant[/TGT] in the center of the room.",
+    "ending": "Its polished surface gleamed under the spotlights, a testament to the artisan's skill and the material's enduring beauty.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "average": 2.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.0"
+  },
+  "80": {
+    "id": "llm-ambistory-44-sense1",
+    "sample_id": "llm-ambistory-44-sense1",
+    "homonym": "elephant",
+    "judged_meaning": "Anything huge and ponderous.",
+    "precontext": "The old workshop was cluttered with forgotten projects and dusty antiques. Mark was trying to clear out the space, a daunting task that felt impossibly large. He found an old box, beautifully carved and surprisingly heavy.",
+    "sentence": "He knew dealing with the [TGT]elephant[/TGT] would be the hardest part.",
+    "ending": "Its sheer size and weight meant he'd need help just to move it.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      5
+    ],
+    "average": 4.0,
+    "stdev": 0.6324555320336759,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.1"
+  },
+  "81": {
+    "id": "llm-ambistory-44-sense1-neg",
+    "sample_id": "llm-ambistory-44-sense1-neg",
+    "homonym": "elephant",
+    "judged_meaning": "Ivory.",
+    "precontext": "The old workshop was cluttered with forgotten projects and dusty antiques. Mark was trying to clear out the space, a daunting task that felt impossibly large. He found an old box, beautifully carved and surprisingly heavy.",
+    "sentence": "He knew dealing with the [TGT]elephant[/TGT] would be the hardest part.",
+    "ending": "Its sheer size and weight meant he'd need help just to move it.",
+    "choices": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "average": 2.0,
+    "stdev": 0.0,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.2"
+  },
+  "82": {
+    "id": "llm-ambistory-44-sense2",
+    "sample_id": "llm-ambistory-44-sense2",
+    "homonym": "elephant",
+    "judged_meaning": "Ivory.",
+    "precontext": "The auction house was buzzing with whispers about the rare collection coming up for bid. Sarah, a connoisseur of antique art, was particularly interested in a certain lot. She knew acquiring it would be a significant challenge, both financially and logistically.",
+    "sentence": "She knew dealing with the [TGT]elephant[/TGT] would be the hardest part.",
+    "ending": "Its delicate sheen and creamy texture were unmistakable, a true masterpiece of its kind.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.2"
+  },
+  "83": {
+    "id": "llm-ambistory-44-sense2-neg",
+    "sample_id": "llm-ambistory-44-sense2-neg",
+    "homonym": "elephant",
+    "judged_meaning": "Anything huge and ponderous.",
+    "precontext": "The auction house was buzzing with whispers about the rare collection coming up for bid. Sarah, a connoisseur of antique art, was particularly interested in a certain lot. She knew acquiring it would be a significant challenge, both financially and logistically.",
+    "sentence": "She knew dealing with the [TGT]elephant[/TGT] would be the hardest part.",
+    "ending": "Its delicate sheen and creamy texture were unmistakable, a true masterpiece of its kind.",
+    "choices": [
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "average": 1.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "elephant.noun.1"
+  },
+  "84": {
+    "id": "llm-ambistory-45-sense1",
+    "sample_id": "llm-ambistory-45-sense1",
+    "homonym": "brown",
+    "judged_meaning": "A colour like that of chocolate or coffee.",
+    "precontext": "The old clubroom had seen better days, showing signs of wear and neglect. Liam was trying to decide on the best finish for the worn-out surfaces, hoping to improve its overall appeal. He considered the various options to make the place feel more inviting, especially with the upcoming local competition.",
+    "sentence": "He thought the deep [TGT]brown[/TGT] would be a striking choice.",
+    "ending": "He imagined it on the walls, paired with cream accents, to create a richer atmosphere.",
+    "choices": [
+      3,
+      3,
+      4,
+      3,
+      4
+    ],
+    "average": 3.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.0"
+  },
+  "85": {
+    "id": "llm-ambistory-45-sense1-neg",
+    "sample_id": "llm-ambistory-45-sense1-neg",
+    "homonym": "brown",
+    "judged_meaning": "One of the colour balls used in snooker, with a value of 4 points.",
+    "precontext": "The old clubroom had seen better days, showing signs of wear and neglect. Liam was trying to decide on the best finish for the worn-out surfaces, hoping to improve its overall appeal. He considered the various options to make the place feel more inviting, especially with the upcoming local competition.",
+    "sentence": "He thought the deep [TGT]brown[/TGT] would be a striking choice.",
+    "ending": "He imagined it on the walls, paired with cream accents, to create a richer atmosphere.",
+    "choices": [
+      1,
+      1,
+      1,
+      2,
+      2
+    ],
+    "average": 1.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.1"
+  },
+  "86": {
+    "id": "llm-ambistory-45-sense2",
+    "sample_id": "llm-ambistory-45-sense2",
+    "homonym": "brown",
+    "judged_meaning": "One of the colour balls used in snooker, with a value of 4 points.",
+    "precontext": "The snooker hall was surprisingly quiet for a Saturday afternoon, but Mark was intensely focused. He was carefully assessing the table, considering his next move and the potential points he could score. He often found himself admiring the rich hues of the felt and the polished wood, finding a certain beauty in the game's setup.",
+    "sentence": "He focused intently on the [TGT]brown[/TGT], knowing its position was critical.",
+    "ending": "Worth four points, it was absolutely key to his strategy for clearing the table.",
+    "choices": [
+      3,
+      3,
+      4,
+      4,
+      4
+    ],
+    "average": 3.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.1"
+  },
+  "87": {
+    "id": "llm-ambistory-45-sense2-neg",
+    "sample_id": "llm-ambistory-45-sense2-neg",
+    "homonym": "brown",
+    "judged_meaning": "A colour like that of chocolate or coffee.",
+    "precontext": "The snooker hall was surprisingly quiet for a Saturday afternoon, but Mark was intensely focused. He was carefully assessing the table, considering his next move and the potential points he could score. He often found himself admiring the rich hues of the felt and the polished wood, finding a certain beauty in the game's setup.",
+    "sentence": "He focused intently on the [TGT]brown[/TGT], knowing its position was critical.",
+    "ending": "Worth four points, it was absolutely key to his strategy for clearing the table.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      2
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.0"
+  },
+  "88": {
+    "id": "llm-ambistory-46-sense1",
+    "sample_id": "llm-ambistory-46-sense1",
+    "homonym": "brown",
+    "judged_meaning": "A colour like that of chocolate or coffee.",
+    "precontext": "The kitchen was a chaotic scene, a mix of spilled ingredients and forgotten bills. Mark needed to get his life in order, starting with making something that felt right. He carefully unwrapped the package, hoping for a bit of warmth.",
+    "sentence": "He looked at the [TGT]brown[/TGT].",
+    "ending": "Its earthy scent promised comfort, a familiar start to his day.",
+    "choices": [
+      3,
+      3,
+      4,
+      4,
+      4
+    ],
+    "average": 3.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.0"
+  },
+  "89": {
+    "id": "llm-ambistory-46-sense1-neg",
+    "sample_id": "llm-ambistory-46-sense1-neg",
+    "homonym": "brown",
+    "judged_meaning": "Black tar heroin.",
+    "precontext": "The kitchen was a chaotic scene, a mix of spilled ingredients and forgotten bills. Mark needed to get his life in order, starting with making something that felt right. He carefully unwrapped the package, hoping for a bit of warmth.",
+    "sentence": "He looked at the [TGT]brown[/TGT].",
+    "ending": "Its earthy scent promised comfort, a familiar start to his day.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      2
+    ],
+    "average": 2.2,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.2"
+  },
+  "90": {
+    "id": "llm-ambistory-46-sense2",
+    "sample_id": "llm-ambistory-46-sense2",
+    "homonym": "brown",
+    "judged_meaning": "Black tar heroin.",
+    "precontext": "The old diner booth felt sticky, and the smell of stale coffee hung heavy in the air. Jake watched the street, waiting for the delivery that would finally bring him some relief. He had scraped together every last penny, desperate for a change.",
+    "sentence": "He looked at the [TGT]brown[/TGT].",
+    "ending": "The small, dark chunk promised the quiet escape he desperately craved.",
+    "choices": [
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "average": 4.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.2"
+  },
+  "91": {
+    "id": "llm-ambistory-46-sense2-neg",
+    "sample_id": "llm-ambistory-46-sense2-neg",
+    "homonym": "brown",
+    "judged_meaning": "A colour like that of chocolate or coffee.",
+    "precontext": "The old diner booth felt sticky, and the smell of stale coffee hung heavy in the air. Jake watched the street, waiting for the delivery that would finally bring him some relief. He had scraped together every last penny, desperate for a change.",
+    "sentence": "He looked at the [TGT]brown[/TGT].",
+    "ending": "The small, dark chunk promised the quiet escape he desperately craved.",
+    "choices": [
+      2,
+      3,
+      2,
+      3,
+      3
+    ],
+    "average": 2.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "brown.noun.0"
+  },
+  "92": {
+    "id": "llm-ambistory-49-sense1",
+    "sample_id": "llm-ambistory-49-sense1",
+    "homonym": "month",
+    "judged_meaning": "A period into which a year is divided, historically based on the phases of the moon.",
+    "precontext": "Sarah was trying to get her schedule in order for the new project. She felt a strange sense of anticipation, mixed with a little fatigue. Her body seemed to have its own peculiar rhythm these days.",
+    "sentence": "She knew she had to wait another [TGT]month[/TGT].",
+    "ending": "The deadline for the grant application wasn't until the end of April.",
+    "choices": [
+      3,
+      4,
+      4,
+      4,
+      4
+    ],
+    "average": 3.8,
+    "stdev": 0.4,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "month.noun.0"
+  },
+  "93": {
+    "id": "llm-ambistory-49-sense1-neg",
+    "sample_id": "llm-ambistory-49-sense1-neg",
+    "homonym": "month",
+    "judged_meaning": "A woman's period; menstrual discharge.",
+    "precontext": "Sarah was trying to get her schedule in order for the new project. She felt a strange sense of anticipation, mixed with a little fatigue. Her body seemed to have its own peculiar rhythm these days.",
+    "sentence": "She knew she had to wait another [TGT]month[/TGT].",
+    "ending": "The deadline for the grant application wasn't until the end of April.",
+    "choices": [
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "average": 2.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "month.noun.2"
+  },
+  "94": {
+    "id": "llm-ambistory-49-sense2",
+    "sample_id": "llm-ambistory-49-sense2",
+    "homonym": "month",
+    "judged_meaning": "A woman's period; menstrual discharge.",
+    "precontext": "Maria had been feeling unusually bloated and irritable all week. She'd been meticulously checking her cycle tracking app, hoping for a clear pattern. The discomfort was becoming a real nuisance.",
+    "sentence": "She knew she had to wait another [TGT]month[/TGT].",
+    "ending": "She hoped the cramps would subside soon, or at least that she'd finally get some relief.",
+    "choices": [
+      4,
+      4,
+      5,
+      5,
+      5
+    ],
+    "average": 4.6,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "month.noun.2"
+  },
+  "95": {
+    "id": "llm-ambistory-49-sense2-neg",
+    "sample_id": "llm-ambistory-49-sense2-neg",
+    "homonym": "month",
+    "judged_meaning": "A period into which a year is divided, historically based on the phases of the moon.",
+    "precontext": "Maria had been feeling unusually bloated and irritable all week. She'd been meticulously checking her cycle tracking app, hoping for a clear pattern. The discomfort was becoming a real nuisance.",
+    "sentence": "She knew she had to wait another [TGT]month[/TGT].",
+    "ending": "She hoped the cramps would subside soon, or at least that she'd finally get some relief.",
+    "choices": [
+      2,
+      2,
+      3,
+      2,
+      3
+    ],
+    "average": 2.4,
+    "stdev": 0.4898979485566356,
+    "nonsensical": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "example_sentence": "",
+    "sense_tags": "",
+    "sense_synonyms": "",
+    "source": "llm-generated-ambistory",
+    "sense_id": "month.noun.0"
+  }
+}
